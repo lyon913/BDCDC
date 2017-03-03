@@ -47,7 +47,7 @@ namespace BDCDC.service
             props.SetProperty("dbclient", "SQLServer");
             //props.SetProperty("serverinstance", "127.0.0.1");
             props.SetProperty("instance", "sde:sqlserver:127.0.0.1");
-            props.SetProperty("database", "bdcdj"); // Only if it is needed
+            props.SetProperty("database", "bdcdj_fm"); // Only if it is needed
             props.SetProperty("authentication_mode", "DBMS");
             props.SetProperty("user", "sa");
             props.SetProperty("password", "xqx123456@");

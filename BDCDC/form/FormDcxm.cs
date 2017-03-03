@@ -53,7 +53,7 @@ namespace BDCDC.form
 
             t_xmmc.DataBindings.Add("Text", dcxm, "XMMC", false, DataSourceUpdateMode.OnPropertyChanged);
             cb_xmlx.DataBindings.Add("SelectedValue", dcxm, "XMLX", false, DataSourceUpdateMode.OnPropertyChanged);
-            t_bsdw.DataBindings.Add("Text", dcxm, "BSDW", false, DataSourceUpdateMode.OnPropertyChanged);
+            t_bsdw.DataBindings.Add("Text", dcxm, "DCDW", false, DataSourceUpdateMode.OnPropertyChanged);
             t_lxr.DataBindings.Add("Text", dcxm, "LXR", false, DataSourceUpdateMode.OnPropertyChanged);
             t_lxdh.DataBindings.Add("Text", dcxm, "LXDH", false, DataSourceUpdateMode.OnPropertyChanged);
             t_slr.DataBindings.Add("Text", dcxm, "SLR", false, DataSourceUpdateMode.OnPropertyChanged);

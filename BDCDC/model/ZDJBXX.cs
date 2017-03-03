@@ -81,9 +81,6 @@ namespace BDCDC.model
 
         public int ZT { get; set; }
 
-        [StringLength(500)]
-        public string DJJG { get; set; }
-
         public DbGeometry SHAPE { get; set; }
 
         [Column("QJDCXM_ID")]

@@ -77,7 +77,7 @@ namespace BDCDC.service
                     ((BaseAuditEntity)entity).fCreatorName = "审计功能未实现";
                 }
 
-                ((BaseAuditEntity)entity).fLastUpdateTime = DateTime.Now;
+                ((BaseAuditEntity)entity).fLstUpdateTime = DateTime.Now;
                 ((BaseAuditEntity)entity).fLastUpdaterId = 9999;
                 ((BaseAuditEntity)entity).fLastUpdaterIp = "0.0.0.0";
                 ((BaseAuditEntity)entity).fLastUpdaterLoginName = "test_user_1";

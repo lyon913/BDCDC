@@ -40,6 +40,6 @@ namespace BDCDC.model
         [StringLength(100)]
         public string fLastUpdaterName { get; set; }
 
-        public DateTime? fLastUpdateTime { get; set; }
+        public DateTime? fLstUpdateTime { get; set; }
     }
 }

@@ -58,9 +58,6 @@ namespace BDCDC.model
         [StringLength(200)]
         public string QXMC { get; set; }
 
-        [StringLength(500)]
-        public string DJJG { get; set; }
-
         public DateTime? fLastUpdateTime { get; set; }
     }
 }
