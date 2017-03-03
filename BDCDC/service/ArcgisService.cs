@@ -18,10 +18,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Maplex;
 
 namespace BDCDC.service
 {
-    class ArcgisService
+    static class ArcgisService
     {
         public static class CAD_FEATURE_TYPE
         {
@@ -29,6 +31,26 @@ namespace BDCDC.service
             public static String ANNOTATION = "Annotation";
             public static String POLYLINE = "Polyline";
             public static String POINT = "Point";
+        }
+
+        public static class MAP_COLOR
+        {
+            public static IColor COLOR_ZD_OUTLINE= getRgbColor(200,0,0);
+
+        }
+
+        static public IRgbColor getRgbColor(int intR, int intG, int intB)
+        {
+            IRgbColor pRgbColor = null;
+            if (intR < 0 || intR > 255 || intG < 0 || intG > 255 || intB < 0 || intB > 255)
+            {
+                return pRgbColor;
+            }
+            pRgbColor = new RgbColorClass();
+            pRgbColor.Red = intR;
+            pRgbColor.Green = intG;
+            pRgbColor.Blue = intB;
+            return pRgbColor;
         }
 
         public static IWorkspace openBdcWorkspace()
@@ -209,6 +231,137 @@ namespace BDCDC.service
                 fList.Add(f);
             }
             return fList;
+        }
+
+        public static ILayer findMapLayer(AxMapControl mapControl, String name)
+        {
+            IEnumLayer layers = mapControl.Map.Layers;
+            ILayer layer = null;
+            while ((layer = layers.Next()) != null)
+            {
+                if (name.Equals(layer.Name))
+                {
+                    return layer;
+                }
+            }
+
+            return null;
+        }
+
+        public static void selectMapFeatures(String whereClause, IFeatureLayer layer, AxMapControl mapControl)
+        {
+            IQueryFilter qf = new QueryFilterClass();
+            qf.WhereClause = whereClause;
+            IFeatureSelection selection = layer as IFeatureSelection;
+            selection.SelectFeatures(qf, esriSelectionResultEnum.esriSelectionResultNew, false);
+            mapControl.Refresh();
+        }
+
+        public static void selectMapFeatures(String whereClause, String layerName, AxMapControl mapControl)
+        {
+            IQueryFilter qf = new QueryFilterClass();
+            qf.WhereClause = whereClause;
+            IFeatureSelection selection = findMapLayer(mapControl, layerName) as IFeatureSelection;
+            selection.SelectFeatures(qf, esriSelectionResultEnum.esriSelectionResultNew, false);
+            mapControl.Refresh();
+        }
+
+        public static void clearMapSelection(AxMapControl mapControl)
+        {
+            IFeatureSelection zdLayer = mapControl.get_Layer(0) as IFeatureSelection;
+            zdLayer.Clear();
+            mapControl.Refresh();
+        }
+
+        public static void removeAllLayers(AxMapControl mapControl)
+        {
+            mapControl.Map.ClearLayers();
+            mapControl.Refresh();
+        }
+
+        public static void enableFeatureLayerLabel(IFeatureLayer pFeaturelayer, string sLableField, IRgbColor pRGB, int size)
+        {
+            //判断图层是否为空
+            if (pFeaturelayer == null)
+            {
+                return;
+            }
+               
+            IGeoFeatureLayer pGeoFeaturelayer = (IGeoFeatureLayer)pFeaturelayer;
+            IAnnotateLayerPropertiesCollection pAnnoLayerPropsCollection;
+            pAnnoLayerPropsCollection = pGeoFeaturelayer.AnnotationProperties;
+            pAnnoLayerPropsCollection.Clear();
+
+            //stdole.IFontDisp  pFont; //字体
+            ITextSymbol pTextSymbol;
+
+            //pFont.Name = "新宋体";
+            //pFont.Size = 9;
+
+            pTextSymbol = new TextSymbolClass();
+            pTextSymbol.Color = pRGB;
+            pTextSymbol.Size = size; //标注大小
+
+            IBasicOverposterLayerProperties4 pBasicOverposterlayerProps = new BasicOverposterLayerPropertiesClass();
+            switch (pFeaturelayer.FeatureClass.ShapeType)//判断图层类型
+            {
+                case ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolygon:
+                    pBasicOverposterlayerProps.FeatureType = esriBasicOverposterFeatureType.esriOverposterPolygon;
+                    pBasicOverposterlayerProps.PolygonPlacementMethod = esriOverposterPolygonPlacementMethod.esriAlwaysHorizontal;
+                    break;
+                case ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPoint:
+                    pBasicOverposterlayerProps.FeatureType = esriBasicOverposterFeatureType.esriOverposterPoint;
+                    pBasicOverposterlayerProps.PointPlacementMethod = esriOverposterPointPlacementMethod.esriAroundPoint;
+                    break;
+                case ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolyline:
+                    pBasicOverposterlayerProps.FeatureType = esriBasicOverposterFeatureType.esriOverposterPolyline;
+                    break;
+            }
+            
+            pBasicOverposterlayerProps.PlaceOnlyInsidePolygon = true;
+            pBasicOverposterlayerProps.NumLabelsOption = esriBasicNumLabelsOption.esriOneLabelPerShape;
+
+
+            ILabelEngineLayerProperties pLabelEnginelayerProps = new LabelEngineLayerPropertiesClass();
+            pLabelEnginelayerProps.Expression = "[" + sLableField + "]";
+            pLabelEnginelayerProps.Symbol = pTextSymbol;
+            pLabelEnginelayerProps.BasicOverposterLayerProperties = pBasicOverposterlayerProps as IBasicOverposterLayerProperties;
+            pAnnoLayerPropsCollection.Add((IAnnotateLayerProperties)pLabelEnginelayerProps);
+            pGeoFeaturelayer.DisplayAnnotation = true;//很重要，必须设置 
+        }
+
+        public static void annotateLayer(IGeoFeatureLayer pGeoFeatLyr, string annoField)
+        {
+
+            //如果Map没有用Maplex引擎，要先设置Map使用这个引擎
+            //IAnnotateMap pAnnotateMap;
+            //pAnnotateMap = new MaplexAnnotateMapClass();
+            //pMap.AnnotationEngine = pAnnotateMap;
+
+            IGeoFeatureLayer pGeoFeatLayer;
+            pGeoFeatLayer = pGeoFeatLyr;
+            IAnnotateLayerPropertiesCollection pAnnoProps;
+            pAnnoProps = pGeoFeatLyr.AnnotationProperties;
+            pAnnoProps.Clear();
+            ILabelEngineLayerProperties2 pLabelEngine2 = new MaplexLabelEngineLayerPropertiesClass();
+            pLabelEngine2.Expression = "[" + annoField + "]";
+
+            IMaplexOverposterLayerProperties pMaplexPro = new MaplexOverposterLayerPropertiesClass();
+            pMaplexPro.FeatureType = esriBasicOverposterFeatureType.esriOverposterPolygon;
+            pMaplexPro.PolygonPlacementMethod = esriMaplexPolygonPlacementMethod.esriMaplexHorizontalInPolygon;
+            pMaplexPro.CanPlaceLabelOutsidePolygon = false;
+            pMaplexPro.CanRemoveOverlappingLabel = true;
+            pMaplexPro.RepeatLabel = false;
+            pMaplexPro.CanStackLabel = true;
+
+
+            pLabelEngine2.OverposterLayerProperties = pMaplexPro as IOverposterLayerProperties;
+            //IMapOverposter pMapPos = axMapControl1.Map as IMapOverposter;
+            //IOverposterProperties pOP = pMapPos.OverposterProperties;
+            //IMaplexOverposterProperties pMaplexOP = pOP as IMaplexOverposterProperties;
+            //pMaplexOP.LabelLargestPolygon = false;
+            pAnnoProps.Add(pLabelEngine2 as IAnnotateLayerProperties);
+            pGeoFeatLyr.DisplayAnnotation = true;
         }
 
         public static BasicLayers getBasicLayers(IWorkspace ws)

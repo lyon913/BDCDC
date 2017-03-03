@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBdcMain));
             this.menu_main = new System.Windows.Forms.MenuStrip();
             this.mi_sys = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +41,6 @@
             this.行政区数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.地籍区数据管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.地籍子区数据管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.固定项配置管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据库连接配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统固定项配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,27 +111,26 @@
             this.查找ToolStripMenuItem});
             this.权籍调查项目管理ToolStripMenuItem.Name = "权籍调查项目管理ToolStripMenuItem";
             this.权籍调查项目管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.权籍调查项目管理ToolStripMenuItem.Text = "案卷管理";
+            this.权籍调查项目管理ToolStripMenuItem.Text = "业务管理";
             // 
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.新建ToolStripMenuItem.Text = "新建案卷";
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新建ToolStripMenuItem.Text = "业务受理";
             // 
             // 查找ToolStripMenuItem
             // 
             this.查找ToolStripMenuItem.Name = "查找ToolStripMenuItem";
-            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.查找ToolStripMenuItem.Text = "案卷查找";
+            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.查找ToolStripMenuItem.Text = "业务查找";
             // 
             // 基础数据管理ToolStripMenuItem
             // 
             this.基础数据管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.行政区数据ToolStripMenuItem,
             this.地籍区数据管理ToolStripMenuItem,
-            this.地籍子区数据管理ToolStripMenuItem,
-            this.固定项配置管理ToolStripMenuItem});
+            this.地籍子区数据管理ToolStripMenuItem});
             this.基础数据管理ToolStripMenuItem.Name = "基础数据管理ToolStripMenuItem";
             this.基础数据管理ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.基础数据管理ToolStripMenuItem.Text = "基础数据管理";
@@ -154,12 +152,6 @@
             this.地籍子区数据管理ToolStripMenuItem.Name = "地籍子区数据管理ToolStripMenuItem";
             this.地籍子区数据管理ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.地籍子区数据管理ToolStripMenuItem.Text = "地籍子区数据管理";
-            // 
-            // 固定项配置管理ToolStripMenuItem
-            // 
-            this.固定项配置管理ToolStripMenuItem.Name = "固定项配置管理ToolStripMenuItem";
-            this.固定项配置管理ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.固定项配置管理ToolStripMenuItem.Text = "固定项配置管理";
             // 
             // 参数设置ToolStripMenuItem
             // 
@@ -218,21 +210,21 @@
             this.tab_todo.Name = "tab_todo";
             this.tab_todo.Size = new System.Drawing.Size(1006, 461);
             this.tab_todo.TabIndex = 0;
-            this.tab_todo.Text = "待办件";
+            this.tab_todo.Text = "已受理";
             this.tab_todo.UseVisualStyleBackColor = true;
             // 
             // dgv_todoList
             // 
             this.dgv_todoList.AllowUserToAddRows = false;
             this.dgv_todoList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_todoList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_todoList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_todoList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_todoList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fid,
@@ -243,14 +235,14 @@
             this.LXDH,
             this.SLR,
             this.SLRQ});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_todoList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_todoList.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_todoList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_todoList.Location = new System.Drawing.Point(0, 0);
             this.dgv_todoList.Name = "dgv_todoList";
@@ -344,7 +336,7 @@
             this.tb_newProj.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tb_newProj.Name = "tb_newProj";
             this.tb_newProj.Size = new System.Drawing.Size(60, 53);
-            this.tb_newProj.Text = "新增案卷";
+            this.tb_newProj.Text = "业务受理";
             this.tb_newProj.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tb_newProj.ToolTipText = "新增案卷";
             this.tb_newProj.Click += new System.EventHandler(this.tb_newProj_Click);
@@ -415,7 +407,7 @@
             this.MainMenuStrip = this.menu_main;
             this.Name = "FormBdcMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "不动产权籍调查成功管理系统";
+            this.Text = "不动产权籍调查成果管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormBdcMain_Load);
             this.menu_main.ResumeLayout(false);
@@ -458,7 +450,6 @@
         private System.Windows.Forms.ToolStripMenuItem 行政区数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 地籍区数据管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 地籍子区数据管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 固定项配置管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 数据库连接配置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 系统固定项配置ToolStripMenuItem;

@@ -40,12 +40,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tv_zd = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.b_importZd = new System.Windows.Forms.ToolStripButton();
             this.b_importZrz = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.toolbarControl = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +56,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.b_selectFeature = new System.Windows.Forms.ToolStripButton();
             this.b_propEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolbarControl = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -67,9 +67,9 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.toolbarControl)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -181,7 +181,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            this.splitContainer1.Panel1.Controls.Add(this.tv_zd);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
             // 
             // splitContainer1.Panel2
@@ -192,13 +192,14 @@
             this.splitContainer1.SplitterDistance = 211;
             this.splitContainer1.TabIndex = 1;
             // 
-            // treeView1
+            // tv_zd
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 56);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(211, 532);
-            this.treeView1.TabIndex = 1;
+            this.tv_zd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tv_zd.Location = new System.Drawing.Point(0, 56);
+            this.tv_zd.Name = "tv_zd";
+            this.tv_zd.Size = new System.Drawing.Size(211, 532);
+            this.tv_zd.TabIndex = 1;
+            this.tv_zd.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tv_zd_NodeMouseClick);
             // 
             // toolStrip2
             // 
@@ -259,6 +260,15 @@
             this.mapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mapControl.OcxState")));
             this.mapControl.Size = new System.Drawing.Size(605, 504);
             this.mapControl.TabIndex = 0;
+            // 
+            // toolbarControl
+            // 
+            this.toolbarControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toolbarControl.Location = new System.Drawing.Point(0, 0);
+            this.toolbarControl.Name = "toolbarControl";
+            this.toolbarControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("toolbarControl.OcxState")));
+            this.toolbarControl.Size = new System.Drawing.Size(605, 28);
+            this.toolbarControl.TabIndex = 1;
             // 
             // tocControl
             // 
@@ -351,15 +361,6 @@
             this.b_propEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.b_propEdit.Click += new System.EventHandler(this.b_propEdit_Click);
             // 
-            // toolbarControl
-            // 
-            this.toolbarControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.toolbarControl.Location = new System.Drawing.Point(0, 0);
-            this.toolbarControl.Name = "toolbarControl";
-            this.toolbarControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("toolbarControl.OcxState")));
-            this.toolbarControl.Size = new System.Drawing.Size(605, 28);
-            this.toolbarControl.TabIndex = 1;
-            // 
             // FormProjectMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -387,10 +388,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mapControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toolbarControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.toolbarControl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -413,7 +414,7 @@
         private System.Windows.Forms.ToolStripButton b_importZrz;
         private ESRI.ArcGIS.Controls.AxMapControl mapControl;
         private ESRI.ArcGIS.Controls.AxTOCControl tocControl;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tv_zd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

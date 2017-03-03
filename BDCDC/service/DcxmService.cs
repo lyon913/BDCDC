@@ -32,7 +32,7 @@ namespace BDCDC.service
 
         private String generateXmbh()
         {
-            return QJDCXM_PREFIX;
+            return QJDCXM_PREFIX+DateTime.Now.ToShortTimeString();
         }
 
         public ZDJBXX newZdjbxx(int dcxmId, IFeature feature)
@@ -48,22 +48,15 @@ namespace BDCDC.service
         public IFeatureLayer getDcxmZdLayer(int dcxmId)
         {
             ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
-            /*
-            IQueryDef queryDef = ws.CreateQueryDef();
-            queryDef.Tables = "bdcdj1016.dbo.ZRZ";
-            queryDef.WhereClause = "QJDCXM_ID = " + dcxmId;
-            IFeatureDataset featureDataset = ws.OpenFeatureQuery("bdcdj1016.dbo.ZRZ", queryDef);
-            IFeatureClassContainer featureClassContainer = (IFeatureClassContainer)featureDataset;
-            IFeatureClass featureClass = featureClassContainer.get_ClassByName("bdcdj1016.dbo.ZRZ");
-            */
+            IFeatureLayer layer = new FeatureLayer();
+            layer.Name = "宗地";
 
-            int zdCount = countZdByDcxmId(dcxmId);
-            if(zdCount == 0)
+            if(countZdByDcxmId(dcxmId) == 0)
             {
-                return null;
+                return layer;
             }
 
-            String query = "select fId,shape from ZDJBXX where QJDCXM_ID=" + dcxmId;
+            String query = "select * from ZDJBXX where QJDCXM_ID=" + dcxmId;
             IQueryDescription q = ws.GetQueryDescription(query);
             q.OIDFields = "fId";
             q.GeometryType = esriGeometryType.esriGeometryPolygon;
@@ -71,10 +64,7 @@ namespace BDCDC.service
             String qName = "";
             ws.CheckDatasetName("ZDJBXX", q, out qName);
             ITable table = ws.OpenQueryClass(qName, q);
-
-            IFeatureLayer layer = new FeatureLayer();
             layer.FeatureClass = table as IFeatureClass;
-            layer.Name = "宗地";
 
             return layer;
         }
@@ -90,6 +80,13 @@ namespace BDCDC.service
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.QJDCXMID == dcxmId).Count();
+            });
+        }
+
+        public List<ZDJBXX> getZdjbxxByDcxmId(int dcxmId)
+        {
+            return useDbContext(ctx => {
+                return ctx.ZDJBXX.Where(zd => zd.QJDCXMID == dcxmId).ToList();
             });
         }
     }
