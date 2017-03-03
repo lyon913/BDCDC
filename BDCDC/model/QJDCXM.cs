@@ -30,9 +30,30 @@ namespace BDCDC.model
         public string LXDH { get; set; }
 
         [StringLength(50)]
+        public string DCR { get; set; }
+
+        public DateTime? DCRQ { get; set; }
+
+        [StringLength(50)]
+        public string CLR { get; set; }
+
+        public DateTime? CLRQ { get; set; }
+
+        [StringLength(50)]
+        public string SHR { get; set; }
+
+        public DateTime? SHRQ { get; set; }
+
+        [StringLength(500)]
+        public string SHYJ { get; set; }
+
+        [StringLength(50)]
         public string SLR { get; set; }
 
         public DateTime? SLRQ { get; set; }
+
+        [StringLength(1000)]
+        public string BZ { get; set; }
 
         /**
          * °¸¾í×´Ì¬
