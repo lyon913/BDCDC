@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FC308C5-8D02-4F88-AE39-182F875C10B7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BDCDC</RootNamespace>
+    <AssemblyName>BDCDC</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>BDCDC.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.3DAnalyst, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ADF.Connection.Local, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86" />
+    <Reference Include="ESRI.ArcGIS.ADF.Local, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.AxControls, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
+    <Reference Include="ESRI.ArcGIS.Carto, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Controls, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesFile, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesGDB, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesOleDB, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Display, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.GlobeCore, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Output, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.System, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Version, Version=10.4.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="form\CtrlDcxm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="form\CtrlDcxm.Designer.cs">
+      <DependentUpon>CtrlDcxm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\DialogLayerSelect.cs" />
+    <Compile Include="form\FormBdcMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormBdcMain.Designer.cs">
+      <DependentUpon>FormBdcMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\DialogCadImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\DialogCadImport.Designer.cs">
+      <DependentUpon>DialogCadImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormDcxm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormDcxm.Designer.cs">
+      <DependentUpon>FormDcxm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormLayerSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormLayerSelect.Designer.cs">
+      <DependentUpon>FormLayerSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormProjectMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormProjectMain.Designer.cs">
+      <DependentUpon>FormProjectMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormZdjbxx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormZdjbxx.Designer.cs">
+      <DependentUpon>FormZdjbxx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormZrz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormZrz.Designer.cs">
+      <DependentUpon>FormZrz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="model\BaseAuditEntity.cs" />
+    <Compile Include="model\BaseEntity.cs" />
+    <Compile Include="model\BdcContext.cs" />
+    <Compile Include="model\DataItems.cs" />
+    <Compile Include="model\DJQ.cs" />
+    <Compile Include="model\DJZQ.cs" />
+    <Compile Include="model\JZD.cs" />
+    <Compile Include="model\JZX.cs" />
+    <Compile Include="model\QJDCXM.cs" />
+    <Compile Include="model\ZDJBXX.cs" />
+    <Compile Include="model\ZRZ.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\ArcgisService.cs" />
+    <Compile Include="service\DataItemsService.cs" />
+    <Compile Include="service\DcxmService.cs" />
+    <Compile Include="service\Service.cs" />
+    <Compile Include="service\ZdService.cs" />
+    <Compile Include="service\ZrzService.cs" />
+    <Compile Include="utils\StringUtils.cs" />
+    <Compile Include="utils\UiUtils.cs" />
+    <Compile Include="utils\ValidationUtils.cs" />
+    <Compile Include="vo\BasicLayers.cs" />
+    <EmbeddedResource Include="form\CtrlDcxm.resx">
+      <DependentUpon>CtrlDcxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormBdcMain.resx">
+      <DependentUpon>FormBdcMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\DialogCadImport.resx">
+      <DependentUpon>DialogCadImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormDcxm.resx">
+      <DependentUpon>FormDcxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormLayerSelect.resx">
+      <DependentUpon>FormLayerSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormProjectMain.resx">
+      <DependentUpon>FormProjectMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormZdjbxx.resx">
+      <DependentUpon>FormZdjbxx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormZrz.resx">
+      <DependentUpon>FormZrz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="form\ctrl\" />
+    <Folder Include="gdb\Default.gdb\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomOutTool_B_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AttributesWindow32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastralBuildAllParcelsCurrent32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CadastralFeatureAdjust32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CADDataset32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditingPolygonTool32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GenericCheckMarkGreen32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GenericDeleteRed32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GenericHome_C_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import_Feature_Class32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layer_LYR_File32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PanTool32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectionReselectHighlighted32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectionSelectTool32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomControl32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomFixedZoomIn32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomGeneric_B_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomInTool_B_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ruler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\to_do_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\to_do_list_cheked_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table_tab_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_history_frame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\to_do_list_cheked_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\google_map_satellite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
