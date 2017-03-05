@@ -290,6 +290,10 @@ namespace BDCDC.service
             IGeoFeatureLayer pGeoFeaturelayer = (IGeoFeatureLayer)pFeaturelayer;
             IAnnotateLayerPropertiesCollection pAnnoLayerPropsCollection;
             pAnnoLayerPropsCollection = pGeoFeaturelayer.AnnotationProperties;
+            if(pAnnoLayerPropsCollection == null)
+            {
+                return;
+            }
             pAnnoLayerPropsCollection.Clear();
 
             //stdole.IFontDisp  pFont; //字体

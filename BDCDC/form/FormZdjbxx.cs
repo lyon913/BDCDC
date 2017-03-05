@@ -55,180 +55,174 @@ namespace BDCDC.form
          * 已有宗地信息编辑
          * 
          * */
-        public FormZdjbxx( ZDJBXX zdjbxx)
+        public FormZdjbxx(ZDJBXX zdjbxx)
         {
             InitializeComponent();
+            this.zdjbxx = zdjbxx;
+            init();
+        }
+        private void init()
+        {
+            initServices();
+            //initDefaultValues();
+            initDataItems();
+            initDataBandings();
+            initBdcdyh();
+        }
 
-            //初始化成员变量
+        private void initServices()
+        {
             items = new DataItemsService();
             zdService = new ZdService();
+        }
 
-            //待编辑的宗地基本信息
-            this.zdjbxx = zdjbxx;
+        private void initDefaultValues()
+        {
+            if(zdjbxx.QLLX == null)
+            {
+                zdjbxx.QLLX = "3";
+            }
 
+            if (zdjbxx.QLXZ == null)
+            {
+                zdjbxx.QLXZ = "102";
+            }
+
+            if (zdjbxx.YT == null)
+            {
+                zdjbxx.YT = "71";
+            }
+
+            if (zdjbxx.DJ == null)
+            {
+                zdjbxx.DJ = "1";
+            }
+
+            if (zdjbxx.MJDW == null)
+            {
+                zdjbxx.MJDW = "1";
+            }
+            
+        }
+
+        private void initDataItems()
+        {
+            //地籍子区
+            List<DataItems> djzqList = zdService.getDjzqAsDataItems();
+            UiUtils.comboboxDataItems(this.cb_djzq, djzqList, true);
+
+            //宗地特征码--所有权类型
+            UiUtils.comboboxDataItems(cb_syqlx, "所有权类型", true);
+
+            //宗地特征码--特征码
+            UiUtils.comboboxDataItems(cb_zdtzm, "宗地（宗海）特征码", true);
+
+            //定着物特征码--特征码
+            UiUtils.comboboxDataItems(cb_dzwtzm, "定着物特征码", true);
+
+            //权利类型
+            UiUtils.comboboxDataItems(cb_qllx, "权利类型", false);
+
+            //权利性质
+            UiUtils.comboboxDataItems(cb_qlxz, "权利性质", false);
+
+            //用途
+            UiUtils.comboboxDataItems(cb_yt, "土地用途", true);
+
+            //面积单位
+            UiUtils.comboboxDataItems(cb_mjdw, "面积单位", false);
+
+            //等级
+            UiUtils.comboboxDataItems(cb_dj, "土地等级", false);
+        }
+
+        private void initDataBandings()
+        {
+            //表单数据绑定
+
+            //宗地代码
+            tb_zddm.DataBindings.Add("Text", zdjbxx, "ZDDM", false, DataSourceUpdateMode.OnPropertyChanged);
+
+            //不动产单元号
+            tb_bdcdyh.DataBindings.Add("Text", zdjbxx, "BDCDYH", false, DataSourceUpdateMode.OnPropertyChanged);
+            //权利类型
+            cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", true, DataSourceUpdateMode.OnPropertyChanged,"3");
+            //权利性质
+            cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", true, DataSourceUpdateMode.OnPropertyChanged,"102");
+            //土地用途
+            cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", true, DataSourceUpdateMode.OnPropertyChanged,"71");
+            //土地等级
+            cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", true, DataSourceUpdateMode.OnPropertyChanged,"1");
+            //面积单位
+            cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", true, DataSourceUpdateMode.OnPropertyChanged,"1");
+
+            //宗地面积
+            nb_zdmj.DataBindings.Add("Value", zdjbxx, "ZDMJ", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
+            //容积率
+            nb_rjl.DataBindings.Add("Value", zdjbxx, "RJL", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
+            //建筑密度
+            nb_jzmd.DataBindings.Add("Value", zdjbxx, "JZMD", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
+            //建筑限高
+            nb_jzxg.DataBindings.Add("Value", zdjbxx, "JZXG", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
+            //价格
+            nb_jg.DataBindings.Add("Value", zdjbxx, "JG", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
+
+            //宗地四至
+            tb_zdszb.DataBindings.Add("Text", zdjbxx, "ZDSZB", false, DataSourceUpdateMode.OnPropertyChanged);
+            tb_zdszd.DataBindings.Add("Text", zdjbxx, "ZDSZD", false, DataSourceUpdateMode.OnPropertyChanged);
+            tb_zdszx.DataBindings.Add("Text", zdjbxx, "ZDSZX", false, DataSourceUpdateMode.OnPropertyChanged);
+            tb_zdszn.DataBindings.Add("Text", zdjbxx, "ZDSZN", false, DataSourceUpdateMode.OnPropertyChanged);
+
+            //坐落
+            tb_zl.DataBindings.Add("Text", zdjbxx, "ZL", false, DataSourceUpdateMode.OnPropertyChanged);
+            //地籍号
+            tb_djh.DataBindings.Add("Text", zdjbxx, "DJH", false, DataSourceUpdateMode.OnPropertyChanged);
+            //图幅号
+            tb_tfh.DataBindings.Add("Text", zdjbxx, "TFH", false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        private void initBdcdyh()
+        {
+            if (zdjbxx != null && zdjbxx.BDCDYH != null)
+            {
+                String bdcdyh = zdjbxx.BDCDYH;
+                if (bdcdyh.Length == 28)
+                {
+                    String djzq = bdcdyh.Substring(0, 12);
+                    String tzm1 = bdcdyh.Substring(12, 1);
+                    String tzm2 = bdcdyh.Substring(13, 1);
+                    String zdsxh = bdcdyh.Substring(14, 5);
+                    String dzwtzm = bdcdyh.Substring(19, 1);
+                    String dzwsxh = bdcdyh.Substring(20, 8);
+
+                    this.cb_djzq.SelectedValue = djzq;
+                    this.cb_syqlx.SelectedValue = tzm1;
+                    this.cb_zdtzm.SelectedValue = tzm2;
+                    this.tb_zdsxh.Text = zdsxh;
+                    this.cb_dzwtzm.SelectedValue = dzwtzm;
+                    this.tb_dzwsxh.Text = dzwsxh;
+                }
+            }
         }
 
         //初始化
         private void FormZdjbxx_Load(object sender, EventArgs e)
         {
-            using (var ctx = new BdcContext())
-            {
-                List<DJZQ> djzqList = zdService.getDjzqAll(ctx);
-                formatDjzqName(djzqList);
-                this.cb_djzq.DataSource = djzqList;
-                this.cb_djzq.DisplayMember = "DJZQMC";
-                this.cb_djzq.ValueMember = "DJZQDM";
-
-                //宗地特征码--所有权类型
-                UiUtils.comboboxDataItems(cb_syqlx, "所有权类型", true);
-
-                //宗地特征码--特征码
-                UiUtils.comboboxDataItems(cb_zdtzm, "宗地（宗海）特征码", true);
-
-                //定着物特征码--特征码
-                UiUtils.comboboxDataItems(cb_dzwtzm, "定着物特征码", true);
-
-                //权利类型
-                UiUtils.comboboxDataItems(cb_qllx, "权利类型", false);
-
-                //权利性质
-                UiUtils.comboboxDataItems(cb_qlxz, "权利性质", false);
-
-                //用途
-                UiUtils.comboboxDataItems(cb_yt, "土地用途", true);
-
-                //面积单位
-                UiUtils.comboboxDataItems(cb_mjdw, "面积单位", false);
-
-                //等级
-                UiUtils.comboboxDataItems(cb_dj, "土地等级", false);
-
-                /*
-                //地籍子区下拉
-                List<DJZQ> djzqList = zdService.getDjzqAll(ctx);
-                formatDjzqName(djzqList);
-                this.cb_djzq.DataSource = djzqList;
-                this.cb_djzq.DisplayMember = "DJZQMC";
-                this.cb_djzq.ValueMember = "DJZQDM";
-
-                //宗地特征码--所有权类型
-                List<DataItems> syqlxList = items.getItemsByType("所有权类型", ctx);
-                DataItemsService.formatItemName(syqlxList);
-                this.cb_syqlx.DataSource = syqlxList;
-                this.cb_syqlx.DisplayMember = "itemName";
-                this.cb_syqlx.ValueMember = "itemCode";
-
-                //宗地特征码--特征码
-                List<DataItems> zdtzmList = items.getItemsByType("宗地（宗海）特征码", ctx);
-                DataItemsService.formatItemName(zdtzmList);
-                this.cb_zdtzm.DataSource = zdtzmList;
-                this.cb_zdtzm.DisplayMember = "itemName";
-                this.cb_zdtzm.ValueMember = "itemCode";
-
-                //定着物特征码--特征码
-                List<DataItems> dzwtzmList = items.getItemsByType("定着物特征码", ctx);
-                //过滤掉定着物类型为房屋的
-                dzwtzmList = dzwtzmList.Where(item => !"F".Equals(item.itemCode)).ToList();
-                DataItemsService.formatItemName(dzwtzmList);
-                this.cb_dzwtzm.DataSource = dzwtzmList;
-                this.cb_dzwtzm.DisplayMember = "itemName";
-                this.cb_dzwtzm.ValueMember = "itemCode";
-
-                //权利类型
-                List<DataItems> qllxList = items.getItemsByType("权利类型", ctx);
-                this.cb_qllx.DataSource = qllxList;
-                this.cb_qllx.DisplayMember = "itemName";
-                this.cb_qllx.ValueMember = "itemCode";
-
-                //权利性质
-                List<DataItems> qlxzList = items.getItemsByType("权利性质", ctx);
-                this.cb_qlxz.DataSource = qlxzList;
-                this.cb_qlxz.DisplayMember = "itemName";
-                this.cb_qlxz.ValueMember = "itemCode";
-
-                //用途
-                List<DataItems> ytList = items.getItemsByType("土地用途", ctx);
-                DataItemsService.formatItemName(ytList);
-                this.cb_yt.DataSource = ytList;
-                this.cb_yt.DisplayMember = "itemName";
-                this.cb_yt.ValueMember = "itemCode";
-
-                //面积单位
-                List<DataItems> mjdwList = items.getItemsByType("面积单位", ctx);
-                this.cb_mjdw.DataSource = mjdwList;
-                this.cb_mjdw.DisplayMember = "itemName";
-                this.cb_mjdw.ValueMember = "itemCode";
-
-                //等级
-                List<DataItems> djList = items.getItemsByType("土地等级", ctx);
-                this.cb_dj.DataSource = djList;
-                this.cb_dj.DisplayMember = "itemName";
-                this.cb_dj.ValueMember = "itemCode";
-                */
-
-                //表单数据绑定
-
-                //宗地代码
-                tb_zddm.DataBindings.Add("Text", zdjbxx, "ZDDM", false, DataSourceUpdateMode.OnPropertyChanged);
-
-                //不动产单元号
-                tb_bdcdyh.DataBindings.Add("Text", zdjbxx, "BDCDYH", false, DataSourceUpdateMode.OnPropertyChanged);
-                //权利类型
-                cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", false, DataSourceUpdateMode.OnPropertyChanged);
-                //权利性质
-                cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", false, DataSourceUpdateMode.OnPropertyChanged);
-                //土地用途
-                cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", false, DataSourceUpdateMode.OnPropertyChanged);
-                //土地等级
-                cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", false, DataSourceUpdateMode.OnPropertyChanged);
-                //土地等级
-                cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", false, DataSourceUpdateMode.OnPropertyChanged);
-
-                //宗地面积
-                nb_zdmj.DataBindings.Add("Value", zdjbxx, "ZDMJ", true, DataSourceUpdateMode.OnPropertyChanged,decimal.Zero);
-                //容积率
-                nb_rjl.DataBindings.Add("Value", zdjbxx, "RJL", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
-                //建筑密度
-                nb_jzmd.DataBindings.Add("Value", zdjbxx, "JZMD", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
-                //建筑限高
-                nb_jzxg.DataBindings.Add("Value", zdjbxx, "JZXG", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
-                //价格
-                nb_jg.DataBindings.Add("Value", zdjbxx, "JG", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
-
-                //宗地四至
-                tb_zdszb.DataBindings.Add("Text", zdjbxx, "ZDSZB", false, DataSourceUpdateMode.OnPropertyChanged);
-                tb_zdszd.DataBindings.Add("Text", zdjbxx, "ZDSZD", false, DataSourceUpdateMode.OnPropertyChanged);
-                tb_zdszx.DataBindings.Add("Text", zdjbxx, "ZDSZX", false, DataSourceUpdateMode.OnPropertyChanged);
-                tb_zdszn.DataBindings.Add("Text", zdjbxx, "ZDSZN", false, DataSourceUpdateMode.OnPropertyChanged);
-
-                //坐落
-                tb_zl.DataBindings.Add("Text", zdjbxx, "ZL", false, DataSourceUpdateMode.OnPropertyChanged);
-                //地籍号
-                tb_djh.DataBindings.Add("Text", zdjbxx, "DJH", false, DataSourceUpdateMode.OnPropertyChanged);
-                //图幅号
-                tb_tfh.DataBindings.Add("Text", zdjbxx, "TFH", false, DataSourceUpdateMode.OnPropertyChanged);
-
-            }
 
         }
 
         //自动获取宗地顺序号
         private void bt_getMaxZdsxh_Click(object sender, EventArgs e)
         {
-            DJZQ djzq = (DJZQ)cb_djzq.SelectedItem;
-            if(djzq == null)
+            DataItems djzq = (DataItems)cb_djzq.SelectedItem;
+            if (djzq == null)
             {
                 MessageBox.Show(this, "请先选择地籍子区", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            using (var ctx = new BdcContext())
-            {
-                String sxh = zdService.getMaxZdsxh(djzq.DJZQDM, ctx);
-                this.tb_zdsxh.Text = sxh;
-
-                updateZddm();
-            }
-
+            String sxh = zdService.getMaxZdsxh(djzq.itemCode);
+            this.tb_zdsxh.Text = sxh;
+            updateZddm();
         }
 
         //自动获取定着物顺序号
@@ -241,19 +235,16 @@ namespace BDCDC.form
                 MessageBox.Show("请先确定宗地代码");
                 return;
             }
-            using (var ctx = new BdcContext())
-            {
-                String dzwsxh = zdService.getMaxDzwsxh(zddm, dzwtzm, ctx);
-                tb_dzwsxh.Text = dzwsxh;
-                updateBdcdyh();
-            }
+            String dzwsxh = zdService.getMaxDzwsxh(zddm, dzwtzm);
+            tb_dzwsxh.Text = dzwsxh;
+            updateBdcdyh();
 
         }
 
         //格式化地籍子区下拉列表
         private void formatDjzqName(List<DJZQ> list)
         {
-            foreach(DJZQ djzq in list)
+            foreach (DJZQ djzq in list)
             {
                 djzq.DJZQMC = djzq.DJZQMC + "(" + djzq.DJZQDM + ")";
             }
@@ -265,7 +256,7 @@ namespace BDCDC.form
         private void updateZddm()
         {
             String zdsxh = tb_zdsxh.Text;
-            if(zdsxh != null && !"".Equals(zdsxh))
+            if (zdsxh != null && !"".Equals(zdsxh))
             {
                 String djzq = (String)cb_djzq.SelectedValue;
                 String syqlx = (String)cb_syqlx.SelectedValue;
@@ -351,7 +342,7 @@ namespace BDCDC.form
 
             if (zdjbxx.SHAPE == null)
             {
-                MessageBox.Show(this,"请选择宗地图","校验",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(this, "请选择宗地图", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -369,6 +360,11 @@ namespace BDCDC.form
         private void bt_calc_Click(object sender, EventArgs e)
         {
             //根据宗地图计算面积
+            if(zdjbxx != null && zdjbxx.SHAPE != null)
+            {
+                double area = (double)zdjbxx.SHAPE.Area;
+                this.nb_zdmj.Value = Decimal.Round(new Decimal(area),4);
+            }
         }
 
         //选择宗地图按钮

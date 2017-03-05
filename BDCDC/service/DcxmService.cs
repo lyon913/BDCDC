@@ -47,23 +47,23 @@ namespace BDCDC.service
 
         public IFeatureLayer getDcxmZdLayer(int dcxmId)
         {
-            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
-            IFeatureLayer layer = new FeatureLayer();
-            layer.Name = "宗地";
-
             if(countZdByDcxmId(dcxmId) == 0)
             {
-                return layer;
+                return null;
             }
+
+            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
 
             String query = "select * from ZDJBXX where QJDCXM_ID=" + dcxmId;
             IQueryDescription q = ws.GetQueryDescription(query);
             q.OIDFields = "fId";
             q.GeometryType = esriGeometryType.esriGeometryPolygon;
-
             String qName = "";
             ws.CheckDatasetName("ZDJBXX", q, out qName);
             ITable table = ws.OpenQueryClass(qName, q);
+
+            IFeatureLayer layer = new FeatureLayer();
+            layer.Name = "宗地";
             layer.FeatureClass = table as IFeatureClass;
 
             return layer;

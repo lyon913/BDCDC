@@ -26,6 +26,17 @@ namespace BDCDC.utils
             cb.ValueMember = "itemCode";
         }
 
+        public static void comboboxDataItems(ComboBox cb, List<DataItems> items, bool formated)
+        {
+            if (formated)
+            {
+                formatItemName(items);
+            }
+            cb.DataSource = items;
+            cb.DisplayMember = "itemName";
+            cb.ValueMember = "itemCode";
+        }
+
         //格式化标准项下拉列表
         public static void formatItemName(List<DataItems> list)
         {
