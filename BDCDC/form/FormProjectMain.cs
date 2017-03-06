@@ -2,9 +2,11 @@
 using BDCDC.service;
 using BDCDC.utils;
 using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Maplex;
+using ESRI.ArcGIS.SystemUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -244,6 +246,20 @@ namespace BDCDC.form
                     ArcgisService.selectMapFeatures(where, ZRZ_LAYER_NAME, this.mapControl);
                 }
             }
+        }
+
+        private void b_selectFeature_Click(object sender, EventArgs e)
+        {
+            ICommand cmd = new ControlsSelectFeaturesTool();
+            cmd.OnCreate(this.mapControl.Object);
+            this.mapControl.CurrentTool = cmd as ITool;
+        }
+
+        private void b_pan_Click(object sender, EventArgs e)
+        {
+            ICommand cmd = new ControlsMapPanTool();
+            cmd.OnCreate(this.mapControl.Object);
+            this.mapControl.CurrentTool = cmd as ITool;
         }
     }
 }

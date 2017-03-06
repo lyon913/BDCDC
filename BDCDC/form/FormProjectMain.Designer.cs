@@ -42,7 +42,7 @@
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.b_pan = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.b_selectFeature = new System.Windows.Forms.ToolStripButton();
             this.b_propEdit = new System.Windows.Forms.ToolStripButton();
@@ -69,7 +69,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Location = new System.Drawing.Point(4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -81,16 +82,18 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainer1.Size = new System.Drawing.Size(994, 629);
-            this.splitContainer1.SplitterDistance = 207;
+            this.splitContainer1.Size = new System.Drawing.Size(1328, 789);
+            this.splitContainer1.SplitterDistance = 276;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
             // tv_zd
             // 
             this.tv_zd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tv_zd.Location = new System.Drawing.Point(0, 56);
+            this.tv_zd.Location = new System.Drawing.Point(0, 59);
+            this.tv_zd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tv_zd.Name = "tv_zd";
-            this.tv_zd.Size = new System.Drawing.Size(207, 573);
+            this.tv_zd.Size = new System.Drawing.Size(276, 730);
             this.tv_zd.TabIndex = 1;
             this.tv_zd.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_zd_AfterSelect);
             this.tv_zd.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tv_zd_NodeMouseClick);
@@ -103,7 +106,7 @@
             this.b_importZrz});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(207, 56);
+            this.toolStrip2.Size = new System.Drawing.Size(276, 59);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -113,7 +116,7 @@
             this.b_importZd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.b_importZd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.b_importZd.Name = "b_importZd";
-            this.b_importZd.Size = new System.Drawing.Size(60, 53);
+            this.b_importZd.Size = new System.Drawing.Size(73, 56);
             this.b_importZd.Text = "导入宗地";
             this.b_importZd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.b_importZd.Click += new System.EventHandler(this.b_importZd_Click);
@@ -124,7 +127,7 @@
             this.b_importZrz.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.b_importZrz.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.b_importZrz.Name = "b_importZrz";
-            this.b_importZrz.Size = new System.Drawing.Size(72, 53);
+            this.b_importZrz.Size = new System.Drawing.Size(88, 56);
             this.b_importZrz.Text = "导入自然幢";
             this.b_importZrz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.b_importZrz.Click += new System.EventHandler(this.b_importZrz_Click);
@@ -132,7 +135,8 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 56);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 59);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -143,35 +147,39 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tocControl);
-            this.splitContainer2.Size = new System.Drawing.Size(783, 573);
-            this.splitContainer2.SplitterDistance = 629;
+            this.splitContainer2.Size = new System.Drawing.Size(1047, 730);
+            this.splitContainer2.SplitterDistance = 841;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 1;
             // 
             // mapControl
             // 
             this.mapControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mapControl.Location = new System.Drawing.Point(0, 28);
+            this.mapControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mapControl.Name = "mapControl";
             this.mapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mapControl.OcxState")));
-            this.mapControl.Size = new System.Drawing.Size(629, 545);
+            this.mapControl.Size = new System.Drawing.Size(841, 702);
             this.mapControl.TabIndex = 0;
             // 
             // toolbarControl
             // 
             this.toolbarControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.toolbarControl.Location = new System.Drawing.Point(0, 0);
+            this.toolbarControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.toolbarControl.Name = "toolbarControl";
             this.toolbarControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("toolbarControl.OcxState")));
-            this.toolbarControl.Size = new System.Drawing.Size(629, 28);
+            this.toolbarControl.Size = new System.Drawing.Size(841, 28);
             this.toolbarControl.TabIndex = 1;
             // 
             // tocControl
             // 
             this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tocControl.Location = new System.Drawing.Point(0, 0);
+            this.tocControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tocControl.Name = "tocControl";
             this.tocControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("tocControl.OcxState")));
-            this.tocControl.Size = new System.Drawing.Size(150, 573);
+            this.tocControl.Size = new System.Drawing.Size(201, 730);
             this.tocControl.TabIndex = 0;
             // 
             // toolStrip1
@@ -181,13 +189,13 @@
             this.toolStripButton8,
             this.toolStripButton7,
             this.toolStripButton6,
-            this.toolStripButton5,
+            this.b_pan,
             this.toolStripSeparator1,
             this.b_selectFeature,
             this.b_propEdit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(783, 56);
+            this.toolStrip1.Size = new System.Drawing.Size(1047, 59);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -197,7 +205,7 @@
             this.toolStripButton8.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(52, 53);
+            this.toolStripButton8.Size = new System.Drawing.Size(59, 56);
             this.toolStripButton8.Text = "放    大";
             this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -207,7 +215,7 @@
             this.toolStripButton7.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(52, 53);
+            this.toolStripButton7.Size = new System.Drawing.Size(59, 56);
             this.toolStripButton7.Text = "缩    小";
             this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -217,24 +225,25 @@
             this.toolStripButton6.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(60, 53);
+            this.toolStripButton6.Size = new System.Drawing.Size(73, 56);
             this.toolStripButton6.Text = "显示全图";
             this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton5
+            // b_pan
             // 
-            this.toolStripButton5.Image = global::BDCDC.Properties.Resources.arcgis_PanTool32;
-            this.toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(52, 53);
-            this.toolStripButton5.Text = "移    动";
-            this.toolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_pan.Image = global::BDCDC.Properties.Resources.arcgis_PanTool32;
+            this.b_pan.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.b_pan.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.b_pan.Name = "b_pan";
+            this.b_pan.Size = new System.Drawing.Size(59, 56);
+            this.b_pan.Text = "移    动";
+            this.b_pan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_pan.Click += new System.EventHandler(this.b_pan_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 56);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 59);
             // 
             // b_selectFeature
             // 
@@ -242,9 +251,10 @@
             this.b_selectFeature.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.b_selectFeature.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.b_selectFeature.Name = "b_selectFeature";
-            this.b_selectFeature.Size = new System.Drawing.Size(60, 53);
+            this.b_selectFeature.Size = new System.Drawing.Size(73, 56);
             this.b_selectFeature.Text = "选择图形";
             this.b_selectFeature.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_selectFeature.Click += new System.EventHandler(this.b_selectFeature_Click);
             // 
             // b_propEdit
             // 
@@ -252,7 +262,7 @@
             this.b_propEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.b_propEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.b_propEdit.Name = "b_propEdit";
-            this.b_propEdit.Size = new System.Drawing.Size(84, 53);
+            this.b_propEdit.Size = new System.Drawing.Size(103, 56);
             this.b_propEdit.Text = "图形属性编辑";
             this.b_propEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.b_propEdit.Click += new System.EventHandler(this.b_propEdit_Click);
@@ -263,37 +273,41 @@
             this.tabControl1.Controls.Add(this.tab_xm);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1008, 661);
+            this.tabControl1.Size = new System.Drawing.Size(1344, 826);
             this.tabControl1.TabIndex = 2;
             // 
             // tab_tx
             // 
             this.tab_tx.Controls.Add(this.splitContainer1);
-            this.tab_tx.Location = new System.Drawing.Point(4, 22);
+            this.tab_tx.Location = new System.Drawing.Point(4, 25);
+            this.tab_tx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tab_tx.Name = "tab_tx";
-            this.tab_tx.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_tx.Size = new System.Drawing.Size(1000, 635);
+            this.tab_tx.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tab_tx.Size = new System.Drawing.Size(1336, 797);
             this.tab_tx.TabIndex = 0;
             this.tab_tx.Text = "图形和属性编辑";
             // 
             // tab_xm
             // 
-            this.tab_xm.Location = new System.Drawing.Point(4, 22);
+            this.tab_xm.Location = new System.Drawing.Point(4, 25);
+            this.tab_xm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tab_xm.Name = "tab_xm";
-            this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_xm.Size = new System.Drawing.Size(1000, 635);
+            this.tab_xm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tab_xm.Size = new System.Drawing.Size(1336, 797);
             this.tab_xm.TabIndex = 1;
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
             // 
             // FormProjectMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 661);
+            this.ClientSize = new System.Drawing.Size(1344, 826);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormProjectMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "权籍调查项目管理";
@@ -329,7 +343,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton b_pan;
         private System.Windows.Forms.ToolStripButton b_selectFeature;
         private System.Windows.Forms.ToolStripButton b_propEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
