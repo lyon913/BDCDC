@@ -268,8 +268,7 @@ namespace BDCDC.service
 
         public static void clearMapSelection(AxMapControl mapControl)
         {
-            IFeatureSelection zdLayer = mapControl.get_Layer(0) as IFeatureSelection;
-            zdLayer.Clear();
+            mapControl.Map.ClearSelection();
             mapControl.Refresh();
         }
 
@@ -279,7 +278,7 @@ namespace BDCDC.service
             mapControl.Refresh();
         }
 
-        public static void enableFeatureLayerLabel(IFeatureLayer pFeaturelayer, string sLableField, IRgbColor pRGB, int size)
+        public static void annoatation(IFeatureLayer pFeaturelayer, string sLableField, IRgbColor pRGB, int size)
         {
             //判断图层是否为空
             if (pFeaturelayer == null)

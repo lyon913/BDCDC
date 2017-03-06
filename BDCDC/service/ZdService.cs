@@ -3,6 +3,7 @@ using BDCDC.utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,23 @@ namespace BDCDC.service
     class ZdService:Service
     {
 
+        public ZDJBXX newZdjbxx(int dcxmId, DbGeometry shape)
+        {
+            ZDJBXX zd = new ZDJBXX();
+            zd.SHAPE = shape;
+            zd.ZDDM = "未编号宗地";
+            zd.ZT = 0;
+            zd.QJDCXMID = dcxmId;
+            return zd;
+        }
+
         public void saveOrUpdate(ZDJBXX zd)
         {
-            insertOrUpdate(zd);
+            useTransaction(ctx =>
+            {
+                insertOrUpdate(zd,ctx);
+                return zd;
+            });
         }
 
         /**
@@ -32,7 +47,7 @@ namespace BDCDC.service
                 //6位行政区划码 + 3位地籍区码 + 3位地籍子区码 + 2位特征码（GB、JA等） + 5位宗地顺序号（00001-99999）
 
                 //查询该地籍子区下当前最大的顺序号
-                String sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZDDM like {0}+'%' and ZT=1";
+                String sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZDDM like {0}+'%'";
                 String sxh = ctx.Database.SqlQuery<String>(sql, djzq).Single();
                 sxh = StringUtils.addSxh(sxh, 5);
                 return sxh;
@@ -109,5 +124,7 @@ namespace BDCDC.service
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
+
+
     }
 }

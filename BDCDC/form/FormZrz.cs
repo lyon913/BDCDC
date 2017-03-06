@@ -21,51 +21,25 @@ namespace BDCDC.form
         private ZrzService zrzService;
         private DataItemsService items;
 
+
+
+        public FormZrz(ZRZ zrz)
+        {
+            InitializeComponent();
+            this.zrz = zrz;
+            init();
+        }
         private void init()
         {
             zrzService = new ZrzService();
             items = new DataItemsService();
         }
 
-        public FormZrz(String zddm)
-        {
-            InitializeComponent();
-            init();
-
-            //新增自然幢
-            this.zrz = new ZRZ();
-            zrz.ZDDM = zddm;
-        }
-
-        public FormZrz(ZRZ zrz)
-        {
-            InitializeComponent();
-            init();
-
-            //编辑已有自然幢
-            this.zrz = zrz;
-        }
-
         private void FormZrz_Load(object sender, EventArgs e)
         {
 
-            using (var ctx = new BdcContext())
-            {
-                /*
-                //规划用途下拉
-                List<DataItems> ghytList = items.getItemsByType("房屋用途", ctx);
-                DataItemsService.formatItemName(ghytList);
-                this.cb_ghyt.DataSource = ghytList;
-                this.cb_ghyt.DisplayMember = "ItemName";
-                this.cb_ghyt.ValueMember = "ItemCode";
-
-                //房屋结构下拉
-                List<DataItems> fwjgList = items.getItemsByType("房屋结构", ctx);
-                this.cb_fwjg.DataSource = fwjgList;
-                this.cb_fwjg.DisplayMember = "ItemName";
-                this.cb_fwjg.ValueMember = "ItemCode";
-                */
-            }
+            UiUtils.comboboxDataItems(cb_ghyt, "房屋用途",false);
+            UiUtils.comboboxDataItems(cb_fwjg, "房屋结构", false);
 
             //表单绑定
             //宗地代码
@@ -75,9 +49,9 @@ namespace BDCDC.form
             //自然幢号
             tb_zrzh.DataBindings.Add("Text", zrz, "ZRZH", false, DataSourceUpdateMode.OnPropertyChanged);
             //规划用途
-            cb_ghyt.DataBindings.Add("SelectedValue", zrz, "GHYT", false, DataSourceUpdateMode.OnPropertyChanged);
+            cb_ghyt.DataBindings.Add("SelectedValue", zrz, "GHYT", true, DataSourceUpdateMode.OnPropertyChanged,"11");
             //房屋结构
-            cb_fwjg.DataBindings.Add("SelectedValue", zrz, "FWJG", false, DataSourceUpdateMode.OnPropertyChanged);
+            cb_fwjg.DataBindings.Add("SelectedValue", zrz, "FWJG", true, DataSourceUpdateMode.OnPropertyChanged,"3");
             //项目名称
             tb_xmmc.DataBindings.Add("Text", zrz, "XMMC", false, DataSourceUpdateMode.OnPropertyChanged);
             //建筑物名称
@@ -138,17 +112,15 @@ namespace BDCDC.form
             if (validate())
             {
                 zrzService.saveOrUpdate(this.zrz);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             
         }
-
-        private void bt_zdt_Click(object sender, EventArgs e)
+        private void bt_cancel_Click(object sender, EventArgs e)
         {
-            //用户选取自然幢图形，设置到SHAPE字段
-
-            //TODO 此代码为模拟的多边形，需要替换为实际图形代码
-            //坐标系4543为：CGCS2000_3_Degree_GK_CM_102E
-            zrz.SHAPE = DbGeometry.PolygonFromText("POLYGON ((0 450000, 50 450000, 50 450050, 0 450050,0 450000))", 4543);
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         public bool validate()
@@ -167,5 +139,7 @@ namespace BDCDC.form
 
             return true;
         }
+
+
     }
 }

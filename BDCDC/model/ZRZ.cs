@@ -7,39 +7,8 @@ namespace BDCDC.model
     using System.Data.Entity.Spatial;
 
     [Table("ZRZ")]
-    public partial class ZRZ
+    public partial class ZRZ:BaseAuditEntity
     {
-        [Key]
-        public int fId { get; set; }
-
-        [StringLength(100)]
-        public string QXDM { get; set; }
-
-        public DateTime? fCreateTime { get; set; }
-
-        public int? fCreatorId { get; set; }
-
-        [StringLength(100)]
-        public string fCreatorIp { get; set; }
-
-        [StringLength(100)]
-        public string fCreatorLoginName { get; set; }
-
-        [StringLength(100)]
-        public string fCreatorName { get; set; }
-
-        public int? fLastUpdaterId { get; set; }
-
-        [StringLength(100)]
-        public string fLastUpdaterIp { get; set; }
-
-        [StringLength(100)]
-        public string fLastUpdaterLoginName { get; set; }
-
-        [StringLength(100)]
-        public string fLastUpdaterName { get; set; }
-
-        public DateTime? fLstUpdateTime { get; set; }
 
         [StringLength(50)]
         public string BDCDYH { get; set; }
@@ -99,15 +68,7 @@ namespace BDCDC.model
         public decimal? ZZDMJ { get; set; }
 
         public int? XMID { get; set; }
-
-        [StringLength(200)]
-        public string QXMC { get; set; }
-
-        [StringLength(500)]
-        public string DJJG { get; set; }
-
-        public DateTime? fLastUpdateTime { get; set; }
-
+        
         public DbGeometry SHAPE { get; set; }
 
         [Column("QJDCXM_ID")]

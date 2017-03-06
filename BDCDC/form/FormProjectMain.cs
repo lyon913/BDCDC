@@ -14,17 +14,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BDCDC.service.DcxmService;
 
 namespace BDCDC.form
 {
     public partial class FormProjectMain : Form
     {
-        public static String ZD_LAYER_NAME = "宗地";
-        public static String ZRZ_LAYER_NAME = "自然幢";
-
         private QJDCXM dcxm;
         private ZdService zdServ = new ZdService();
+        private ZrzService zrzServ = new ZrzService();
         private DcxmService dcServ = new DcxmService();
+
+        public List<LayerInfo> layerInfos = null;
 
         public FormProjectMain(QJDCXM dcxm)
         {
@@ -35,15 +36,13 @@ namespace BDCDC.form
 
         private void initArcgisControls()
         {
+            layerInfos = dcServ.getLayerInfos();
+
+            this.mapControl.Map.Name = "图层";
             this.tocControl.SetBuddyControl(this.mapControl);
             this.toolbarControl.SetBuddyControl(this.mapControl);
             UiUtils.initArcgisToolbar(this.toolbarControl);
-
-            /*
-            IAnnotateMap pAnnotateMap;
-            pAnnotateMap = new MaplexAnnotateMapClass();
-            mapControl.Map.AnnotationEngine = pAnnotateMap;
-            */
+                        
         }
 
         private void b_importZd_Click(object sender, EventArgs e)
@@ -54,11 +53,10 @@ namespace BDCDC.form
                 List<IFeature> features = d.getFeatures();
                 foreach(IFeature feature in features)
                 {
-                    ZDJBXX zd = dcServ.newZdjbxx(dcxm.fId, feature);
+                    ZDJBXX zd = zdServ.newZdjbxx(dcxm.fId, ArcgisService.featureToDbGeometry(feature));
                     zdServ.saveOrUpdate(zd);
                 }
             }
-
             loadData();
         }
 
@@ -78,19 +76,45 @@ namespace BDCDC.form
         {
             removeAllTreeNode();
 
-            TreeNode nodeZd = new TreeNode();
-            nodeZd.Text = ZD_LAYER_NAME;
-
-            List<ZDJBXX> zdList = dcServ.getZdjbxxByDcxmId(dcxm.fId);
-            foreach(ZDJBXX zd in zdList)
-            {
-                TreeNode node = new TreeNode(zd.ZDDM);
-                node.Tag = zd;
-                nodeZd.Nodes.Add(node);
-            }
-
-            this.tv_zd.Nodes.Add(nodeZd);
+            TreeNode root = new TreeNode();
+            root.Text = ZD_LAYER_NAME;
+            addZdTreeNode(root);
+            this.tv_zd.Nodes.Add(root);
             this.tv_zd.ExpandAll();
+        }
+
+        private void addZdTreeNode(TreeNode root)
+        {
+            List<ZDJBXX> zdList = dcServ.getZdjbxxByDcxmId(dcxm.fId);
+            foreach (ZDJBXX zd in zdList)
+            {
+                TreeNode zdNode = new TreeNode(zd.ZDDM);
+                zdNode.Tag = zd;
+                addZrzTreeNode(zdNode);
+
+                root.Nodes.Add(zdNode);
+            }
+        }
+
+        private void addZrzTreeNode(TreeNode zdNode)
+        {
+            if(zdNode == null || zdNode.Tag == null)
+            {
+                return;
+            }
+            if(!(zdNode.Tag is ZDJBXX))
+            {
+                return;
+            }
+            ZDJBXX zd = zdNode.Tag as ZDJBXX;
+            List<ZRZ> zList = zrzServ.getZrzByDcxmIdAndZddm(zd.QJDCXMID, zd.ZDDM);
+            foreach(ZRZ zrz in zList)
+            {
+                TreeNode zNode = new TreeNode();
+                zNode.Text = zrz.ZRZH + "(" + zrz.JZWMC + ")";
+                zNode.Tag = zrz;
+                zdNode.Nodes.Add(zNode);
+            }
         }
 
         private void removeAllTreeNode()
@@ -101,14 +125,22 @@ namespace BDCDC.form
         private void loadMapLayers()
         {
             ArcgisService.removeAllLayers(this.mapControl);
-            IFeatureLayer zdLayer = dcServ.getDcxmZdLayer(dcxm.fId);
-            if(zdLayer != null)
-            {
-                ArcgisService.enableFeatureLayerLabel(zdLayer,"ZDDM",ArcgisService.getRgbColor(200,0,0),10);
-                //ArcgisService.annotateLayer(zdLayer as IGeoFeatureLayer, "ZDDM");
-                mapControl.AddLayer(zdLayer);
-                mapControl.Refresh();
+
+            foreach(LayerInfo info in layerInfos){
+                String layerName = info.layerName;
+                String tableName = info.tableName;
+                String annoField = info.annoField;
+
+                if (dcServ.countTableByDcxmId(dcxm.fId, tableName) > 0)
+                {
+                    IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId,tableName);
+                    layer.Name = layerName;
+                    ArcgisService.annoatation(layer, annoField, ArcgisService.getRgbColor(200, 0, 0), 10);
+                    mapControl.AddLayer(layer);
+                }
             }
+
+            mapControl.Refresh();
         }
 
 
@@ -125,10 +157,14 @@ namespace BDCDC.form
                 return;
             }
             IFeature feature = features[0];
-            promptEditForm(feature);
+            DialogResult result = promptEditForm(feature);
+            if(result == DialogResult.OK)
+            {
+                loadData();
+            }
         }
 
-        private void promptEditForm(IFeature feature)
+        private DialogResult promptEditForm(IFeature feature)
         {
             IFeatureClass fc = feature.Table as IFeatureClass;
             String name = fc.AliasName;
@@ -136,27 +172,65 @@ namespace BDCDC.form
             {
                 ZDJBXX zd = zdServ.getZdjbxxById(feature.OID);
                 FormZdjbxx form = new FormZdjbxx(zd);
-                form.ShowDialog(this);
+                return form.ShowDialog(this);
             }
             else if (name.Contains("ZRZ"))
             {
-
-            }else
+                ZRZ zrz = zrzServ.getZrzById(feature.OID);
+                FormZrz form = new FormZrz(zrz);
+                return form.ShowDialog(this);
+            }
+            else
             {
                 MessageBox.Show("仅支持宗地和自然幢图层属性编辑。");
+                return DialogResult.Abort;
             }
         }
 
         private void b_importZrz_Click(object sender, EventArgs e)
         {
+            TreeNode selectedNode = tv_zd.SelectedNode;
+            if(selectedNode == null)
+            {
+                MessageBox.Show("请先选择一个宗地。");
+                return;
+            }
+            if(!(selectedNode.Tag is ZDJBXX))
+            {
+                MessageBox.Show("请先选择一个宗地。");
+                return;
+            }
 
+            ZDJBXX zd = selectedNode.Tag as ZDJBXX;
+            if(zd.ZDDM == null || zd.BDCDYH == null)
+            {
+                MessageBox.Show("宗地尚未编号，无法导入自然幢。");
+                return;
+            }
+            DialogCadImport d = new DialogCadImport();
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                List<IFeature> features = d.getFeatures();
+                foreach (IFeature feature in features)
+                {
+                    ZRZ z = zrzServ.newZRZ(dcxm.fId, zd.ZDDM, zd.BDCDYH, ArcgisService.featureToDbGeometry(feature));
+                    zrzServ.saveOrUpdate(z);
+                }
+            }
+            loadData();
         }
 
         private void tv_zd_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+
+        }
+
+        private void tv_zd_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            ArcgisService.clearMapSelection(this.mapControl);
             TreeNode node = e.Node;
             object data = node.Tag;
-            if(data != null && data is BaseEntity)
+            if (data != null && data is BaseEntity)
             {
                 int id = (data as BaseEntity).fId;
                 if (data is ZDJBXX)
@@ -164,10 +238,11 @@ namespace BDCDC.form
                     String where = "fId=" + id;
                     ArcgisService.selectMapFeatures(where, ZD_LAYER_NAME, this.mapControl);
                 }
-            }
-            else
-            {
-                ArcgisService.clearMapSelection(this.mapControl);
+                else if (data is ZRZ)
+                {
+                    String where = "fId=" + id;
+                    ArcgisService.selectMapFeatures(where, ZRZ_LAYER_NAME, this.mapControl);
+                }
             }
         }
     }

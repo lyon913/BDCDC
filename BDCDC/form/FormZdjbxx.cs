@@ -29,29 +29,6 @@ namespace BDCDC.form
         public ZDJBXX zdjbxx { get; set; }
 
         /**
-         * 新建宗地
-         * 
-         * */
-        public FormZdjbxx()
-        {
-            InitializeComponent();
-
-            //初始化成员变量
-            items = new DataItemsService();
-            zdService = new ZdService();
-
-            //待编辑的宗地基本信息
-            zdjbxx = new ZDJBXX();
-            //设置初始默认值
-            zdjbxx.QLLX = "3";
-            zdjbxx.QLXZ = "102";
-            zdjbxx.YT = "71";
-            zdjbxx.DJ = "1";
-            zdjbxx.MJDW = "1";
-
-        }
-
-        /**
          * 已有宗地信息编辑
          * 
          * */
@@ -64,7 +41,6 @@ namespace BDCDC.form
         private void init()
         {
             initServices();
-            //initDefaultValues();
             initDataItems();
             initDataBandings();
             initBdcdyh();
@@ -74,35 +50,6 @@ namespace BDCDC.form
         {
             items = new DataItemsService();
             zdService = new ZdService();
-        }
-
-        private void initDefaultValues()
-        {
-            if(zdjbxx.QLLX == null)
-            {
-                zdjbxx.QLLX = "3";
-            }
-
-            if (zdjbxx.QLXZ == null)
-            {
-                zdjbxx.QLXZ = "102";
-            }
-
-            if (zdjbxx.YT == null)
-            {
-                zdjbxx.YT = "71";
-            }
-
-            if (zdjbxx.DJ == null)
-            {
-                zdjbxx.DJ = "1";
-            }
-
-            if (zdjbxx.MJDW == null)
-            {
-                zdjbxx.MJDW = "1";
-            }
-            
         }
 
         private void initDataItems()
@@ -117,7 +64,7 @@ namespace BDCDC.form
             //宗地特征码--特征码
             UiUtils.comboboxDataItems(cb_zdtzm, "宗地（宗海）特征码", true);
 
-            //定着物特征码--特征码
+            //定着物特征码
             UiUtils.comboboxDataItems(cb_dzwtzm, "定着物特征码", true);
 
             //权利类型
@@ -146,15 +93,15 @@ namespace BDCDC.form
             //不动产单元号
             tb_bdcdyh.DataBindings.Add("Text", zdjbxx, "BDCDYH", false, DataSourceUpdateMode.OnPropertyChanged);
             //权利类型
-            cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", true, DataSourceUpdateMode.OnPropertyChanged,"3");
+            cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", true, DataSourceUpdateMode.OnPropertyChanged, "3");
             //权利性质
-            cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", true, DataSourceUpdateMode.OnPropertyChanged,"102");
+            cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", true, DataSourceUpdateMode.OnPropertyChanged, "102");
             //土地用途
-            cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", true, DataSourceUpdateMode.OnPropertyChanged,"71");
+            cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", true, DataSourceUpdateMode.OnPropertyChanged, "71");
             //土地等级
-            cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", true, DataSourceUpdateMode.OnPropertyChanged,"1");
+            cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", true, DataSourceUpdateMode.OnPropertyChanged, "1");
             //面积单位
-            cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", true, DataSourceUpdateMode.OnPropertyChanged,"1");
+            cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", true, DataSourceUpdateMode.OnPropertyChanged, "1");
 
             //宗地面积
             nb_zdmj.DataBindings.Add("Value", zdjbxx, "ZDMJ", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
@@ -250,7 +197,11 @@ namespace BDCDC.form
             }
         }
 
-
+        private void updateBm()
+        {
+            updateZddm();
+            updateBdcdyh();
+        }
 
 
         private void updateZddm()
@@ -270,10 +221,11 @@ namespace BDCDC.form
         private void updateBdcdyh()
         {
             String dzwsxh = tb_dzwsxh.Text;
-            String dzwtzm = cb_dzwtzm.SelectedValue.ToString();
 
             if (dzwsxh != null && !"".Equals(dzwsxh))
             {
+
+                String dzwtzm = (String)cb_dzwtzm.SelectedValue;
                 String zddm = (String)tb_zddm.Text;
                 if (zddm != null && !"".Equals(zddm))
                 {
@@ -287,32 +239,32 @@ namespace BDCDC.form
         //宗地顺序号变化后，更新宗地代码值
         private void tb_zdsxh_TextChanged(object sender, EventArgs e)
         {
-            updateZddm();
+            updateBm();
         }
 
         private void cb_djzq_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateZddm();
+            updateBm();
         }
 
         private void cb_syqlx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateZddm();
+            updateBm();
         }
 
         private void cb_zdtzm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateZddm();
+            updateBm();
         }
 
         private void tb_dzwsxh_TextChanged(object sender, EventArgs e)
         {
-            updateBdcdyh();
+            updateBm();
         }
 
         private void cb_dzwtzm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateBdcdyh();
+            updateBm();
         }
 
         private void bt_save_Click(object sender, EventArgs e)
@@ -360,10 +312,10 @@ namespace BDCDC.form
         private void bt_calc_Click(object sender, EventArgs e)
         {
             //根据宗地图计算面积
-            if(zdjbxx != null && zdjbxx.SHAPE != null)
+            if (zdjbxx != null && zdjbxx.SHAPE != null)
             {
                 double area = (double)zdjbxx.SHAPE.Area;
-                this.nb_zdmj.Value = Decimal.Round(new Decimal(area),4);
+                this.nb_zdmj.Value = Decimal.Round(new Decimal(area), 4);
             }
         }
 

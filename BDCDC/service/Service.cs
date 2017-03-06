@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BDCDC.service
 {
-    class Service
+    public class Service
     {
 
 
@@ -22,6 +22,7 @@ namespace BDCDC.service
                     {
 
                         TResult result = (TResult)action.DynamicInvoke(__dbcontext);
+                        __dbcontext.SaveChanges();
                         tx.Commit();
                         return result;
                     }
@@ -43,19 +44,14 @@ namespace BDCDC.service
             }
         }
 
-        protected void insertOrUpdate(BaseEntity entity)
+        protected void insertOrUpdate(BaseEntity entity,DbContext ctx)
         {
-            useTransaction(ctx =>
-            {
                 setAuditInfo(entity);
 
                 ctx.Entry(entity).State = entity.fId == 0 ?
                                    EntityState.Added :
                                    EntityState.Modified;
 
-                ctx.SaveChanges();
-                return entity;
-            });
         }
 
 

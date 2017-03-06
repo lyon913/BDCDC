@@ -69,16 +69,16 @@ namespace BDCDC.form
 
             IFeature feature = fList[0];
 
-            FormZdjbxx form = new FormZdjbxx();
+            FormZdjbxx form = new FormZdjbxx(null);
             form.zdjbxx.SHAPE = ArcgisService.featureToDbGeometry(feature);
             form.ShowDialog(this);
         }
 
         private void bt_addZrz_Click(object sender, EventArgs e)
         {
-            String zddm = "530101001001GB00001";
-            FormZrz f = new FormZrz(zddm);
-            f.ShowDialog(this);
+            //String zddm = "530101001001GB00001";
+            //FormZrz f = new FormZrz(zddm);
+            //f.ShowDialog(this);
         }
 
         private void FormMain_Load(object sender, EventArgs e)

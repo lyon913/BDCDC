@@ -72,7 +72,6 @@
             this.nb_dxcs = new System.Windows.Forms.NumericUpDown();
             this.nb_dxsd = new System.Windows.Forms.NumericUpDown();
             this.nb_jzwgd = new System.Windows.Forms.NumericUpDown();
-            this.bt_zdt = new System.Windows.Forms.Button();
             this.bt_cancel = new System.Windows.Forms.Button();
             this.bt_save = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -539,16 +538,6 @@
             this.nb_jzwgd.Size = new System.Drawing.Size(177, 21);
             this.nb_jzwgd.TabIndex = 56;
             // 
-            // bt_zdt
-            // 
-            this.bt_zdt.Location = new System.Drawing.Point(16, 481);
-            this.bt_zdt.Name = "bt_zdt";
-            this.bt_zdt.Size = new System.Drawing.Size(92, 35);
-            this.bt_zdt.TabIndex = 60;
-            this.bt_zdt.Text = "关联自然幢图";
-            this.bt_zdt.UseVisualStyleBackColor = true;
-            this.bt_zdt.Click += new System.EventHandler(this.bt_zdt_Click);
-            // 
             // bt_cancel
             // 
             this.bt_cancel.Location = new System.Drawing.Point(827, 481);
@@ -557,6 +546,7 @@
             this.bt_cancel.TabIndex = 63;
             this.bt_cancel.Text = "退出";
             this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
             // bt_save
             // 
@@ -624,7 +614,6 @@
             this.Controls.Add(this.label26);
             this.Controls.Add(this.bt_cancel);
             this.Controls.Add(this.bt_save);
-            this.Controls.Add(this.bt_zdt);
             this.Controls.Add(this.nb_jzwgd);
             this.Controls.Add(this.nb_dxsd);
             this.Controls.Add(this.nb_dxcs);
@@ -723,7 +712,6 @@
         private System.Windows.Forms.NumericUpDown nb_dxcs;
         private System.Windows.Forms.NumericUpDown nb_dxsd;
         private System.Windows.Forms.NumericUpDown nb_jzwgd;
-        private System.Windows.Forms.Button bt_zdt;
         private System.Windows.Forms.Button bt_cancel;
         private System.Windows.Forms.Button bt_save;
         private System.Windows.Forms.Label label26;
