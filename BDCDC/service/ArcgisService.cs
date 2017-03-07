@@ -220,9 +220,6 @@ namespace BDCDC.service
         public static List<IFeature> getFeaturesFromMapSelection(AxMapControl mapControl)
         {
             ISelection selection = mapControl.Map.FeatureSelection;
-            //IEnumFeatureSetup selectionSetup = selection as IEnumFeatureSetup;
-            //selectionSetup.AllFields = true;//所有字段
-
             IEnumFeature selectedFeatures = selection as IEnumFeature;
             List<IFeature> fList = new List<IFeature>();
             IFeature f;
@@ -278,7 +275,18 @@ namespace BDCDC.service
             mapControl.Refresh();
         }
 
-        public static void annoatation(IFeatureLayer pFeaturelayer, string sLableField, IRgbColor pRGB, int size)
+        public static void setLayerSymbol(IFeatureLayer pFeaturelayer, ISymbol symbol)
+        {
+            if(pFeaturelayer == null)
+            {
+                return;
+            }
+            IGeoFeatureLayer layer = pFeaturelayer as IGeoFeatureLayer;
+            ISimpleRenderer render = layer.Renderer as ISimpleRenderer;
+            render.Symbol = symbol;
+        }
+
+        public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string sLableField, IColor color, int size)
         {
             //判断图层是否为空
             if (pFeaturelayer == null)
@@ -302,7 +310,7 @@ namespace BDCDC.service
             //pFont.Size = 9;
 
             pTextSymbol = new TextSymbolClass();
-            pTextSymbol.Color = pRGB;
+            pTextSymbol.Color = color;
             pTextSymbol.Size = size; //标注大小
 
             IBasicOverposterLayerProperties4 pBasicOverposterlayerProps = new BasicOverposterLayerPropertiesClass();
@@ -366,6 +374,7 @@ namespace BDCDC.service
             pAnnoProps.Add(pLabelEngine2 as IAnnotateLayerProperties);
             pGeoFeatLyr.DisplayAnnotation = true;
         }
+        
 
         public static BasicLayers getBasicLayers(IWorkspace ws)
         {

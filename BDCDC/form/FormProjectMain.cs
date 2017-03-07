@@ -1,8 +1,10 @@
 ﻿using BDCDC.model;
+using BDCDC.Properties;
 using BDCDC.service;
 using BDCDC.utils;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
+using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Maplex;
@@ -42,26 +44,11 @@ namespace BDCDC.form
 
             this.mapControl.Map.Name = "图层";
             this.tocControl.SetBuddyControl(this.mapControl);
-            this.toolbarControl.SetBuddyControl(this.mapControl);
-            UiUtils.initArcgisToolbar(this.toolbarControl);
+
+            this.mapToolbar1.setMapControl(this.mapControl);
+            this.mapToolbar1.addButton("编辑属性", Resources.arcgis_EditingPolygonTool32, b_propEdit_Click);
                         
         }
-
-        private void b_importZd_Click(object sender, EventArgs e)
-        {
-            DialogCadImport d = new DialogCadImport();
-            if(d.ShowDialog() == DialogResult.OK)
-            {
-                List<IFeature> features = d.getFeatures();
-                foreach(IFeature feature in features)
-                {
-                    ZDJBXX zd = zdServ.newZdjbxx(dcxm.fId, ArcgisService.featureToDbGeometry(feature));
-                    zdServ.saveOrUpdate(zd);
-                }
-            }
-            loadData();
-        }
-
 
         private void FormProjectMain_Load(object sender, EventArgs e)
         {
@@ -132,12 +119,14 @@ namespace BDCDC.form
                 String layerName = info.layerName;
                 String tableName = info.tableName;
                 String annoField = info.annoField;
+                ISymbol symbol = info.symbol;
 
                 if (dcServ.countTableByDcxmId(dcxm.fId, tableName) > 0)
                 {
                     IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId,tableName);
                     layer.Name = layerName;
-                    ArcgisService.annoatation(layer, annoField, ArcgisService.getRgbColor(200, 0, 0), 10);
+                    ArcgisService.setLayerAnnotation(layer, annoField, ArcgisService.getRgbColor(200, 0, 0), 10);
+                    ArcgisService.setLayerSymbol(layer, symbol);
                     mapControl.AddLayer(layer);
                 }
             }
@@ -189,6 +178,21 @@ namespace BDCDC.form
             }
         }
 
+        private void b_importZd_Click(object sender, EventArgs e)
+        {
+            DialogCadImport d = new DialogCadImport();
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                List<IFeature> features = d.getFeatures();
+                foreach (IFeature feature in features)
+                {
+                    ZDJBXX zd = zdServ.newZdjbxx(dcxm.fId, ArcgisService.featureToDbGeometry(feature));
+                    zdServ.saveOrUpdate(zd);
+                }
+                loadData();
+            }
+        }
+
         private void b_importZrz_Click(object sender, EventArgs e)
         {
             TreeNode selectedNode = tv_zd.SelectedNode;
@@ -218,8 +222,8 @@ namespace BDCDC.form
                     ZRZ z = zrzServ.newZRZ(dcxm.fId, zd.ZDDM, zd.BDCDYH, ArcgisService.featureToDbGeometry(feature));
                     zrzServ.saveOrUpdate(z);
                 }
+                loadData();
             }
-            loadData();
         }
 
         private void tv_zd_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

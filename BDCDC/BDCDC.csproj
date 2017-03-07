@@ -131,6 +131,12 @@
     <Compile Include="form\CtrlDcxm.Designer.cs">
       <DependentUpon>CtrlDcxm.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\ctrl\MapToolbar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="form\ctrl\MapToolbar.Designer.cs">
+      <DependentUpon>MapToolbar.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\DialogLayerSelect.cs" />
     <Compile Include="form\FormBdcMain.cs">
       <SubType>Form</SubType>
@@ -270,7 +276,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="form\ctrl\" />
     <Folder Include="gdb\Default.gdb\" />
   </ItemGroup>
   <ItemGroup>
@@ -443,6 +448,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="service\MapPanCommand.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectionClearSelection_B_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelectionZoomToHighlighted32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

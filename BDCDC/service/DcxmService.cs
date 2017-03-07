@@ -1,6 +1,7 @@
 ﻿using BDCDC.model;
 using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using System;
@@ -20,35 +21,92 @@ namespace BDCDC.service
         public static String ZD_LAYER_NAME = "宗地";
         public static String ZD_TABLE_NAME = "ZDJBXX";
         public static String ZD_ANNOTATION_FIELD = "ZDDM";
+        public static IColor ZD_SYMBOL_COLOR = ArcgisService.getRgbColor(0,0,0);
+        public static IColor ZD_OUTLINE_COLOR = ArcgisService.getRgbColor(200, 0, 0);
+        public static int ZD_OUTLINE_WITH = 2;
+        public static IColor ZD_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
+        public static int ZD_TEXT_SIZE = 10;
+        public static ISymbol ZD_SYMBOL = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
+        public static ITextSymbol ZD_TEXT_SYMBOL = createTextSymbol(ZD_TEXT_COLOR, ZD_TEXT_SIZE);
 
         public static String ZRZ_LAYER_NAME = "自然幢";
         public static String ZRZ_TABLE_NAME = "ZRZ";
         public static String ZRZ_ANNOTATION_FIELD = "JZWMC";
+        public static IColor ZRZ_SYMBOL_COLOR = ArcgisService.getRgbColor(0, 0, 0);
+        public static IColor ZRZ_OUTLINE_COLOR = ArcgisService.getRgbColor(0, 0, 0);
+        public static int ZRZ_OUTLINE_WITH = 1;
+        public static IColor ZRZ_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
+        public static int ZRZ_TEXT_SIZE = 10;
+        public static ISymbol ZRZ_SYMBOL = createSimpleFillSymbol(ZRZ_SYMBOL_COLOR, ZRZ_OUTLINE_COLOR, ZRZ_OUTLINE_WITH);
+        public static ITextSymbol ZRZ_TEXT_SYMBOL = createTextSymbol(ZRZ_TEXT_COLOR, ZRZ_TEXT_SIZE);
 
         public class LayerInfo
         {
             public String layerName { get; set; }
             public String tableName { get; set; }
             public String annoField { get; set; }
+
+            public ISymbol symbol { get; set; }
+            public ITextSymbol textSymbol { get; set; }
         }
 
         public List<LayerInfo> getLayerInfos()
         {
             List<LayerInfo> result = new List<LayerInfo>();
 
-            LayerInfo zd = new LayerInfo();
-            zd.layerName = ZD_LAYER_NAME;
-            zd.tableName = ZD_TABLE_NAME;
-            zd.annoField = ZD_ANNOTATION_FIELD;
+            ISymbol zdSymbol = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
+            LayerInfo zd = createLayerInfo(ZD_LAYER_NAME, ZD_TABLE_NAME, ZD_ANNOTATION_FIELD, );
+
             result.Add(zd);
 
             LayerInfo zrz = new LayerInfo();
             zrz.layerName = ZRZ_LAYER_NAME;
             zrz.tableName = ZRZ_TABLE_NAME;
             zrz.annoField = ZRZ_ANNOTATION_FIELD;
+
+            SimpleFillSymbol symbol_zrz = new SimpleFillSymbol();
+            symbol_zrz.Style = esriSimpleFillStyle.esriSFSHollow;
+            symbol_zrz.Outline = new SimpleLineSymbol();
+            symbol_zrz.Outline.Color = ArcgisService.getRgbColor(0, 0, 0);
+            symbol_zrz.Outline.Width = 1;
+            
+            zrz.symbol = symbol_zrz as ISymbol;
+
             result.Add(zrz);
 
             return result;
+        }
+
+        private LayerInfo createLayerInfo(String layerName,String tableName,String annoField,ISymbol symbol,ITextSymbol textSymbol)
+        {
+            LayerInfo info = new LayerInfo();
+            info.layerName = layerName;
+            info.tableName = tableName;
+            info.annoField = annoField;
+
+            info.symbol = symbol;
+            info.textSymbol = textSymbol;
+            return info;
+        }
+
+        private static ISymbol createSimpleFillSymbol(IColor color, IColor outLineColor, int outLineWith)
+        {
+            SimpleFillSymbol symbol = new SimpleFillSymbol();
+            symbol.Style = esriSimpleFillStyle.esriSFSHollow;
+            symbol.Outline = new SimpleLineSymbol();
+            symbol.Color = color;
+            symbol.Outline.Color = color;
+            symbol.Outline.Width = outLineWith;
+
+            return symbol as ISymbol;
+        }
+
+        private static ITextSymbol createTextSymbol(IColor color, double size)
+        {
+            ITextSymbol pTextSymbol = new TextSymbolClass();
+            pTextSymbol.Color = color;
+            pTextSymbol.Size = size; 
+            return pTextSymbol;
         }
 
         public void save(QJDCXM xm)

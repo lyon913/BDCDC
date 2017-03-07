@@ -1,4 +1,5 @@
-﻿using BDCDC.service;
+﻿using BDCDC.Properties;
+using BDCDC.service;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.SystemUI;
 using System;
@@ -21,41 +22,47 @@ namespace BDCDC.form
         public DialogCadImport()
         {
             InitializeComponent();
+            init();
+        }
+
+        private void init()
+        {
+            this.mapToolbar1.setMapControl(this.mapControl);
+            this.tocControl.SetBuddyControl(this.mapControl);
+
+            this.mapToolbar1.addButton("加载CAD", Resources.folder_search, openCad_click);
+            this.mapToolbar1.addButton("导入选择的图形", Resources.arcgis_Import_Feature_Class32, import_click);
         }
 
         private void FormCadImport_Load(object sender, EventArgs e)
         {
+       }
 
-            this.tocControl.SetBuddyControl(this.mapControl);
-
-            mapToolbar.SetBuddyControl(this.mapControl);
-            mapToolbar.AddItem("esriControls.ControlsMapZoomInTool", -1, -1, true, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsMapZoomOutTool", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsMapFullExtentCommand", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsMapPanTool", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsFeatureSelectionToolbar", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsMapIdentifyTool", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
-            mapToolbar.AddItem("esriControls.ControlsEditingToolbar", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
+        private void openCad_click(object obj,EventArgs e)
+        {
+            showOpenCadFileDialog();
+        }
+        private void import_click(object obj, EventArgs e)
+        {
+            importAndClose();
         }
 
-        private void b_openCadFile_Click(object sender, EventArgs e)
+
+        private void showOpenCadFileDialog()
         {
             OpenFileDialog fd = new OpenFileDialog();
             if (fd.ShowDialog(this) == DialogResult.OK)
             {
                 String file = fd.FileName;
-                
                 ArcgisService.addCadLayersToMap(this.mapControl, file, ArcgisService.CAD_FEATURE_TYPE.POLYGON);
                 ArcgisService.addCadToMapAsRaster(this.mapControl, file);
             }
-
-               
         }
 
-        private void b_importFeatures_Click(object sender, EventArgs e)
+        private void importAndClose()
         {
             List<IFeature> features = ArcgisService.getFeaturesFromMapSelection(this.mapControl);
-            if(features == null || features.Count == 0)
+            if (features == null || features.Count == 0)
             {
                 MessageBox.Show("请选择要导入的图形。");
                 return;
@@ -64,6 +71,16 @@ namespace BDCDC.form
             this.features = features;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void b_openCadFile_Click(object sender, EventArgs e)
+        {
+            showOpenCadFileDialog();
+        }
+
+        private void b_importFeatures_Click(object sender, EventArgs e)
+        {
+            importAndClose();
         }
 
         public List<IFeature> getFeatures()

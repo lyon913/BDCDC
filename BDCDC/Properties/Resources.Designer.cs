@@ -183,6 +183,16 @@ namespace BDCDC.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap arcgis_SelectionClearSelection_B_32 {
+            get {
+                object obj = ResourceManager.GetObject("arcgis_SelectionClearSelection_B_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap arcgis_SelectionReselectHighlighted32 {
             get {
                 object obj = ResourceManager.GetObject("arcgis_SelectionReselectHighlighted32", resourceCulture);
@@ -196,6 +206,16 @@ namespace BDCDC.Properties {
         internal static System.Drawing.Bitmap arcgis_SelectionSelectTool32 {
             get {
                 object obj = ResourceManager.GetObject("arcgis_SelectionSelectTool32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap arcgis_SelectionZoomToHighlighted32 {
+            get {
+                object obj = ResourceManager.GetObject("arcgis_SelectionZoomToHighlighted32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
