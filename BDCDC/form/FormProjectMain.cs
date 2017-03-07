@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -120,7 +121,8 @@ namespace BDCDC.form
                 String tableName = info.tableName;
                 String annoField = info.annoField;
                 ISymbol symbol = info.symbol;
-
+                Debug.WriteLine((symbol as ISimpleFillSymbol).Outline.Width);
+                Debug.WriteLine((symbol as ISimpleFillSymbol).Outline.Color.RGB.ToString());
                 if (dcServ.countTableByDcxmId(dcxm.fId, tableName) > 0)
                 {
                     IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId,tableName);

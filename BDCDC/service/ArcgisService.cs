@@ -53,6 +53,13 @@ namespace BDCDC.service
             return pRgbColor;
         }
 
+        static public IRgbColor getNullColor()
+        {
+            IRgbColor pRgbColor = new RgbColor();
+            pRgbColor.NullColor = true;
+            return pRgbColor;
+        }
+
         public static IWorkspace openBdcWorkspace()
         {
             Type factoryType = Type.GetTypeFromProgID("esriDataSourcesGDB.SdeWorkspaceFactory");
@@ -282,8 +289,9 @@ namespace BDCDC.service
                 return;
             }
             IGeoFeatureLayer layer = pFeaturelayer as IGeoFeatureLayer;
-            ISimpleRenderer render = layer.Renderer as ISimpleRenderer;
+            ISimpleRenderer render = new SimpleRenderer();
             render.Symbol = symbol;
+            layer.Renderer = render as IFeatureRenderer;
         }
 
         public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string sLableField, IColor color, int size)

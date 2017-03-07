@@ -21,18 +21,18 @@ namespace BDCDC.service
         public static String ZD_LAYER_NAME = "宗地";
         public static String ZD_TABLE_NAME = "ZDJBXX";
         public static String ZD_ANNOTATION_FIELD = "ZDDM";
-        public static IColor ZD_SYMBOL_COLOR = ArcgisService.getRgbColor(0,0,0);
+        public static IColor ZD_SYMBOL_COLOR = ArcgisService.getNullColor();
         public static IColor ZD_OUTLINE_COLOR = ArcgisService.getRgbColor(200, 0, 0);
         public static int ZD_OUTLINE_WITH = 2;
         public static IColor ZD_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
-        public static int ZD_TEXT_SIZE = 10;
+        public static int ZD_TEXT_SIZE = 12;
         public static ISymbol ZD_SYMBOL = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
         public static ITextSymbol ZD_TEXT_SYMBOL = createTextSymbol(ZD_TEXT_COLOR, ZD_TEXT_SIZE);
 
         public static String ZRZ_LAYER_NAME = "自然幢";
         public static String ZRZ_TABLE_NAME = "ZRZ";
         public static String ZRZ_ANNOTATION_FIELD = "JZWMC";
-        public static IColor ZRZ_SYMBOL_COLOR = ArcgisService.getRgbColor(0, 0, 0);
+        public static IColor ZRZ_SYMBOL_COLOR = ArcgisService.getNullColor();
         public static IColor ZRZ_OUTLINE_COLOR = ArcgisService.getRgbColor(0, 0, 0);
         public static int ZRZ_OUTLINE_WITH = 1;
         public static IColor ZRZ_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
@@ -55,23 +55,11 @@ namespace BDCDC.service
             List<LayerInfo> result = new List<LayerInfo>();
 
             ISymbol zdSymbol = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
-            LayerInfo zd = createLayerInfo(ZD_LAYER_NAME, ZD_TABLE_NAME, ZD_ANNOTATION_FIELD, );
-
+            LayerInfo zd = createLayerInfo(ZD_LAYER_NAME, ZD_TABLE_NAME, ZD_ANNOTATION_FIELD, zdSymbol, ZD_TEXT_SYMBOL);
             result.Add(zd);
 
-            LayerInfo zrz = new LayerInfo();
-            zrz.layerName = ZRZ_LAYER_NAME;
-            zrz.tableName = ZRZ_TABLE_NAME;
-            zrz.annoField = ZRZ_ANNOTATION_FIELD;
-
-            SimpleFillSymbol symbol_zrz = new SimpleFillSymbol();
-            symbol_zrz.Style = esriSimpleFillStyle.esriSFSHollow;
-            symbol_zrz.Outline = new SimpleLineSymbol();
-            symbol_zrz.Outline.Color = ArcgisService.getRgbColor(0, 0, 0);
-            symbol_zrz.Outline.Width = 1;
-            
-            zrz.symbol = symbol_zrz as ISymbol;
-
+            ISymbol symbol_zrz = createSimpleFillSymbol(ZRZ_SYMBOL_COLOR, ZRZ_OUTLINE_COLOR, ZRZ_OUTLINE_WITH);
+            LayerInfo zrz = createLayerInfo(ZRZ_LAYER_NAME, ZRZ_TABLE_NAME, ZRZ_ANNOTATION_FIELD, symbol_zrz, ZRZ_TEXT_SYMBOL);
             result.Add(zrz);
 
             return result;
@@ -92,10 +80,10 @@ namespace BDCDC.service
         private static ISymbol createSimpleFillSymbol(IColor color, IColor outLineColor, int outLineWith)
         {
             SimpleFillSymbol symbol = new SimpleFillSymbol();
-            symbol.Style = esriSimpleFillStyle.esriSFSHollow;
-            symbol.Outline = new SimpleLineSymbol();
+            //symbol.Style = esriSimpleFillStyle.esriSFSHollow;
             symbol.Color = color;
-            symbol.Outline.Color = color;
+            symbol.Outline = new SimpleLineSymbol();
+            symbol.Outline.Color = outLineColor;
             symbol.Outline.Width = outLineWith;
 
             return symbol as ISymbol;
