@@ -117,18 +117,13 @@ namespace BDCDC.form
             ArcgisService.removeAllLayers(this.mapControl);
 
             foreach(LayerInfo info in layerInfos){
-                String layerName = info.layerName;
-                String tableName = info.tableName;
-                String annoField = info.annoField;
-                ISymbol symbol = info.symbol;
-                Debug.WriteLine((symbol as ISimpleFillSymbol).Outline.Width);
-                Debug.WriteLine((symbol as ISimpleFillSymbol).Outline.Color.RGB.ToString());
-                if (dcServ.countTableByDcxmId(dcxm.fId, tableName) > 0)
+
+                if (dcServ.countTableByDcxmId(dcxm.fId, info.tableName) > 0)
                 {
-                    IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId,tableName);
-                    layer.Name = layerName;
-                    ArcgisService.setLayerAnnotation(layer, annoField, ArcgisService.getRgbColor(200, 0, 0), 10);
-                    ArcgisService.setLayerSymbol(layer, symbol);
+                    IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId, info.tableName);
+                    layer.Name = info.layerName;
+                    ArcgisService.setLayerAnnotation(layer, info.annoExp, info.textSymbol);
+                    ArcgisService.setLayerSymbol(layer, info.symbol);
                     mapControl.AddLayer(layer);
                 }
             }

@@ -53,6 +53,21 @@ namespace BDCDC.service
             return pRgbColor;
         }
 
+        static public IRgbColor getRgbColor(int intR, int intG, int intB, byte alpha)
+        {
+            IRgbColor pRgbColor = null;
+            if (intR < 0 || intR > 255 || intG < 0 || intG > 255 || intB < 0 || intB > 255)
+            {
+                return pRgbColor;
+            }
+            pRgbColor = new RgbColorClass();
+            pRgbColor.Red = intR;
+            pRgbColor.Green = intG;
+            pRgbColor.Blue = intB;
+            pRgbColor.Transparency = alpha;
+            return pRgbColor;
+        }
+
         static public IRgbColor getNullColor()
         {
             IRgbColor pRgbColor = new RgbColor();
@@ -289,12 +304,12 @@ namespace BDCDC.service
                 return;
             }
             IGeoFeatureLayer layer = pFeaturelayer as IGeoFeatureLayer;
-            ISimpleRenderer render = new SimpleRenderer();
-            render.Symbol = symbol;
-            layer.Renderer = render as IFeatureRenderer;
+            ISimpleRenderer renderer = new SimpleRenderer();
+            renderer.Symbol = symbol;
+            layer.Renderer = renderer as IFeatureRenderer;
         }
 
-        public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string sLableField, IColor color, int size)
+        public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string expression, ITextSymbol textSymbol)
         {
             //判断图层是否为空
             if (pFeaturelayer == null)
@@ -310,16 +325,6 @@ namespace BDCDC.service
                 return;
             }
             pAnnoLayerPropsCollection.Clear();
-
-            //stdole.IFontDisp  pFont; //字体
-            ITextSymbol pTextSymbol;
-
-            //pFont.Name = "新宋体";
-            //pFont.Size = 9;
-
-            pTextSymbol = new TextSymbolClass();
-            pTextSymbol.Color = color;
-            pTextSymbol.Size = size; //标注大小
 
             IBasicOverposterLayerProperties4 pBasicOverposterlayerProps = new BasicOverposterLayerPropertiesClass();
             switch (pFeaturelayer.FeatureClass.ShapeType)//判断图层类型
@@ -342,8 +347,8 @@ namespace BDCDC.service
 
 
             ILabelEngineLayerProperties pLabelEnginelayerProps = new LabelEngineLayerPropertiesClass();
-            pLabelEnginelayerProps.Expression = "[" + sLableField + "]";
-            pLabelEnginelayerProps.Symbol = pTextSymbol;
+            pLabelEnginelayerProps.Expression = expression;
+            pLabelEnginelayerProps.Symbol = textSymbol;
             pLabelEnginelayerProps.BasicOverposterLayerProperties = pBasicOverposterlayerProps as IBasicOverposterLayerProperties;
             pAnnoLayerPropsCollection.Add((IAnnotateLayerProperties)pLabelEnginelayerProps);
             pGeoFeaturelayer.DisplayAnnotation = true;//很重要，必须设置 
