@@ -25,13 +25,14 @@ namespace BDCDC.form
 {
     public partial class FormProjectMain : Form
     {
+        private static String ZD_LAYER_NAME = "宗地";
+        private static String ZRZ_LAYER_NAME = "宗地";
+
         private QJDCXM dcxm;
         private ZdService zdServ = new ZdService();
         private ZrzService zrzServ = new ZrzService();
         private DcxmService dcServ = new DcxmService();
-
-        public List<LayerInfo> layerInfos = null;
-
+        
         public FormProjectMain(QJDCXM dcxm)
         {
             InitializeComponent();
@@ -41,7 +42,6 @@ namespace BDCDC.form
 
         private void initArcgisControls()
         {
-            layerInfos = dcServ.getLayerInfos();
 
             this.mapControl.Map.Name = "图层";
             this.tocControl.SetBuddyControl(this.mapControl);
@@ -115,7 +115,7 @@ namespace BDCDC.form
         private void loadMapLayers()
         {
             ArcgisService.removeAllLayers(this.mapControl);
-
+            /*
             foreach(LayerInfo info in layerInfos){
 
                 if (dcServ.countTableByDcxmId(dcxm.fId, info.tableName) > 0)
@@ -126,6 +126,12 @@ namespace BDCDC.form
                     ArcgisService.setLayerSymbol(layer, info.symbol);
                     mapControl.AddLayer(layer);
                 }
+            }
+            */
+            List<IFeatureLayer> layers = dcServ.getDcxmLayers(dcxm.fId);
+            foreach(IFeatureLayer layer in layers)
+            {
+                mapControl.AddLayer(layer);
             }
 
             mapControl.Refresh();

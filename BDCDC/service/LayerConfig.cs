@@ -20,7 +20,7 @@ namespace BDCDC.service
         public IFillSymbol LAYER_SYMBOL { get; set; }
         public ITextSymbol LAYER_TEXT_SYMBOL { get; set; }
     }
-    class LayerConfig
+    static class LayerConfig
     {
         public static IColor COLOR_RED = ArcgisService.getRgbColor(255, 0, 0);
         public static IColor COLOR_BLACK = ArcgisService.getRgbColor(0, 0, 0);
@@ -51,8 +51,8 @@ namespace BDCDC.service
                     Font = (IFontDisp)new StdFont
                     {
                         Name = "黑体",
-                        Size = 10,
-                        Bold = true
+                        Bold = false,
+                        Size = 11
                     }
                 }
             };
@@ -63,7 +63,7 @@ namespace BDCDC.service
             {
                 LAYER_NAME = "自然幢",
                 TABLE_NAME = "ZRZ",
-                ANNOTATION_EXPRESSION = "[JZWMC]+Char(10)+[ZRZH]",
+                ANNOTATION_EXPRESSION = @"[JZWMC]+Chr(10)+[ZRZH]",
                 LAYER_TRANSPARENCY = 0,
                 LAYER_SYMBOL = new SimpleFillSymbol
                 {
@@ -95,6 +95,16 @@ namespace BDCDC.service
             return layer;
         }
 
+        public static List<IFeatureLayer> getAllConfigedLayers(Dictionary<String,String> layerQueries)
+        {
+            List<IFeatureLayer> result = new List<IFeatureLayer>();
+            foreach(KeyValuePair<String,String> item in layerQueries)
+            {
+                result.Add(getConfigedLayer(item.Key, item.Value));
+            }
+            return result;
+        }
+
         private static void configLayer(IFeatureLayer layer, LayerInfo info)
         {
             ArcgisService.setLayerAnnotation(layer, info.ANNOTATION_EXPRESSION, info.LAYER_TEXT_SYMBOL);
@@ -103,6 +113,22 @@ namespace BDCDC.service
         }
 
         public static IFeatureLayer queryLayer(String tableName,String whereClause)
+        {
+            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
+
+            String query = "select * from " + tableName + " " + whereClause;
+            IQueryDescription q = ws.GetQueryDescription(query);
+            q.OIDFields = "fId";
+            String qName = "";
+            ws.CheckDatasetName(tableName, q, out qName);
+            ITable table = ws.OpenQueryClass(qName, q);
+
+            IFeatureLayer layer = new FeatureLayer();
+            layer.FeatureClass = table as IFeatureClass;
+            return layer;
+        }
+
+        public static int countLayer(String tableName, String whereClause)
         {
             ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
 

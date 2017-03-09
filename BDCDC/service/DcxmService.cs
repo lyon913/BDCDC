@@ -19,28 +19,6 @@ namespace BDCDC.service
 
         public static String QJDCXM_PREFIX = "QD";
 
-        public static String ZD_LAYER_NAME = "宗地";
-        public static String ZD_TABLE_NAME = "ZDJBXX";
-        public static String ZD_ANNOTATION_EXPRESSION = "[ZDDM]";
-        public static IColor ZD_SYMBOL_COLOR = ArcgisService.getNullColor();
-        public static IColor ZD_OUTLINE_COLOR = ArcgisService.getRgbColor(200, 0, 0);
-        public static double ZD_OUTLINE_WITH = 1.5;
-        public static IColor ZD_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
-        public static int ZD_TEXT_SIZE = 12;
-        public static IFillSymbol ZD_SYMBOL = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
-        public static ITextSymbol ZD_TEXT_SYMBOL = createTextSymbol(ZD_TEXT_COLOR, ZD_TEXT_SIZE);
-
-        public static String ZRZ_LAYER_NAME = "自然幢";
-        public static String ZRZ_TABLE_NAME = "ZRZ";
-        public static String ZRZ_ANNOTATION_EXPRESSION = @"[JZWMC]+Chr(10)+[ZRZH]";
-        public static IColor ZRZ_SYMBOL_COLOR = ArcgisService.getRgbColor(255,150,150);
-        public static IColor ZRZ_OUTLINE_COLOR = ArcgisService.getRgbColor(0, 0, 0);
-        public static double ZRZ_OUTLINE_WITH = 0.5;
-        public static IColor ZRZ_TEXT_COLOR = ArcgisService.getRgbColor(0, 0, 0);
-        public static int ZRZ_TEXT_SIZE = 8;
-        public static IFillSymbol ZRZ_SYMBOL = createSimpleFillSymbol(ZRZ_SYMBOL_COLOR, ZRZ_OUTLINE_COLOR, ZRZ_OUTLINE_WITH);
-        public static ITextSymbol ZRZ_TEXT_SYMBOL = createTextSymbol(ZRZ_TEXT_COLOR, ZRZ_TEXT_SIZE);
-
         public class LayerInfo
         {
             public String layerName { get; set; }
@@ -51,61 +29,7 @@ namespace BDCDC.service
             public ITextSymbol textSymbol { get; set; }
         }
 
-        public List<LayerInfo> getLayerInfos()
-        {
-            List<LayerInfo> result = new List<LayerInfo>();
 
-            IFillSymbol zdSymbol = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);
-            LayerInfo zd = createLayerInfo(ZD_LAYER_NAME, ZD_TABLE_NAME, ZD_ANNOTATION_EXPRESSION, zdSymbol, ZD_TEXT_SYMBOL);
-            result.Add(zd);
-
-            IFillSymbol symbol_zrz = createSimpleFillSymbol(ZRZ_SYMBOL_COLOR, ZRZ_OUTLINE_COLOR, ZRZ_OUTLINE_WITH);
-            LayerInfo zrz = createLayerInfo(ZRZ_LAYER_NAME, ZRZ_TABLE_NAME, ZRZ_ANNOTATION_EXPRESSION, symbol_zrz, ZRZ_TEXT_SYMBOL);
-            result.Add(zrz);
-
-            return result;
-        }
-
-        private LayerInfo createLayerInfo(String layerName,String tableName,String annExp, IFillSymbol symbol,ITextSymbol textSymbol)
-        {
-            LayerInfo info = new LayerInfo();
-            info.layerName = layerName;
-            info.tableName = tableName;
-            info.annoExp = annExp;
-
-            info.symbol = symbol as ISymbol;
-            info.textSymbol = textSymbol;
-            return info;
-        }
-
-        private static IFillSymbol createSimpleFillSymbol(IColor color, IColor outLineColor, double outLineWith)
-        {
-            SimpleFillSymbol symbol = new SimpleFillSymbol();
-            symbol.Style = esriSimpleFillStyle.esriSFSSolid;
-            symbol.Color = color;
-            ILineSymbol line = new SimpleLineSymbol();
-            line.Color = outLineColor;
-            line.Width = outLineWith;
-            //symbol.Outline.Color = outLineColor;
-            //symbol.Outline.Width = outLineWith;
-            symbol.Outline = line;
-            symbol.Color.Transparency = 5;
-
-            Debug.WriteLine("=1=" + outLineWith);
-            Debug.WriteLine("=1=" + symbol.Outline.Width);
-            Debug.WriteLine("=1="+outLineColor.RGB.ToString());
-            Debug.WriteLine("=1="+symbol.Outline.Color.RGB.ToString());
-
-            return symbol;
-        }
-
-        private static ITextSymbol createTextSymbol(IColor color, double size)
-        {
-            ITextSymbol pTextSymbol = new TextSymbolClass();
-            pTextSymbol.Color = color;
-            pTextSymbol.Size = size; 
-            return pTextSymbol;
-        }
 
         public void save(QJDCXM xm)
         {
@@ -149,6 +73,14 @@ namespace BDCDC.service
             IFeatureLayer layer = new FeatureLayer();
             layer.FeatureClass = table as IFeatureClass;
             return layer;
+        }
+
+        public List<IFeatureLayer> getDcxmLayers(int dcxmId)
+        {
+            Dictionary<String, String> layerQuerys = new Dictionary<string, string>();
+            layerQuerys.Add("ZDJBXX", " where QJDCXM_ID=" + dcxmId);
+            layerQuerys.Add("ZRZ", " where QJDCXM_ID=" + dcxmId);
+            return LayerConfig.getAllConfigedLayers(layerQuerys);
         }
 
         public List<QJDCXM> getTodoList()
