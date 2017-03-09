@@ -309,6 +309,19 @@ namespace BDCDC.service
             layer.Renderer = renderer as IFeatureRenderer;
         }
 
+        public static void setLayerTransparency(IFeatureLayer pFeaturelayer, short transparency)
+        {
+            if (pFeaturelayer == null)
+            {
+                return;
+            }
+            ILayerEffects effects = pFeaturelayer as ILayerEffects;
+            if (effects.SupportsTransparency)
+            {
+                effects.Transparency = transparency;
+            }
+        }
+
         public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string expression, ITextSymbol textSymbol)
         {
             //判断图层是否为空

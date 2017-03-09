@@ -24,7 +24,7 @@ namespace BDCDC.service
         public static String ZD_ANNOTATION_EXPRESSION = "[ZDDM]";
         public static IColor ZD_SYMBOL_COLOR = ArcgisService.getNullColor();
         public static IColor ZD_OUTLINE_COLOR = ArcgisService.getRgbColor(200, 0, 0);
-        public static double ZD_OUTLINE_WITH = 1;
+        public static double ZD_OUTLINE_WITH = 1.5;
         public static IColor ZD_TEXT_COLOR = ArcgisService.getRgbColor(200, 0, 0);
         public static int ZD_TEXT_SIZE = 12;
         public static IFillSymbol ZD_SYMBOL = createSimpleFillSymbol(ZD_SYMBOL_COLOR, ZD_OUTLINE_COLOR, ZD_OUTLINE_WITH);

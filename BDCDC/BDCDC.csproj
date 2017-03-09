@@ -202,6 +202,7 @@
     <Compile Include="service\ArcgisService.cs" />
     <Compile Include="service\DataItemsService.cs" />
     <Compile Include="service\DcxmService.cs" />
+    <Compile Include="service\LayerConfig.cs" />
     <Compile Include="service\MapPanCommand.cs" />
     <Compile Include="service\Service.cs" />
     <Compile Include="service\ZdService.cs" />
