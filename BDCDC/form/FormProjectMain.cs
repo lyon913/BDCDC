@@ -26,7 +26,7 @@ namespace BDCDC.form
     public partial class FormProjectMain : Form
     {
         private static String ZD_LAYER_NAME = "宗地";
-        private static String ZRZ_LAYER_NAME = "宗地";
+        private static String ZRZ_LAYER_NAME = "自然幢";
 
         private QJDCXM dcxm;
         private ZdService zdServ = new ZdService();
@@ -66,11 +66,23 @@ namespace BDCDC.form
         {
             removeAllTreeNode();
 
-            TreeNode root = new TreeNode();
-            root.Text = ZD_LAYER_NAME;
-            addZdTreeNode(root);
-            this.tv_zd.Nodes.Add(root);
-            this.tv_zd.ExpandAll();
+            loadTreeNodes();
+        }
+
+        private void loadTreeNodes()
+        {
+            loadZdNodes();
+            loadZrzNodes();
+
+            this.treeVew.ExpandAll();
+        }
+
+        private void loadZdNodes()
+        {
+            TreeNode zdRoot = new TreeNode();
+            zdRoot.Text = ZD_LAYER_NAME;
+            addZdTreeNode(zdRoot);
+            this.treeVew.Nodes.Add(zdRoot);
         }
 
         private void addZdTreeNode(TreeNode root)
@@ -78,15 +90,16 @@ namespace BDCDC.form
             List<ZDJBXX> zdList = dcServ.getZdjbxxByDcxmId(dcxm.fId);
             foreach (ZDJBXX zd in zdList)
             {
-                TreeNode zdNode = new TreeNode(zd.ZDDM);
+                TreeNode zdNode = new TreeNode();
+                zdNode.Text = getZdDisplayText(zd);
                 zdNode.Tag = zd;
-                addZrzTreeNode(zdNode);
+                addZrzToZdNode(zdNode);
 
                 root.Nodes.Add(zdNode);
             }
         }
 
-        private void addZrzTreeNode(TreeNode zdNode)
+        private void addZrzToZdNode(TreeNode zdNode)
         {
             if(zdNode == null || zdNode.Tag == null)
             {
@@ -97,37 +110,54 @@ namespace BDCDC.form
                 return;
             }
             ZDJBXX zd = zdNode.Tag as ZDJBXX;
+            if(zd.ZDDM == null)
+            {
+                return;
+            }
             List<ZRZ> zList = zrzServ.getZrzByDcxmIdAndZddm(zd.QJDCXMID, zd.ZDDM);
             foreach(ZRZ zrz in zList)
             {
                 TreeNode zNode = new TreeNode();
-                zNode.Text = zrz.ZRZH + "(" + zrz.JZWMC + ")";
+                zNode.Text = getZrzDisplayText(zrz);
                 zNode.Tag = zrz;
                 zdNode.Nodes.Add(zNode);
             }
         }
 
+        private void loadZrzNodes()
+        {
+            TreeNode zrzRoot = new TreeNode(ZRZ_LAYER_NAME);
+            treeVew.Nodes.Add(zrzRoot);
+
+            List<ZRZ> zrzList = zrzServ.getZrzByDcxmId(dcxm.fId);
+            foreach (ZRZ zrz in zrzList)
+            {
+                TreeNode zrzNode = new TreeNode();
+                zrzNode.Text = getZrzDisplayText(zrz);
+                zrzNode.Tag = zrz;
+                zrzRoot.Nodes.Add(zrzNode);
+            }
+        }
+
+        private String getZdDisplayText(ZDJBXX zd)
+        {
+            return zd.ZDDM == null ? "未编号宗地" : zd.ZDDM;
+        }
+
+        private String getZrzDisplayText(ZRZ zrz)
+        {
+            return zrz.ZRZH == null ? "未编号建筑物" : (zrz.ZRZH + "(" + zrz.JZWMC + ")");
+        }
+
         private void removeAllTreeNode()
         {
-            this.tv_zd.Nodes.Clear();
+            this.treeVew.Nodes.Clear();
         }
 
         private void loadMapLayers()
         {
             ArcgisService.removeAllLayers(this.mapControl);
-            /*
-            foreach(LayerInfo info in layerInfos){
 
-                if (dcServ.countTableByDcxmId(dcxm.fId, info.tableName) > 0)
-                {
-                    IFeatureLayer layer = dcServ.getDcxmLayer(dcxm.fId, info.tableName);
-                    layer.Name = info.layerName;
-                    ArcgisService.setLayerAnnotation(layer, info.annoExp, info.textSymbol);
-                    ArcgisService.setLayerSymbol(layer, info.symbol);
-                    mapControl.AddLayer(layer);
-                }
-            }
-            */
             List<IFeatureLayer> layers = dcServ.getDcxmLayers(dcxm.fId);
             foreach(IFeatureLayer layer in layers)
             {
@@ -187,17 +217,14 @@ namespace BDCDC.form
             if (d.ShowDialog() == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
-                foreach (IFeature feature in features)
-                {
-                    ZDJBXX zd = zdServ.newZdjbxx(dcxm.fId, ArcgisService.featureToDbGeometry(feature));
-                    zdServ.saveOrUpdate(zd);
-                }
+                dcServ.importZdFeatures(dcxm.fId, features);
                 loadData();
             }
         }
 
         private void b_importZrz_Click(object sender, EventArgs e)
         {
+            /*
             TreeNode selectedNode = tv_zd.SelectedNode;
             if(selectedNode == null)
             {
@@ -216,23 +243,17 @@ namespace BDCDC.form
                 MessageBox.Show("宗地尚未编号，无法导入自然幢。");
                 return;
             }
+            */
+
             DialogCadImport d = new DialogCadImport();
             if (d.ShowDialog() == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
-                foreach (IFeature feature in features)
-                {
-                    ZRZ z = zrzServ.newZRZ(dcxm.fId, zd.ZDDM, zd.BDCDYH, ArcgisService.featureToDbGeometry(feature));
-                    zrzServ.saveOrUpdate(z);
-                }
+                dcServ.importZrzFeatures(dcxm.fId, features);
                 loadData();
             }
         }
 
-        private void tv_zd_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-        }
 
         private void tv_zd_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -255,18 +276,9 @@ namespace BDCDC.form
             }
         }
 
-        private void b_selectFeature_Click(object sender, EventArgs e)
+        private void treeVew_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ICommand cmd = new ControlsSelectFeaturesTool();
-            cmd.OnCreate(this.mapControl.Object);
-            this.mapControl.CurrentTool = cmd as ITool;
-        }
-
-        private void b_pan_Click(object sender, EventArgs e)
-        {
-            ICommand cmd = new ControlsMapPanTool();
-            cmd.OnCreate(this.mapControl.Object);
-            this.mapControl.CurrentTool = cmd as ITool;
+            b_propEdit_Click(sender,e);
         }
     }
 }

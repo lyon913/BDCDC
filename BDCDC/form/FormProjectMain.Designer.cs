@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProjectMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tv_zd = new System.Windows.Forms.TreeView();
+            this.treeVew = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.b_importZd = new System.Windows.Forms.ToolStripButton();
             this.b_importZrz = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_tx = new System.Windows.Forms.TabPage();
             this.tab_xm = new System.Windows.Forms.TabPage();
-            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,7 +64,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tv_zd);
+            this.splitContainer1.Panel1.Controls.Add(this.treeVew);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
             // 
             // splitContainer1.Panel2
@@ -74,15 +74,15 @@
             this.splitContainer1.SplitterDistance = 206;
             this.splitContainer1.TabIndex = 1;
             // 
-            // tv_zd
+            // treeVew
             // 
-            this.tv_zd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tv_zd.Location = new System.Drawing.Point(0, 56);
-            this.tv_zd.Name = "tv_zd";
-            this.tv_zd.Size = new System.Drawing.Size(206, 573);
-            this.tv_zd.TabIndex = 1;
-            this.tv_zd.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_zd_AfterSelect);
-            this.tv_zd.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tv_zd_NodeMouseClick);
+            this.treeVew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeVew.Location = new System.Drawing.Point(0, 56);
+            this.treeVew.Name = "treeVew";
+            this.treeVew.Size = new System.Drawing.Size(206, 573);
+            this.treeVew.TabIndex = 1;
+            this.treeVew.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_zd_AfterSelect);
+            this.treeVew.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeVew_MouseDoubleClick);
             // 
             // toolStrip2
             // 
@@ -145,6 +145,15 @@
             this.mapControl.Size = new System.Drawing.Size(629, 573);
             this.mapControl.TabIndex = 0;
             // 
+            // mapToolbar1
+            // 
+            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
+            this.mapToolbar1.Name = "mapToolbar1";
+            this.mapToolbar1.Size = new System.Drawing.Size(629, 56);
+            this.mapToolbar1.TabIndex = 1;
+            this.mapToolbar1.Text = "mapToolbar1";
+            // 
             // tocControl
             // 
             this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -170,7 +179,7 @@
             this.tab_tx.Controls.Add(this.splitContainer1);
             this.tab_tx.Location = new System.Drawing.Point(4, 22);
             this.tab_tx.Name = "tab_tx";
-            this.tab_tx.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_tx.Padding = new System.Windows.Forms.Padding(3);
             this.tab_tx.Size = new System.Drawing.Size(1000, 635);
             this.tab_tx.TabIndex = 0;
             this.tab_tx.Text = "图形和属性编辑";
@@ -179,20 +188,11 @@
             // 
             this.tab_xm.Location = new System.Drawing.Point(4, 22);
             this.tab_xm.Name = "tab_xm";
-            this.tab_xm.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
             this.tab_xm.Size = new System.Drawing.Size(1000, 635);
             this.tab_xm.TabIndex = 1;
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
-            // 
-            // mapToolbar1
-            // 
-            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
-            this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(629, 56);
-            this.mapToolbar1.TabIndex = 1;
-            this.mapToolbar1.Text = "mapToolbar1";
             // 
             // FormProjectMain
             // 
@@ -233,7 +233,7 @@
         private System.Windows.Forms.ToolStripButton b_importZrz;
         private ESRI.ArcGIS.Controls.AxMapControl mapControl;
         private ESRI.ArcGIS.Controls.AxTOCControl tocControl;
-        private System.Windows.Forms.TreeView tv_zd;
+        private System.Windows.Forms.TreeView treeVew;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tab_tx;
         private System.Windows.Forms.TabPage tab_xm;

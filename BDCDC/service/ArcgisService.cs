@@ -281,6 +281,10 @@ namespace BDCDC.service
             IQueryFilter qf = new QueryFilterClass();
             qf.WhereClause = whereClause;
             IFeatureSelection selection = findMapLayer(mapControl, layerName) as IFeatureSelection;
+            if(selection == null)
+            {
+                return;
+            }
             selection.SelectFeatures(qf, esriSelectionResultEnum.esriSelectionResultNew, false);
             mapControl.Refresh();
         }
@@ -400,7 +404,35 @@ namespace BDCDC.service
             pAnnoProps.Add(pLabelEngine2 as IAnnotateLayerProperties);
             pGeoFeatLyr.DisplayAnnotation = true;
         }
-        
+
+        public static IFeatureLayer queryLayer(String tableName, String whereClause)
+        {
+
+            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
+
+            String query = "select * from " + tableName + " where " + whereClause;
+            IQueryDescription q = ws.GetQueryDescription(query);
+            q.OIDFields = "fId";
+            String qName = "";
+            ws.CheckDatasetName(tableName, q, out qName);
+            if(ws.OpenQueryCursor(query + " and SHAPE is not null").NextRow() == null)
+            {
+                return null;
+            }
+            ITable table = ws.OpenQueryClass(qName, q);
+
+            IFeatureLayer layer = new FeatureLayer();
+            layer.FeatureClass = table as IFeatureClass;
+            return layer;
+        }
+
+        /*
+        public static int countFeatures(String tableName, String whereClause)
+        {
+            String query = "select count(*) from " + tableName + " where SHAPE is not null and " + whereClause;
+
+        }
+        */
 
         public static BasicLayers getBasicLayers(IWorkspace ws)
         {

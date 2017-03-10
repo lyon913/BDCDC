@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BDCDC.service
@@ -15,14 +16,13 @@ namespace BDCDC.service
      * */
     class ZdService:Service
     {
+        private static String REGEX_ZDDM = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}";
+        private static String REGEX_BDCDYH = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}(W|F|L|Q)\d{8}";
 
-        public ZDJBXX newZdjbxx(int dcxmId, DbGeometry shape)
+        public ZDJBXX newZdjbxx()
         {
             ZDJBXX zd = new ZDJBXX();
-            zd.SHAPE = shape;
-            zd.ZDDM = "未编号宗地";
             zd.ZT = 0;
-            zd.QJDCXMID = dcxmId;
             return zd;
         }
 
@@ -118,12 +118,50 @@ namespace BDCDC.service
             
         }
 
+
         public ZDJBXX getZdjbxxById(int zdId)
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
+        public ZDJBXX getZdmd(int Zddm)
+        {
+            return useDbContext(ctx => {
+                return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
+            });
+        }
+
+
+        public bool checkZddm(String zddm)
+        {
+            if(zddm == null)
+            {
+                return false;
+            }
+            return Regex.Match(zddm, REGEX_ZDDM).Success;
+        }
+
+        public bool checkZddmDuplicate(String zddm)
+        {
+            useDbContext(ctx =>
+            {
+                int count = ctx.ZDJBXX.Where(zd=>zd.ZDDM == zddm && (zd.ZT == 0||zd.ZT == 1)).Count();
+                return count > 0;
+            });
+            return true;
+        }
+
+        public bool checkBdcdyh(String bdcdyh)
+        {
+            if (bdcdyh == null)
+            {
+                return false;
+            }
+            return Regex.Match(bdcdyh, REGEX_BDCDYH).Success;
+        }
+
+
 
 
     }

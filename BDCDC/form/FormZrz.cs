@@ -18,8 +18,9 @@ namespace BDCDC.form
     {
         private ZRZ zrz;
 
-        private ZrzService zrzService;
-        private DataItemsService items;
+        private ZrzService zrzService = new ZrzService();
+        private ZdService zdService = new ZdService();
+        private DataItemsService itemService = new DataItemsService();
 
 
 
@@ -27,12 +28,6 @@ namespace BDCDC.form
         {
             InitializeComponent();
             this.zrz = zrz;
-            init();
-        }
-        private void init()
-        {
-            zrzService = new ZrzService();
-            items = new DataItemsService();
         }
 
         private void FormZrz_Load(object sender, EventArgs e)
@@ -97,9 +92,12 @@ namespace BDCDC.form
 
             //不动产单元号
             String bdcdyh = zrzh + "0000";
-
-            tb_bdcdyh.Text = bdcdyh;
-            tb_zrzh.Text = zrzh;
+            if (zdService.checkBdcdyh(bdcdyh))
+            {
+                tb_bdcdyh.Text = bdcdyh;
+                tb_zrzh.Text = zrzh;
+            }
+            
         }
 
         private void tb_zsxh_TextChanged(object sender, EventArgs e)
@@ -125,7 +123,13 @@ namespace BDCDC.form
 
         public bool validate()
         {
-            if(zrz.BDCDYH == null || "".Equals(zrz.BDCDYH))
+            if(!zdService.checkZddm(zrz.ZDDM))
+            {
+                MessageBox.Show(this, "宗地代码无效", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (zrz.BDCDYH == null || "".Equals(zrz.BDCDYH))
             {
                 MessageBox.Show(this, "请编制不动产单元号", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -140,6 +144,14 @@ namespace BDCDC.form
             return true;
         }
 
+        private void tb_zddm_TextChanged(object sender, EventArgs e)
+        {
+            upateBdcdyh();
+        }
 
+        private void b_zydmj_get_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

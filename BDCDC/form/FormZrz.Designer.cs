@@ -79,6 +79,8 @@
             this.cb_ghyt = new System.Windows.Forms.ComboBox();
             this.cb_fwjg = new System.Windows.Forms.ComboBox();
             this.dp_jgrq = new System.Windows.Forms.DateTimePicker();
+            this.b_zydmj_get = new System.Windows.Forms.Button();
+            this.b_zzdmj_calc = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zydmj)).BeginInit();
@@ -240,9 +242,9 @@
             this.tb_zddm.Location = new System.Drawing.Point(93, 61);
             this.tb_zddm.MaxLength = 19;
             this.tb_zddm.Name = "tb_zddm";
-            this.tb_zddm.ReadOnly = true;
             this.tb_zddm.Size = new System.Drawing.Size(177, 21);
             this.tb_zddm.TabIndex = 0;
+            this.tb_zddm.TextChanged += new System.EventHandler(this.tb_zddm_TextChanged);
             // 
             // label3
             // 
@@ -258,6 +260,7 @@
             this.tb_zrzh.Location = new System.Drawing.Point(106, 173);
             this.tb_zrzh.MaxLength = 19;
             this.tb_zrzh.Name = "tb_zrzh";
+            this.tb_zrzh.ReadOnly = true;
             this.tb_zrzh.Size = new System.Drawing.Size(177, 21);
             this.tb_zrzh.TabIndex = 15;
             // 
@@ -426,7 +429,7 @@
             // 
             // nb_zydmj
             // 
-            this.nb_zydmj.DecimalPlaces = 3;
+            this.nb_zydmj.DecimalPlaces = 2;
             this.nb_zydmj.Location = new System.Drawing.Point(398, 203);
             this.nb_zydmj.Maximum = new decimal(new int[] {
             9999999,
@@ -434,12 +437,12 @@
             0,
             0});
             this.nb_zydmj.Name = "nb_zydmj";
-            this.nb_zydmj.Size = new System.Drawing.Size(177, 21);
+            this.nb_zydmj.Size = new System.Drawing.Size(126, 21);
             this.nb_zydmj.TabIndex = 48;
             // 
             // nb_zzdmj
             // 
-            this.nb_zzdmj.DecimalPlaces = 3;
+            this.nb_zzdmj.DecimalPlaces = 2;
             this.nb_zzdmj.Location = new System.Drawing.Point(398, 233);
             this.nb_zzdmj.Maximum = new decimal(new int[] {
             9999999,
@@ -447,12 +450,12 @@
             0,
             0});
             this.nb_zzdmj.Name = "nb_zzdmj";
-            this.nb_zzdmj.Size = new System.Drawing.Size(177, 21);
+            this.nb_zzdmj.Size = new System.Drawing.Size(126, 21);
             this.nb_zzdmj.TabIndex = 49;
             // 
             // nb_ycjzmj
             // 
-            this.nb_ycjzmj.DecimalPlaces = 3;
+            this.nb_ycjzmj.DecimalPlaces = 2;
             this.nb_ycjzmj.Location = new System.Drawing.Point(398, 263);
             this.nb_ycjzmj.Maximum = new decimal(new int[] {
             9999999,
@@ -465,7 +468,7 @@
             // 
             // nb_scjzmj
             // 
-            this.nb_scjzmj.DecimalPlaces = 3;
+            this.nb_scjzmj.DecimalPlaces = 2;
             this.nb_scjzmj.Location = new System.Drawing.Point(398, 293);
             this.nb_scjzmj.Maximum = new decimal(new int[] {
             9999999,
@@ -602,11 +605,32 @@
             this.dp_jgrq.TabIndex = 68;
             this.dp_jgrq.Value = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
             // 
+            // b_zydmj_get
+            // 
+            this.b_zydmj_get.Location = new System.Drawing.Point(532, 203);
+            this.b_zydmj_get.Name = "b_zydmj_get";
+            this.b_zydmj_get.Size = new System.Drawing.Size(43, 23);
+            this.b_zydmj_get.TabIndex = 15;
+            this.b_zydmj_get.Text = "获取";
+            this.b_zydmj_get.UseVisualStyleBackColor = true;
+            this.b_zydmj_get.Click += new System.EventHandler(this.b_zydmj_get_Click);
+            // 
+            // b_zzdmj_calc
+            // 
+            this.b_zzdmj_calc.Location = new System.Drawing.Point(532, 233);
+            this.b_zzdmj_calc.Name = "b_zzdmj_calc";
+            this.b_zzdmj_calc.Size = new System.Drawing.Size(43, 23);
+            this.b_zzdmj_calc.TabIndex = 69;
+            this.b_zzdmj_calc.Text = "计算";
+            this.b_zzdmj_calc.UseVisualStyleBackColor = true;
+            // 
             // FormZrz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 528);
+            this.Controls.Add(this.b_zzdmj_calc);
+            this.Controls.Add(this.b_zydmj_get);
             this.Controls.Add(this.dp_jgrq);
             this.Controls.Add(this.cb_fwjg);
             this.Controls.Add(this.cb_ghyt);
@@ -719,5 +743,7 @@
         private System.Windows.Forms.ComboBox cb_ghyt;
         private System.Windows.Forms.ComboBox cb_fwjg;
         private System.Windows.Forms.DateTimePicker dp_jgrq;
+        private System.Windows.Forms.Button b_zydmj_get;
+        private System.Windows.Forms.Button b_zzdmj_calc;
     }
 }

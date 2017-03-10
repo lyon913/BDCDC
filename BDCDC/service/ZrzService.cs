@@ -12,15 +12,10 @@ namespace BDCDC.service
 {
     class ZrzService : Service
     {
-        public ZRZ newZRZ(int dcxmId, String zddm, String zdBdcdyh,DbGeometry shape)
+        public ZRZ newZrz()
         {
             ZRZ z = new ZRZ();
-            z.JZWMC = "未编号建筑物";
-            z.ZDBDCDYH = zdBdcdyh;
-            z.ZDDM = zddm;
             z.ZT = 0;
-            z.SHAPE = shape;
-            z.QJDCXMID = dcxmId;
             return z;
         }
 
@@ -61,6 +56,14 @@ namespace BDCDC.service
             return useDbContext(ctx =>
             {
                 return ctx.ZRZ.Where(z => z.QJDCXMID == dcxmId && z.ZDDM == zddm).ToList();
+            });
+        }
+
+        public List<ZRZ> getZrzByDcxmId(int dcxmId)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.ZRZ.Where(z => z.QJDCXMID == dcxmId).ToList();
             });
         }
 

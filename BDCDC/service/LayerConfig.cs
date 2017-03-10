@@ -90,7 +90,11 @@ namespace BDCDC.service
         public static IFeatureLayer getConfigedLayer(String tableName,String whereClause)
         {
             LayerInfo info = layerInfos.Where(item => item.TABLE_NAME == tableName).Single();
-            IFeatureLayer layer = queryLayer(tableName, whereClause);
+            IFeatureLayer layer = ArcgisService.queryLayer(tableName, whereClause);
+            if(layer == null)
+            {
+                return null;
+            }
             configLayer(layer, info);
             return layer;
         }
@@ -100,49 +104,23 @@ namespace BDCDC.service
             List<IFeatureLayer> result = new List<IFeatureLayer>();
             foreach(KeyValuePair<String,String> item in layerQueries)
             {
-                result.Add(getConfigedLayer(item.Key, item.Value));
+                IFeatureLayer layer = getConfigedLayer(item.Key, item.Value);
+                if(layer!= null)
+                {
+                    result.Add(layer);
+                }
             }
             return result;
         }
 
         private static void configLayer(IFeatureLayer layer, LayerInfo info)
         {
+            layer.Name = info.LAYER_NAME;
             ArcgisService.setLayerAnnotation(layer, info.ANNOTATION_EXPRESSION, info.LAYER_TEXT_SYMBOL);
             ArcgisService.setLayerSymbol(layer, (ISymbol)info.LAYER_SYMBOL);
             ArcgisService.setLayerTransparency(layer, info.LAYER_TRANSPARENCY);
         }
 
-        public static IFeatureLayer queryLayer(String tableName,String whereClause)
-        {
-            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
-
-            String query = "select * from " + tableName + " " + whereClause;
-            IQueryDescription q = ws.GetQueryDescription(query);
-            q.OIDFields = "fId";
-            String qName = "";
-            ws.CheckDatasetName(tableName, q, out qName);
-            ITable table = ws.OpenQueryClass(qName, q);
-
-            IFeatureLayer layer = new FeatureLayer();
-            layer.FeatureClass = table as IFeatureClass;
-            return layer;
-        }
-
-        public static int countLayer(String tableName, String whereClause)
-        {
-            ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
-
-            String query = "select * from " + tableName + " " + whereClause;
-            IQueryDescription q = ws.GetQueryDescription(query);
-            q.OIDFields = "fId";
-            String qName = "";
-            ws.CheckDatasetName(tableName, q, out qName);
-            ITable table = ws.OpenQueryClass(qName, q);
-
-            IFeatureLayer layer = new FeatureLayer();
-            layer.FeatureClass = table as IFeatureClass;
-            return layer;
-        }
 
     }
 }

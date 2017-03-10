@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,13 @@ namespace BDCDC.service
                                    EntityState.Added :
                                    EntityState.Modified;
 
+        }
+
+        protected DbRawSqlQuery<T> createSqlQuery<T>(String sqlQuery,object[] param)
+        {
+            return useDbContext(ctx => {
+                return ctx.Database.SqlQuery<T>(sqlQuery, param);
+            });
         }
 
 

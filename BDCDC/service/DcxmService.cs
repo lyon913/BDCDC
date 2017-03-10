@@ -18,6 +18,8 @@ namespace BDCDC.service
     {
 
         public static String QJDCXM_PREFIX = "QD";
+        private ZdService zdServ = new ZdService();
+        private ZrzService zrzServ = new ZrzService();
 
         public class LayerInfo
         {
@@ -27,6 +29,30 @@ namespace BDCDC.service
 
             public ISymbol symbol { get; set; }
             public ITextSymbol textSymbol { get; set; }
+        }
+
+        public void importZdFeatures(int dcxmId,List<IFeature> features)
+        {
+            foreach (IFeature feature in features)
+            {
+                ZDJBXX zd = zdServ.newZdjbxx();
+                zd.SHAPE = ArcgisService.featureToDbGeometry(feature);
+                zd.QJDCXMID = dcxmId;
+
+                zdServ.saveOrUpdate(zd);
+            }
+        }
+
+        public void importZrzFeatures(int dcxmId, List<IFeature> features)
+        {
+            foreach (IFeature feature in features)
+            {
+                ZRZ zrz = zrzServ.newZrz();
+                zrz.SHAPE = ArcgisService.featureToDbGeometry(feature);
+                zrz.QJDCXMID = dcxmId;
+
+                zrzServ.saveOrUpdate(zrz);
+            }
         }
 
 
@@ -78,8 +104,8 @@ namespace BDCDC.service
         public List<IFeatureLayer> getDcxmLayers(int dcxmId)
         {
             Dictionary<String, String> layerQuerys = new Dictionary<string, string>();
-            layerQuerys.Add("ZDJBXX", " where QJDCXM_ID=" + dcxmId);
-            layerQuerys.Add("ZRZ", " where QJDCXM_ID=" + dcxmId);
+            layerQuerys.Add("ZDJBXX", "QJDCXM_ID=" + dcxmId);
+            layerQuerys.Add("ZRZ", " QJDCXM_ID=" + dcxmId);
             return LayerConfig.getAllConfigedLayers(layerQuerys);
         }
 
