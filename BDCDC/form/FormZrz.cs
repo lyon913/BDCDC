@@ -151,7 +151,12 @@ namespace BDCDC.form
 
         private void b_zydmj_get_Click(object sender, EventArgs e)
         {
-
+            decimal? zydmj = zdService.getZdmjByZdmd(zrz.ZDDM);
+            if(zydmj == null)
+            {
+                zydmj = 0;
+            }
+            this.nb_zzdmj.Value = (decimal)zydmj;
         }
     }
 }

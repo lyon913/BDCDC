@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Spatial;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -125,12 +126,28 @@ namespace BDCDC.service
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
-        public ZDJBXX getZdmd(int Zddm)
+        public ZDJBXX getZdjbxxByZdmd(String zddm)
         {
+            if(zddm == null)
+            {
+                return null;
+            }
             return useDbContext(ctx => {
-                return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
+                return ctx.ZDJBXX.Where(zd => zd.ZDDM == zddm && (zd.ZT == 0 || zd.ZT == 1)).Single();
             });
         }
+
+        public decimal? getZdmjByZdmd(String zddm)
+        {
+            ZDJBXX zd = getZdjbxxByZdmd(zddm);
+            if(zd == null)
+            {
+                return null;
+            }
+            return zd.ZDMJ;
+        }
+
+
 
 
         public bool checkZddm(String zddm)

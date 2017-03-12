@@ -15,7 +15,7 @@ namespace BDCDC.service
             return useDbContext(ctx =>
             {
                 String sql = "select * from DataItems where typeName={0} order by isNull(itemOrder,999),fid";
-                return ctx.DataItems.SqlQuery(sql, type).ToList();
+                return ctx.DataItems.Where(item => item.typeName == type).OrderBy(item => item.itemOrder ?? 999).OrderBy(item=>item.fid).ToList();
             });
             
         }
