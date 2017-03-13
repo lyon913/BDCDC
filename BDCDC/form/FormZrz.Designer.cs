@@ -81,6 +81,7 @@
             this.dp_jgrq = new System.Windows.Forms.DateTimePicker();
             this.b_zydmj_get = new System.Windows.Forms.Button();
             this.b_zzdmj_calc = new System.Windows.Forms.Button();
+            this.b_get_zddm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zydmj)).BeginInit();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.b_get_zddm);
             this.groupBox1.Controls.Add(this.tb_dzwtzm);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.tb_bdcdyh);
@@ -231,7 +233,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(91, 46);
+            this.label1.Location = new System.Drawing.Point(91, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 1;
@@ -239,7 +241,7 @@
             // 
             // tb_zddm
             // 
-            this.tb_zddm.Location = new System.Drawing.Point(93, 61);
+            this.tb_zddm.Location = new System.Drawing.Point(93, 52);
             this.tb_zddm.MaxLength = 19;
             this.tb_zddm.Name = "tb_zddm";
             this.tb_zddm.Size = new System.Drawing.Size(177, 21);
@@ -437,7 +439,7 @@
             0,
             0});
             this.nb_zydmj.Name = "nb_zydmj";
-            this.nb_zydmj.Size = new System.Drawing.Size(126, 21);
+            this.nb_zydmj.Size = new System.Drawing.Size(92, 21);
             this.nb_zydmj.TabIndex = 48;
             // 
             // nb_zzdmj
@@ -450,7 +452,7 @@
             0,
             0});
             this.nb_zzdmj.Name = "nb_zzdmj";
-            this.nb_zzdmj.Size = new System.Drawing.Size(126, 21);
+            this.nb_zzdmj.Size = new System.Drawing.Size(92, 21);
             this.nb_zzdmj.TabIndex = 49;
             // 
             // nb_ycjzmj
@@ -607,22 +609,33 @@
             // 
             // b_zydmj_get
             // 
-            this.b_zydmj_get.Location = new System.Drawing.Point(532, 203);
+            this.b_zydmj_get.Location = new System.Drawing.Point(496, 203);
             this.b_zydmj_get.Name = "b_zydmj_get";
-            this.b_zydmj_get.Size = new System.Drawing.Size(43, 23);
+            this.b_zydmj_get.Size = new System.Drawing.Size(79, 23);
             this.b_zydmj_get.TabIndex = 15;
-            this.b_zydmj_get.Text = "获取";
+            this.b_zydmj_get.Text = "取宗地面积";
             this.b_zydmj_get.UseVisualStyleBackColor = true;
             this.b_zydmj_get.Click += new System.EventHandler(this.b_zydmj_get_Click);
             // 
             // b_zzdmj_calc
             // 
-            this.b_zzdmj_calc.Location = new System.Drawing.Point(532, 233);
+            this.b_zzdmj_calc.Location = new System.Drawing.Point(496, 233);
             this.b_zzdmj_calc.Name = "b_zzdmj_calc";
-            this.b_zzdmj_calc.Size = new System.Drawing.Size(43, 23);
+            this.b_zzdmj_calc.Size = new System.Drawing.Size(79, 23);
             this.b_zzdmj_calc.TabIndex = 69;
             this.b_zzdmj_calc.Text = "计算";
             this.b_zzdmj_calc.UseVisualStyleBackColor = true;
+            this.b_zzdmj_calc.Click += new System.EventHandler(this.b_zzdmj_calc_Click);
+            // 
+            // b_get_zddm
+            // 
+            this.b_get_zddm.Location = new System.Drawing.Point(133, 75);
+            this.b_get_zddm.Name = "b_get_zddm";
+            this.b_get_zddm.Size = new System.Drawing.Size(93, 23);
+            this.b_get_zddm.TabIndex = 15;
+            this.b_get_zddm.Text = "查找宗地代码";
+            this.b_get_zddm.UseVisualStyleBackColor = true;
+            this.b_get_zddm.Click += new System.EventHandler(this.b_get_zddm_Click);
             // 
             // FormZrz
             // 
@@ -745,5 +758,6 @@
         private System.Windows.Forms.DateTimePicker dp_jgrq;
         private System.Windows.Forms.Button b_zydmj_get;
         private System.Windows.Forms.Button b_zzdmj_calc;
+        private System.Windows.Forms.Button b_get_zddm;
     }
 }

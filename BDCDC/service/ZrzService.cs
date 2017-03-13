@@ -1,9 +1,13 @@
 ﻿using BDCDC.model;
 using BDCDC.utils;
+using ESRI.ArcGIS.DataSourcesGDB;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Spatial;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +30,7 @@ namespace BDCDC.service
             //宗地代码 + F + 4位幢顺序号（0001-9999） + 0000
 
             //查询宗地下当前最大的顺序号
-            String sql = "SELECT max(right(BDCDYH,8))  from ZRZ where BDCDYH like {0}+'F%'";
+            String sql = "SELECT max(right(BDCDYH,8))  from ZRZ where ZT in(0,1) and BDCDYH like {0}+'F%'";
             String sxh = ctx.Database.SqlQuery<String>(sql, zddm).Single();
             if(sxh == null)
             {
@@ -72,6 +76,20 @@ namespace BDCDC.service
             return useDbContext(ctx => {
                 return ctx.ZRZ.Where(zd => zd.fId == zrzId).Single();
             });
+        }
+
+        public List<String> findZddmOfZrz(ZRZ zrz)
+        {
+            ITable table = ArcgisService.queryTable("ZDJBXX", "ZT in (0,1)");
+            IGeometry geom = ArcgisService.dbGeometryToGeometry(zrz.SHAPE);
+            List<IFeature> list = ArcgisService.spatialQuery(table as IFeatureClass, geom, esriSpatialRelEnum.esriSpatialRelIntersects);
+            List<String> result = new List<string>();
+            foreach (IFeature feature in list){
+                int idx_zddm = feature.Fields.FindField("ZDDM");
+                String dm = feature.Value[idx_zddm].ToString();
+                result.Add(dm);
+            }
+            return result;
         }
     }
 }

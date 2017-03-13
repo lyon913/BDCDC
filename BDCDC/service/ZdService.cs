@@ -48,7 +48,7 @@ namespace BDCDC.service
                 //6位行政区划码 + 3位地籍区码 + 3位地籍子区码 + 2位特征码（GB、JA等） + 5位宗地顺序号（00001-99999）
 
                 //查询该地籍子区下当前最大的顺序号
-                String sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZDDM like {0}+'%'";
+                String sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZT in(0,1) and ZDDM like {0}+'%'";
                 String sxh = ctx.Database.SqlQuery<String>(sql, djzq).Single();
                 sxh = StringUtils.addSxh(sxh, 5);
                 return sxh;
@@ -68,7 +68,7 @@ namespace BDCDC.service
                 else if ("L".Equals(dzwtzm) || "Q".Equals(dzwtzm))
                 {
                     //林地或其他
-                    String sql = "SELECT max(right(zddm,8))  from ZDJBXX where BDCDYH like {0}+{1}+'%' and ZT=1";
+                    String sql = "SELECT max(right(zddm,8))  from ZDJBXX where BDCDYH like {0}+{1}+'%' and ZT in(0,1)";
                     String sxh = ctx.Database.SqlQuery<String>(sql, zddm, dzwtzm).Single();
                     sxh = StringUtils.addSxh(sxh, 8);
                     return sxh;
@@ -133,7 +133,18 @@ namespace BDCDC.service
                 return null;
             }
             return useDbContext(ctx => {
-                return ctx.ZDJBXX.Where(zd => zd.ZDDM == zddm && (zd.ZT == 0 || zd.ZT == 1)).Single();
+                List<ZDJBXX> list = ctx.ZDJBXX.Where(zd => zd.ZDDM == zddm && (zd.ZT == 0 || zd.ZT == 1)).ToList();
+                if(list.Count == 1)
+                {
+                    return list[0];
+                }
+                if(list.Count == 0)
+                {
+                    return null;
+                }else
+                {
+                    throw new Exception("查找到多个重复的宗地号");
+                }
             });
         }
 
@@ -177,9 +188,8 @@ namespace BDCDC.service
             }
             return Regex.Match(bdcdyh, REGEX_BDCDYH).Success;
         }
-
-
-
+        
+        
 
     }
 }

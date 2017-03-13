@@ -156,7 +156,50 @@ namespace BDCDC.form
             {
                 zydmj = 0;
             }
-            this.nb_zzdmj.Value = (decimal)zydmj;
+            this.nb_zydmj.Value = Decimal.Round((decimal)zydmj, 2);
+        }
+
+        private void b_zzdmj_calc_Click(object sender, EventArgs e)
+        {
+            if(zrz.SHAPE == null)
+            {
+                return;
+            }
+            double area = (double)zrz.SHAPE.Area;
+            this.nb_zzdmj.Value = Decimal.Round(new Decimal(area), 2);
+        }
+
+        private void b_get_zddm_Click(object sender, EventArgs e)
+        {
+            if(zrz.SHAPE == null)
+            {
+                MessageBox.Show("未找到自然幢图形数据。");
+                return;
+            }
+
+            List<String> dmList = zrzService.findZddmOfZrz(zrz);
+            if(dmList.Count == 0)
+            {
+                MessageBox.Show("未找到与该自然幢相交的宗地，请检查宗地和自然幢图形数据。");
+                return;
+            }
+            if (dmList.Count == 1)
+            {
+                this.tb_zddm.Text = dmList[0];
+                return;
+            }
+            if (dmList.Count > 1)
+            {
+                DialogStringSelect d = new DialogStringSelect(dmList);
+                d.ShowDialog(this);
+                if(d.DialogResult == DialogResult.OK)
+                {
+                    this.tb_zddm.Text = d.getSelectedString();
+                }
+                
+                return;
+            }
+            
         }
     }
 }

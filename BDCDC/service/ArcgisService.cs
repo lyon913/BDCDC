@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Maplex;
+using System.Runtime.InteropServices;
 
 namespace BDCDC.service
 {
@@ -139,10 +140,10 @@ namespace BDCDC.service
         {
             IQueryFilter qf = new QueryFilter();
             qf.WhereClause = whereClause;
-
+            ICursor cur = table.Search(qf, false);
             DataStatistics dataStatistics = new DataStatistics();
             dataStatistics.Field = fieldName;
-            dataStatistics.Cursor = table.Search(qf, false);
+            dataStatistics.Cursor = cur;
 
             IEnumerator uniqueValues = dataStatistics.UniqueValues;
             List<String> list = new List<string>();
@@ -150,6 +151,7 @@ namespace BDCDC.service
             {
                 list.Add((String)uniqueValues.Current);
             }
+            Marshal.ReleaseComObject(cur);
             return list;
         }
 
@@ -179,6 +181,20 @@ namespace BDCDC.service
             wkb.ExportToWkb(ref byte_count, out wkb_bytes[0]);
             DbGeometry result = DbGeometry.FromBinary(wkb_bytes);
             return result;
+        }
+
+        public static IGeometry dbGeometryToGeometry(DbGeometry dbGeometry)
+        {
+            if(dbGeometry == null)
+            {
+                return null;
+            }
+            byte[] wkb = dbGeometry.AsBinary();
+            IGeometry geomOut = new GeometryBag();
+            IGeometryFactory gf = new GeometryEnvironment() as IGeometryFactory;
+            int readCount = 0;
+            gf.CreateGeometryFromWkbVariant(wkb, out geomOut, out readCount);
+            return geomOut;
         }
 
         public static void addCadLayersToMap(AxMapControl mapControl,String cadFullPath, String featureType)
@@ -244,7 +260,7 @@ namespace BDCDC.service
             ISelection selection = mapControl.Map.FeatureSelection;
             IEnumFeature selectedFeatures = selection as IEnumFeature;
             List<IFeature> fList = new List<IFeature>();
-            IFeature f;
+            IFeature f = null;
             while ((f = selectedFeatures.Next()) != null)
             {
                 fList.Add(f);
@@ -263,17 +279,7 @@ namespace BDCDC.service
                     return layer;
                 }
             }
-
             return null;
-        }
-
-        public static void selectMapFeatures(String whereClause, IFeatureLayer layer, AxMapControl mapControl)
-        {
-            IQueryFilter qf = new QueryFilterClass();
-            qf.WhereClause = whereClause;
-            IFeatureSelection selection = layer as IFeatureSelection;
-            selection.SelectFeatures(qf, esriSelectionResultEnum.esriSelectionResultNew, false);
-            mapControl.Refresh();
         }
 
         public static void selectMapFeatures(String whereClause, String layerName, AxMapControl mapControl)
@@ -405,24 +411,35 @@ namespace BDCDC.service
             pGeoFeatLyr.DisplayAnnotation = true;
         }
 
-        public static IFeatureLayer queryLayer(String tableName, String whereClause)
+        public static ITable queryTable(String tableName, String whereClause)
         {
 
             ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
 
-            String query = "select * from " + tableName + " where " + whereClause;
+            String query = "select * from " + tableName + " where 1=1 and " + whereClause;
             IQueryDescription q = ws.GetQueryDescription(query);
             q.OIDFields = "fId";
             String qName = "";
             ws.CheckDatasetName(tableName, q, out qName);
-            if(ws.OpenQueryCursor(query + " and SHAPE is not null").NextRow() == null)
+            if (ws.OpenQueryCursor(query).NextRow() == null)
             {
                 return null;
             }
             ITable table = ws.OpenQueryClass(qName, q);
+            return table;
+        }
 
+        public static IFeatureLayer queryLayer(String tableName, String whereClause)
+        {
+            
+            whereClause += " and SHAPE is not null";//创建Layer对象的数据记录SHAPE不能为空，否则报错
+            ITable fc = queryTable(tableName, whereClause);
+            if (fc == null)
+            {
+                return null;
+            }
             IFeatureLayer layer = new FeatureLayer();
-            layer.FeatureClass = table as IFeatureClass;
+            layer.FeatureClass = fc as IFeatureClass;
             return layer;
         }
 
@@ -489,6 +506,22 @@ namespace BDCDC.service
 
             return layers;
         }
-        
+
+        public static List<IFeature> spatialQuery(IFeatureClass featureClass, IGeometry geometry, esriSpatialRelEnum spatialRelationship)
+        {
+            ISpatialFilter spatialFilter = new SpatialFilterClass();
+            spatialFilter.Geometry = geometry;
+            spatialFilter.GeometryField = featureClass.ShapeFieldName;
+            spatialFilter.SpatialRel = spatialRelationship;
+            IFeatureCursor cur = featureClass.Search(spatialFilter, false);
+            IFeature feature = null;
+            List<IFeature> results = new List<IFeature>();
+            while ((feature = cur.NextFeature()) != null)
+            {
+                results.Add(feature);
+            }
+            Marshal.ReleaseComObject(cur);
+            return results;
+        }
     }
 }

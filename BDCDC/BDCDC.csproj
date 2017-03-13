@@ -138,6 +138,12 @@
       <DependentUpon>MapToolbar.cs</DependentUpon>
     </Compile>
     <Compile Include="form\DialogLayerSelect.cs" />
+    <Compile Include="form\DialogStringSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\DialogStringSelect.Designer.cs">
+      <DependentUpon>DialogStringSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormBdcMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     <Compile Include="vo\BasicLayers.cs" />
     <EmbeddedResource Include="form\CtrlDcxm.resx">
       <DependentUpon>CtrlDcxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\DialogStringSelect.resx">
+      <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormBdcMain.resx">
       <DependentUpon>FormBdcMain.cs</DependentUpon>
