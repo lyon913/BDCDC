@@ -162,6 +162,12 @@
     <Compile Include="form\FormDcxm.Designer.cs">
       <DependentUpon>FormDcxm.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\FormJZD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormJZD.Designer.cs">
+      <DependentUpon>FormJZD.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormLayerSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormDcxm.resx">
       <DependentUpon>FormDcxm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormJZD.resx">
+      <DependentUpon>FormJZD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormLayerSelect.resx">
       <DependentUpon>FormLayerSelect.cs</DependentUpon>

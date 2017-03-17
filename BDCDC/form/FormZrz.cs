@@ -190,13 +190,12 @@ namespace BDCDC.form
             }
             if (dmList.Count > 1)
             {
-                DialogStringSelect d = new DialogStringSelect(dmList);
+                DialogStringSelect d = new DialogStringSelect("宗地代码选取", dmList);
                 d.ShowDialog(this);
                 if(d.DialogResult == DialogResult.OK)
                 {
                     this.tb_zddm.Text = d.getSelectedString();
                 }
-                
                 return;
             }
             

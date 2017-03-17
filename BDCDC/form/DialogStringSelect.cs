@@ -14,9 +14,11 @@ namespace BDCDC.form
     {
         private string[] data;
 
-        public DialogStringSelect(List<String> data)
+        public DialogStringSelect(String title, List<String> data)
         {
             InitializeComponent();
+
+            this.Text = title;
             this.data = data.ToArray();
             this.list.Items.AddRange(this.data);
         }
@@ -33,6 +35,11 @@ namespace BDCDC.form
 
         private void b_ok_Click(object sender, EventArgs e)
         {
+            if(this.list.SelectedItem == null)
+            {
+                MessageBox.Show("请选择一项内容");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
