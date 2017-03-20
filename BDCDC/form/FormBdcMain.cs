@@ -49,12 +49,6 @@ namespace BDCDC.form
             dgv_todoList.DataSource = xmServ.getTodoList();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DialogCadImport f = new DialogCadImport();
-            f.ShowDialog();
-        }
-
 
         private void dgv_todoList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

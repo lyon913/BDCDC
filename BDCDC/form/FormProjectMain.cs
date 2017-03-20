@@ -213,7 +213,7 @@ namespace BDCDC.form
 
         private void b_importZd_Click(object sender, EventArgs e)
         {
-            DialogCadImport d = new DialogCadImport();
+            DialogCadImport d = new DialogCadImport(EnumFeatureType.Polygon);
             if (d.ShowDialog() == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
@@ -224,28 +224,9 @@ namespace BDCDC.form
 
         private void b_importZrz_Click(object sender, EventArgs e)
         {
-            /*
-            TreeNode selectedNode = tv_zd.SelectedNode;
-            if(selectedNode == null)
-            {
-                MessageBox.Show("请先选择一个宗地。");
-                return;
-            }
-            if(!(selectedNode.Tag is ZDJBXX))
-            {
-                MessageBox.Show("请先选择一个宗地。");
-                return;
-            }
 
-            ZDJBXX zd = selectedNode.Tag as ZDJBXX;
-            if(zd.ZDDM == null || zd.BDCDYH == null)
-            {
-                MessageBox.Show("宗地尚未编号，无法导入自然幢。");
-                return;
-            }
-            */
 
-            DialogCadImport d = new DialogCadImport();
+            DialogCadImport d = new DialogCadImport(EnumFeatureType.Polygon);
             if (d.ShowDialog() == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
@@ -279,6 +260,43 @@ namespace BDCDC.form
         private void treeVew_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             b_propEdit_Click(sender,e);
+        }
+
+        private void b_importJzd_Click(object sender, EventArgs e)
+        {
+            ZDJBXX zd = getSelectedZdjbxx();
+            if(zd == null)
+            {
+                return;
+            }
+            FormJZD f = new FormJZD(dcxm, zd);
+            f.ShowDialog(this);
+        }
+
+        private ZDJBXX getSelectedZdjbxx()
+        {
+            
+            TreeNode selectedNode = treeVew.SelectedNode;
+            if(selectedNode == null)
+            {
+                MessageBox.Show("请先选择一个宗地。");
+                return null;
+            }
+            if(!(selectedNode.Tag is ZDJBXX))
+            {
+                MessageBox.Show("请先选择一个宗地。");
+                return null;
+            }
+
+            ZDJBXX zd = selectedNode.Tag as ZDJBXX;
+            if(zd.ZDDM == null || zd.BDCDYH == null)
+            {
+                MessageBox.Show("宗地尚未编号。");
+                return null;
+            }
+
+            return zd;
+
         }
     }
 }

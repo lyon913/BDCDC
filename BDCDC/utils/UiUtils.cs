@@ -37,6 +37,19 @@ namespace BDCDC.utils
             cb.ValueMember = "itemCode";
         }
 
+        public static void dataGridComboboxDataItems(DataGridViewComboBoxColumn cb, String itemType, bool formated)
+        {
+            DataItemsService service = new DataItemsService();
+            List<DataItems> items = service.getItemsByType(itemType);
+            if (formated)
+            {
+                formatItemName(items);
+            }
+            cb.DataSource = items;
+            cb.DisplayMember = "itemName";
+            cb.ValueMember = "itemCode";
+        }
+
         //格式化标准项下拉列表
         public static void formatItemName(List<DataItems> list)
         {

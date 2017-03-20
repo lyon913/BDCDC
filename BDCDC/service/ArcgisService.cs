@@ -26,14 +26,6 @@ namespace BDCDC.service
 {
     static class ArcgisService
     {
-        public static class CAD_FEATURE_TYPE
-        {
-            public static String POLYGON = "Polygon";
-            public static String ANNOTATION = "Annotation";
-            public static String POLYLINE = "Polyline";
-            public static String POINT = "Point";
-        }
-
         public static class MAP_COLOR
         {
             public static IColor COLOR_ZD_OUTLINE= getRgbColor(200,0,0);
@@ -197,13 +189,13 @@ namespace BDCDC.service
             return geomOut;
         }
 
-        public static void addCadLayersToMap(AxMapControl mapControl,String cadFullPath, String featureType)
+        public static void addCadLayersToMap(AxMapControl mapControl,String cadFullPath, EnumFeatureType featureType)
         {
             String fileName = System.IO.Path.GetFileName(cadFullPath);
             String fileDir = System.IO.Path.GetDirectoryName(cadFullPath);
             IFeatureWorkspace ws = openCadWorkspace(fileDir) as IFeatureWorkspace;
 
-            IFeatureClass fc = ws.OpenFeatureClass(fileName + ":" + featureType);
+            IFeatureClass fc = ws.OpenFeatureClass(fileName + ":" + featureType.ToString());
             IFeatureLayer layer = new FeatureLayerClass();
             layer.FeatureClass = fc;
             layer.Name = fileName;
@@ -523,5 +515,7 @@ namespace BDCDC.service
             Marshal.ReleaseComObject(cur);
             return results;
         }
+
+        
     }
 }

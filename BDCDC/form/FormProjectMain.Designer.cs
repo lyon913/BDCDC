@@ -32,8 +32,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeVew = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.b_importZd = new System.Windows.Forms.ToolStripButton();
-            this.b_importZrz = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
@@ -41,6 +39,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_tx = new System.Windows.Forms.TabPage();
             this.tab_xm = new System.Windows.Forms.TabPage();
+            this.b_importZd = new System.Windows.Forms.ToolStripButton();
+            this.b_importZrz = new System.Windows.Forms.ToolStripButton();
+            this.b_importJzd = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,7 +72,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(994, 629);
-            this.splitContainer1.SplitterDistance = 206;
+            this.splitContainer1.SplitterDistance = 244;
             this.splitContainer1.TabIndex = 1;
             // 
             // treeVew
@@ -79,7 +80,7 @@
             this.treeVew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeVew.Location = new System.Drawing.Point(0, 56);
             this.treeVew.Name = "treeVew";
-            this.treeVew.Size = new System.Drawing.Size(206, 573);
+            this.treeVew.Size = new System.Drawing.Size(244, 573);
             this.treeVew.TabIndex = 1;
             this.treeVew.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_zd_AfterSelect);
             this.treeVew.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeVew_MouseDoubleClick);
@@ -89,34 +90,13 @@
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.b_importZd,
-            this.b_importZrz});
+            this.b_importZrz,
+            this.b_importJzd});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(206, 56);
+            this.toolStrip2.Size = new System.Drawing.Size(244, 56);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
-            // 
-            // b_importZd
-            // 
-            this.b_importZd.Image = global::BDCDC.Properties.Resources.arcgis_SelectionReselectHighlighted32;
-            this.b_importZd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.b_importZd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.b_importZd.Name = "b_importZd";
-            this.b_importZd.Size = new System.Drawing.Size(60, 53);
-            this.b_importZd.Text = "导入宗地";
-            this.b_importZd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.b_importZd.Click += new System.EventHandler(this.b_importZd_Click);
-            // 
-            // b_importZrz
-            // 
-            this.b_importZrz.Image = global::BDCDC.Properties.Resources.arcgis_CadastralFeatureAdjust32;
-            this.b_importZrz.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.b_importZrz.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.b_importZrz.Name = "b_importZrz";
-            this.b_importZrz.Size = new System.Drawing.Size(72, 53);
-            this.b_importZrz.Text = "导入自然幢";
-            this.b_importZrz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.b_importZrz.Click += new System.EventHandler(this.b_importZrz_Click);
             // 
             // splitContainer2
             // 
@@ -132,8 +112,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tocControl);
-            this.splitContainer2.Size = new System.Drawing.Size(784, 629);
-            this.splitContainer2.SplitterDistance = 629;
+            this.splitContainer2.Size = new System.Drawing.Size(746, 629);
+            this.splitContainer2.SplitterDistance = 598;
             this.splitContainer2.TabIndex = 1;
             // 
             // mapControl
@@ -142,7 +122,7 @@
             this.mapControl.Location = new System.Drawing.Point(0, 56);
             this.mapControl.Name = "mapControl";
             this.mapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mapControl.OcxState")));
-            this.mapControl.Size = new System.Drawing.Size(629, 573);
+            this.mapControl.Size = new System.Drawing.Size(598, 573);
             this.mapControl.TabIndex = 0;
             // 
             // mapToolbar1
@@ -150,7 +130,7 @@
             this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
             this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(629, 56);
+            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
             this.mapToolbar1.TabIndex = 1;
             this.mapToolbar1.Text = "mapToolbar1";
             // 
@@ -160,7 +140,7 @@
             this.tocControl.Location = new System.Drawing.Point(0, 0);
             this.tocControl.Name = "tocControl";
             this.tocControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("tocControl.OcxState")));
-            this.tocControl.Size = new System.Drawing.Size(151, 629);
+            this.tocControl.Size = new System.Drawing.Size(144, 629);
             this.tocControl.TabIndex = 0;
             // 
             // tabControl1
@@ -193,6 +173,40 @@
             this.tab_xm.TabIndex = 1;
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
+            // 
+            // b_importZd
+            // 
+            this.b_importZd.Image = global::BDCDC.Properties.Resources.arcgis_SelectionReselectHighlighted32;
+            this.b_importZd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.b_importZd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.b_importZd.Name = "b_importZd";
+            this.b_importZd.Size = new System.Drawing.Size(60, 53);
+            this.b_importZd.Text = "导入宗地";
+            this.b_importZd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_importZd.Click += new System.EventHandler(this.b_importZd_Click);
+            // 
+            // b_importZrz
+            // 
+            this.b_importZrz.Image = global::BDCDC.Properties.Resources.arcgis_CadastralFeatureAdjust32;
+            this.b_importZrz.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.b_importZrz.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.b_importZrz.Name = "b_importZrz";
+            this.b_importZrz.Size = new System.Drawing.Size(72, 53);
+            this.b_importZrz.Text = "导入自然幢";
+            this.b_importZrz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_importZrz.Click += new System.EventHandler(this.b_importZrz_Click);
+            // 
+            // b_importJzd
+            // 
+            this.b_importJzd.Image = global::BDCDC.Properties.Resources.PointDisplay32;
+            this.b_importJzd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.b_importJzd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.b_importJzd.Name = "b_importJzd";
+            this.b_importJzd.Size = new System.Drawing.Size(72, 53);
+            this.b_importJzd.Text = "导入界址点";
+            this.b_importJzd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.b_importJzd.ToolTipText = "导入界址点";
+            this.b_importJzd.Click += new System.EventHandler(this.b_importJzd_Click);
             // 
             // FormProjectMain
             // 
@@ -238,5 +252,6 @@
         private System.Windows.Forms.TabPage tab_tx;
         private System.Windows.Forms.TabPage tab_xm;
         private ctrl.MapToolbar mapToolbar1;
+        private System.Windows.Forms.ToolStripButton b_importJzd;
     }
 }

@@ -18,15 +18,19 @@ namespace BDCDC.form
     {
 
         private List<IFeature> features;
+        private EnumFeatureType featureType;
+        private String cadLayer;
 
-        public DialogCadImport()
+        public DialogCadImport(EnumFeatureType featureType)
         {
             InitializeComponent();
+            this.featureType = featureType;
             init();
         }
 
         private void init()
         {
+            this.mapToolbar1.Name = "导入图层";
             this.mapToolbar1.setMapControl(this.mapControl);
             this.tocControl.SetBuddyControl(this.mapControl);
 
@@ -54,7 +58,7 @@ namespace BDCDC.form
             if (fd.ShowDialog(this) == DialogResult.OK)
             {
                 String file = fd.FileName;
-                ArcgisService.addCadLayersToMap(this.mapControl, file, ArcgisService.CAD_FEATURE_TYPE.POLYGON);
+                ArcgisService.addCadLayersToMap(this.mapControl, file, featureType);
                 ArcgisService.addCadToMapAsRaster(this.mapControl, file);
             }
         }

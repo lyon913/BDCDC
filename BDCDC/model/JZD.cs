@@ -14,21 +14,26 @@ namespace BDCDC.model
 
         public int? BSM { get; set; }
 
-        [StringLength(10)]
         public string YSDM { get; set; }
 
-        [StringLength(10)]
+        public int? SXH { get; set; }
+
         public string JZDH { get; set; }
 
-        [StringLength(2)]
         public string JBLX { get; set; }
 
-        [StringLength(2)]
         public string JZDLX { get; set; }
 
         public decimal? X { get; set; }
 
         public decimal? Y { get; set; }
+
+        public decimal? GC { get; set; }
+
+
+        public string ZDDM { get; set; }
+
+        public int ZT { get; set; }
 
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }

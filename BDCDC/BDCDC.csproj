@@ -214,6 +214,8 @@
     <Compile Include="service\ArcgisService.cs" />
     <Compile Include="service\DataItemsService.cs" />
     <Compile Include="service\DcxmService.cs" />
+    <Compile Include="service\EnumFeatureType.cs" />
+    <Compile Include="service\JzdService.cs" />
     <Compile Include="service\LayerConfig.cs" />
     <Compile Include="service\MapPanCommand.cs" />
     <Compile Include="service\Service.cs" />
@@ -473,6 +475,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SelectionZoomToHighlighted32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PointDisplay32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
