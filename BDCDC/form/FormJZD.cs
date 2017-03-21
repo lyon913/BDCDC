@@ -17,24 +17,34 @@ namespace BDCDC.form
     public partial class FormJZD : Form
     {
         private QJDCXM dcxm;
-        private ZDJBXX zd;
+        private ZDJBXX zdjbxx;
 
         private JzdService jzdService;
 
-        public FormJZD(QJDCXM dcxm, ZDJBXX zd)
+        public FormJZD(QJDCXM dcxm, ZDJBXX zdjbxx)
         {
             InitializeComponent();
             this.dcxm = dcxm;
-            this.zd = zd;
+            this.zdjbxx = zdjbxx;
             init();
         }
 
         private void init()
         {
+            jzdService = new JzdService();
+
             this.dg_jzd.AutoGenerateColumns = false;
+            this.dg_jzd.ReadOnly = false;
+            this.dg_jzd.EditMode = DataGridViewEditMode.EditOnEnter;
+
             UiUtils.dataGridComboboxDataItems(this.JZDLX, "界址点类型", false);
             UiUtils.dataGridComboboxDataItems(this.JBLX, "界标类型", false);
-            jzdService = new JzdService();
+
+            String info1 = "宗地面积：{0}";
+            String info2 = "宗地代码：{0}";
+            this.l_info1.Text = String.Format(info1, zdjbxx.ZDMJ);
+            this.l_info2.Text = String.Format(info2, zdjbxx.ZDDM);
+
         }
 
         private void FormJZD_Load(object sender, EventArgs e)
@@ -51,8 +61,13 @@ namespace BDCDC.form
 
         private void b_import_from_shape_Click(object sender, EventArgs e)
         {
+            loadDataFromShape();
+        }
 
-            this.dg_jzd.DataSource = jzdService.getJzdListFromZdjbxx(zd);
+        private void loadDataFromShape()
+        {
+            List<JZD> jzdList = jzdService.getJzdListFromZdjbxx(zdjbxx);
+            this.dg_jzd.DataSource = jzdList;
         }
     }
 }

@@ -30,10 +30,11 @@ namespace BDCDC.model
 
         public decimal? GC { get; set; }
 
-
         public string ZDDM { get; set; }
 
         public int ZT { get; set; }
+
+        public DbGeometry SHAPE { get; set; }
 
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }

@@ -516,6 +516,20 @@ namespace BDCDC.service
             return results;
         }
 
+        public static List<IPoint> getPolygonPoints(DbGeometry shape)
+        {
+            Polygon p = (Polygon)ArcgisService.dbGeometryToGeometry(shape);
+            int pCount = p.PointCount;
+            List<IPoint> pList = new List<IPoint>();
+            for (int i = 0; i < pCount-1; i++)
+            {
+                IPoint point = p.Point[i];
+                pList.Add(point);
+            }
+
+            return pList;
+        }
+
         
     }
 }

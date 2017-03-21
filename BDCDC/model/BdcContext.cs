@@ -15,6 +15,8 @@ namespace BDCDC.model
         public DbSet<DJZQ> DJZQ { get; set; }
         public DbSet<ZDJBXX> ZDJBXX { get; set; }
         public DbSet<ZRZ> ZRZ { get; set; }
+        public DbSet<JZD> JZD { get; set; }
+        public DbSet<JZX> JZX { get; set; }
         public DbSet<QJDCXM> QJDCXM { get; set; }
 
         public static String CONN_STRING = getConnString();

@@ -19,7 +19,6 @@ namespace BDCDC.form
 
         private List<IFeature> features;
         private EnumFeatureType featureType;
-        private String cadLayer;
 
         public DialogCadImport(EnumFeatureType featureType)
         {
@@ -30,7 +29,7 @@ namespace BDCDC.form
 
         private void init()
         {
-            this.mapToolbar1.Name = "导入图层";
+            this.mapControl.Name = "导入图层";
             this.mapToolbar1.setMapControl(this.mapControl);
             this.tocControl.SetBuddyControl(this.mapControl);
 
