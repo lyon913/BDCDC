@@ -30,7 +30,7 @@ namespace BDCDC.form.ctrl
         {
             addButton("放    大", Resources.arcgis_ZoomInTool_B_32, zoomIn_click);
             addButton("缩    小", Resources.arcgis_ZoomOutTool_B_32, zoomOut_click);
-            addButton("显示全图", Resources.arcgis_ZoomFixedZoomIn32, fullExtend_click);
+            addButton("显示全图", Resources.ZoomFullExtentCross32, fullExtend_click);
             addButton("移    动", Resources.arcgis_PanTool32, pan_click);
             addSeparator();
             addButton("清空选择", Resources.arcgis_SelectionClearSelection_B_32, clearSelection_click);

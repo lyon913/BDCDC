@@ -403,6 +403,16 @@ namespace BDCDC.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap ShapefilePoint32 {
+            get {
+                object obj = ResourceManager.GetObject("ShapefilePoint32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap table_add {
             get {
                 object obj = ResourceManager.GetObject("table_add", resourceCulture);
@@ -456,6 +466,26 @@ namespace BDCDC.Properties {
         internal static System.Drawing.Bitmap to_do_list_cheked_all {
             get {
                 object obj = ResourceManager.GetObject("to_do_list_cheked_all", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ZoomFullExtent32 {
+            get {
+                object obj = ResourceManager.GetObject("ZoomFullExtent32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ZoomFullExtentCross32 {
+            get {
+                object obj = ResourceManager.GetObject("ZoomFullExtentCross32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

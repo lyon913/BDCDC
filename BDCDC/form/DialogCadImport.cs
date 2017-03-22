@@ -29,7 +29,7 @@ namespace BDCDC.form
 
         private void init()
         {
-            this.mapControl.Name = "导入图层";
+            this.mapControl.Map.Name = "导入图层";
             this.mapToolbar1.setMapControl(this.mapControl);
             this.tocControl.SetBuddyControl(this.mapControl);
 

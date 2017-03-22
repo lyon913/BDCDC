@@ -34,11 +34,11 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
-            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_tx = new System.Windows.Forms.TabPage();
             this.tab_xm = new System.Windows.Forms.TabPage();
+            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.b_importZd = new System.Windows.Forms.ToolStripButton();
             this.b_importZrz = new System.Windows.Forms.ToolStripButton();
             this.b_importJzd = new System.Windows.Forms.ToolStripButton();
@@ -125,15 +125,6 @@
             this.mapControl.Size = new System.Drawing.Size(598, 573);
             this.mapControl.TabIndex = 0;
             // 
-            // mapToolbar1
-            // 
-            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
-            this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
-            this.mapToolbar1.TabIndex = 1;
-            this.mapToolbar1.Text = "mapToolbar1";
-            // 
             // tocControl
             // 
             this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -174,6 +165,15 @@
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
             // 
+            // mapToolbar1
+            // 
+            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
+            this.mapToolbar1.Name = "mapToolbar1";
+            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
+            this.mapToolbar1.TabIndex = 1;
+            this.mapToolbar1.Text = "mapToolbar1";
+            // 
             // b_importZd
             // 
             this.b_importZd.Image = global::BDCDC.Properties.Resources.arcgis_SelectionReselectHighlighted32;
@@ -198,12 +198,12 @@
             // 
             // b_importJzd
             // 
-            this.b_importJzd.Image = global::BDCDC.Properties.Resources.PointDisplay32;
+            this.b_importJzd.Image = global::BDCDC.Properties.Resources.ShapefilePoint32;
             this.b_importJzd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.b_importJzd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.b_importJzd.Name = "b_importJzd";
             this.b_importJzd.Size = new System.Drawing.Size(72, 53);
-            this.b_importJzd.Text = "导入界址点";
+            this.b_importJzd.Text = "编辑界址点";
             this.b_importJzd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.b_importJzd.ToolTipText = "导入界址点";
             this.b_importJzd.Click += new System.EventHandler(this.b_importJzd_Click);

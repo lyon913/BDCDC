@@ -36,6 +36,10 @@ namespace BDCDC.model
 
         public string ZDDM { get; set; }
 
+        public DbGeometry SHAPE { get; set; }
+
+        public int ZT { get; set; }
+
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }
     }

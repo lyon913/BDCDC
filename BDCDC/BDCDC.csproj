@@ -497,6 +497,15 @@
   <ItemGroup>
     <None Include="Resources\table_excel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShapefilePoint32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomFullExtent32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ZoomFullExtentCross32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

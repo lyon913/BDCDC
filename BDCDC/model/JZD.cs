@@ -7,10 +7,8 @@ namespace BDCDC.model
     using System.Data.Entity.Spatial;
 
     [Table("JZD")]
-    public partial class JZD
+    public partial class JZD : BaseAuditEntity
     {
-        [Key]
-        public int fId { get; set; }
 
         public int? BSM { get; set; }
 
