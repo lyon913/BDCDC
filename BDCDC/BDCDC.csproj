@@ -506,6 +506,11 @@
   <ItemGroup>
     <None Include="Resources\ZoomFullExtentCross32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="db\mssql\Drop_SDE.sql" />
+    <Content Include="db\mssql\权籍调查--表结构调整.sql" />
+    <Content Include="db\mssql\权籍调查系统--DataItems.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
