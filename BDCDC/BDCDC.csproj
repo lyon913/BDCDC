@@ -162,11 +162,17 @@
     <Compile Include="form\FormDcxm.Designer.cs">
       <DependentUpon>FormDcxm.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\FormJZD.cs">
+    <Compile Include="form\FormJzd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\FormJZD.Designer.cs">
-      <DependentUpon>FormJZD.cs</DependentUpon>
+    <Compile Include="form\FormJzd.Designer.cs">
+      <DependentUpon>FormJzd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormJzdJzx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormJzdJzx.Designer.cs">
+      <DependentUpon>FormJzdJzx.cs</DependentUpon>
     </Compile>
     <Compile Include="form\FormLayerSelect.cs">
       <SubType>Form</SubType>
@@ -240,8 +246,11 @@
     <EmbeddedResource Include="form\FormDcxm.resx">
       <DependentUpon>FormDcxm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\FormJZD.resx">
-      <DependentUpon>FormJZD.cs</DependentUpon>
+    <EmbeddedResource Include="form\FormJzd.resx">
+      <DependentUpon>FormJzd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormJzdJzx.resx">
+      <DependentUpon>FormJzdJzx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormLayerSelect.resx">
       <DependentUpon>FormLayerSelect.cs</DependentUpon>
@@ -510,6 +519,8 @@
     <Content Include="db\mssql\Drop_SDE.sql" />
     <Content Include="db\mssql\权籍调查--表结构调整.sql" />
     <Content Include="db\mssql\权籍调查系统--DataItems.sql" />
+    <None Include="Resources\file_extension_xls.png" />
+    <None Include="Resources\file_extension_txt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,16 +32,20 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeVew = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.b_importZd = new System.Windows.Forms.ToolStripButton();
+            this.b_importZrz = new System.Windows.Forms.ToolStripButton();
+            this.b_importJzd = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_tx = new System.Windows.Forms.TabPage();
             this.tab_xm = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lb_coords = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lb_spring = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lb_scale = new System.Windows.Forms.ToolStripStatusLabel();
             this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
-            this.b_importZd = new System.Windows.Forms.ToolStripButton();
-            this.b_importZrz = new System.Windows.Forms.ToolStripButton();
-            this.b_importJzd = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tab_tx.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -71,7 +76,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(994, 629);
+            this.splitContainer1.Size = new System.Drawing.Size(994, 607);
             this.splitContainer1.SplitterDistance = 244;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -80,7 +85,7 @@
             this.treeVew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeVew.Location = new System.Drawing.Point(0, 56);
             this.treeVew.Name = "treeVew";
-            this.treeVew.Size = new System.Drawing.Size(244, 573);
+            this.treeVew.Size = new System.Drawing.Size(244, 551);
             this.treeVew.TabIndex = 1;
             this.treeVew.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_zd_AfterSelect);
             this.treeVew.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeVew_MouseDoubleClick);
@@ -97,82 +102,6 @@
             this.toolStrip2.Size = new System.Drawing.Size(244, 56);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.mapControl);
-            this.splitContainer2.Panel1.Controls.Add(this.mapToolbar1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.tocControl);
-            this.splitContainer2.Size = new System.Drawing.Size(746, 629);
-            this.splitContainer2.SplitterDistance = 598;
-            this.splitContainer2.TabIndex = 1;
-            // 
-            // mapControl
-            // 
-            this.mapControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapControl.Location = new System.Drawing.Point(0, 56);
-            this.mapControl.Name = "mapControl";
-            this.mapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mapControl.OcxState")));
-            this.mapControl.Size = new System.Drawing.Size(598, 573);
-            this.mapControl.TabIndex = 0;
-            // 
-            // tocControl
-            // 
-            this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tocControl.Location = new System.Drawing.Point(0, 0);
-            this.tocControl.Name = "tocControl";
-            this.tocControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("tocControl.OcxState")));
-            this.tocControl.Size = new System.Drawing.Size(144, 629);
-            this.tocControl.TabIndex = 0;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tab_tx);
-            this.tabControl1.Controls.Add(this.tab_xm);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1008, 661);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // tab_tx
-            // 
-            this.tab_tx.Controls.Add(this.splitContainer1);
-            this.tab_tx.Location = new System.Drawing.Point(4, 22);
-            this.tab_tx.Name = "tab_tx";
-            this.tab_tx.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_tx.Size = new System.Drawing.Size(1000, 635);
-            this.tab_tx.TabIndex = 0;
-            this.tab_tx.Text = "图形和属性编辑";
-            // 
-            // tab_xm
-            // 
-            this.tab_xm.Location = new System.Drawing.Point(4, 22);
-            this.tab_xm.Name = "tab_xm";
-            this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_xm.Size = new System.Drawing.Size(1000, 635);
-            this.tab_xm.TabIndex = 1;
-            this.tab_xm.Text = "业务信息";
-            this.tab_xm.UseVisualStyleBackColor = true;
-            // 
-            // mapToolbar1
-            // 
-            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
-            this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
-            this.mapToolbar1.TabIndex = 1;
-            this.mapToolbar1.Text = "mapToolbar1";
             // 
             // b_importZd
             // 
@@ -208,12 +137,121 @@
             this.b_importJzd.ToolTipText = "导入界址点";
             this.b_importJzd.Click += new System.EventHandler(this.b_importJzd_Click);
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.mapControl);
+            this.splitContainer2.Panel1.Controls.Add(this.mapToolbar1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.tocControl);
+            this.splitContainer2.Size = new System.Drawing.Size(746, 607);
+            this.splitContainer2.SplitterDistance = 598;
+            this.splitContainer2.TabIndex = 1;
+            // 
+            // mapControl
+            // 
+            this.mapControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapControl.Location = new System.Drawing.Point(0, 56);
+            this.mapControl.Name = "mapControl";
+            this.mapControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mapControl.OcxState")));
+            this.mapControl.Size = new System.Drawing.Size(598, 551);
+            this.mapControl.TabIndex = 0;
+            this.mapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.mapControl_OnMouseMove);
+            this.mapControl.OnViewRefreshed += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnViewRefreshedEventHandler(this.mapControl_OnViewRefreshed);
+            // 
+            // tocControl
+            // 
+            this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tocControl.Location = new System.Drawing.Point(0, 0);
+            this.tocControl.Name = "tocControl";
+            this.tocControl.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("tocControl.OcxState")));
+            this.tocControl.Size = new System.Drawing.Size(144, 607);
+            this.tocControl.TabIndex = 0;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab_tx);
+            this.tabControl1.Controls.Add(this.tab_xm);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1008, 639);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tab_tx
+            // 
+            this.tab_tx.Controls.Add(this.splitContainer1);
+            this.tab_tx.Location = new System.Drawing.Point(4, 22);
+            this.tab_tx.Name = "tab_tx";
+            this.tab_tx.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_tx.Size = new System.Drawing.Size(1000, 613);
+            this.tab_tx.TabIndex = 0;
+            this.tab_tx.Text = "图形和属性编辑";
+            // 
+            // tab_xm
+            // 
+            this.tab_xm.Location = new System.Drawing.Point(4, 22);
+            this.tab_xm.Name = "tab_xm";
+            this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_xm.Size = new System.Drawing.Size(1000, 613);
+            this.tab_xm.TabIndex = 1;
+            this.tab_xm.Text = "业务信息";
+            this.tab_xm.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lb_spring,
+            this.lb_coords,
+            this.lb_scale});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lb_coords
+            // 
+            this.lb_coords.Name = "lb_coords";
+            this.lb_coords.Size = new System.Drawing.Size(80, 17);
+            this.lb_coords.Text = "                  ";
+            // 
+            // lb_spring
+            // 
+            this.lb_spring.Name = "lb_spring";
+            this.lb_spring.Size = new System.Drawing.Size(116, 17);
+            this.lb_spring.Text = "                           ";
+            // 
+            // lb_scale
+            // 
+            this.lb_scale.Name = "lb_scale";
+            this.lb_scale.Size = new System.Drawing.Size(32, 17);
+            this.lb_scale.Text = "      ";
+            // 
+            // mapToolbar1
+            // 
+            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
+            this.mapToolbar1.Name = "mapToolbar1";
+            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
+            this.mapToolbar1.TabIndex = 1;
+            this.mapToolbar1.Text = "mapToolbar1";
+            // 
             // FormProjectMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.statusStrip1);
             this.Name = "FormProjectMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "权籍调查项目管理";
@@ -235,7 +273,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tab_tx.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -253,5 +294,9 @@
         private System.Windows.Forms.TabPage tab_xm;
         private ctrl.MapToolbar mapToolbar1;
         private System.Windows.Forms.ToolStripButton b_importJzd;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lb_coords;
+        private System.Windows.Forms.ToolStripStatusLabel lb_spring;
+        private System.Windows.Forms.ToolStripStatusLabel lb_scale;
     }
 }

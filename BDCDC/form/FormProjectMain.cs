@@ -25,6 +25,7 @@ namespace BDCDC.form
 {
     public partial class FormProjectMain : Form
     {
+        private static int srid = 4543;//4543代表CGCS2000_3_Degree_GK_CM_102E
         private static String ZD_LAYER_NAME = "宗地";
         private static String ZRZ_LAYER_NAME = "自然幢";
 
@@ -42,12 +43,16 @@ namespace BDCDC.form
 
         private void initArcgisControls()
         {
-
-            this.mapControl.Map.Name = "图层";
+            //ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
+            //this.mapControl.Map.SpatialReference = spatialReferenceFactory.CreateProjectedCoordinateSystem(srid);
+            this.mapControl.Map.Name = "不动产要素图层";
             this.tocControl.SetBuddyControl(this.mapControl);
 
             this.mapToolbar1.setMapControl(this.mapControl);
             this.mapToolbar1.addButton("编辑属性", Resources.arcgis_EditingPolygonTool32, b_propEdit_Click);
+
+            this.lb_spring.Spring = true;
+            this.lb_coords.Alignment = ToolStripItemAlignment.Right;
                         
         }
 
@@ -269,7 +274,7 @@ namespace BDCDC.form
             {
                 return;
             }
-            FormJZD f = new FormJZD(dcxm, zd);
+            FormJzdJzx f = new FormJzdJzx(dcxm, zd);
             f.ShowDialog(this);
         }
 
@@ -297,6 +302,18 @@ namespace BDCDC.form
 
             return zd;
 
+        }
+
+        private void mapControl_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
+        {
+            this.lb_coords.Text = e.mapX.ToString("0.0000") + "  " + e.mapY.ToString("0.0000");
+            
+        }
+
+        private void mapControl_OnViewRefreshed(object sender, IMapControlEvents2_OnViewRefreshedEvent e)
+        {
+            String unit = this.mapControl.MapUnits.ToString();
+            this.lb_scale.Text = unit;
         }
     }
 }

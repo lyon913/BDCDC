@@ -17,7 +17,7 @@ namespace BDCDC.service
         public String TABLE_NAME { get; set; }
         public String ANNOTATION_EXPRESSION { get; set; }
         public short LAYER_TRANSPARENCY { get; set; }
-        public IFillSymbol LAYER_SYMBOL { get; set; }
+        public ISymbol LAYER_SYMBOL { get; set; }
         public ITextSymbol LAYER_TEXT_SYMBOL { get; set; }
     }
     static class LayerConfig
@@ -36,7 +36,7 @@ namespace BDCDC.service
                 TABLE_NAME = "ZDJBXX",
                 ANNOTATION_EXPRESSION = "[ZDDM]",
                 LAYER_TRANSPARENCY = 0,
-                LAYER_SYMBOL = new SimpleFillSymbol
+                LAYER_SYMBOL = (ISymbol)new SimpleFillSymbol
                 {
                     Color = COLOR_NULL,
                     Outline = new SimpleLineSymbol
@@ -65,7 +65,7 @@ namespace BDCDC.service
                 TABLE_NAME = "ZRZ",
                 ANNOTATION_EXPRESSION = @"[JZWMC]+Chr(10)+[ZRZH]",
                 LAYER_TRANSPARENCY = 0,
-                LAYER_SYMBOL = new SimpleFillSymbol
+                LAYER_SYMBOL = (ISymbol)new SimpleFillSymbol
                 {
                     Color = COLOR_NULL,
                     Outline = new SimpleLineSymbol
@@ -85,6 +85,33 @@ namespace BDCDC.service
                 }
             };
             layerInfos.Add(ZRZ_LAYERINFO);
+
+            //界址点
+            LayerInfo JZD_LAYERINFO = new LayerInfo
+            {
+                LAYER_NAME = "界址点",
+                TABLE_NAME = "JZD",
+                ANNOTATION_EXPRESSION = @"[JZDH]",
+                LAYER_TRANSPARENCY = 0,
+                LAYER_SYMBOL = (ISymbol)new SimpleMarkerSymbol {
+                    Color = COLOR_RED,
+                    Style = esriSimpleMarkerStyle.esriSMSCircle,
+                    Size = 4,
+                    Outline = true,
+                    OutlineColor = COLOR_RED,
+                    OutlineSize = 1
+                },
+                LAYER_TEXT_SYMBOL = new TextSymbol
+                {
+                    Color = COLOR_RED,
+                    Font = (IFontDisp)new StdFont
+                    {
+                        Name = "宋体",
+                        Size = 8
+                    }
+                }
+            };
+            layerInfos.Add(JZD_LAYERINFO);
         }
 
         public static IFeatureLayer getConfigedLayer(String tableName,String whereClause)
@@ -117,7 +144,7 @@ namespace BDCDC.service
         {
             layer.Name = info.LAYER_NAME;
             ArcgisService.setLayerAnnotation(layer, info.ANNOTATION_EXPRESSION, info.LAYER_TEXT_SYMBOL);
-            ArcgisService.setLayerSymbol(layer, (ISymbol)info.LAYER_SYMBOL);
+            ArcgisService.setLayerSymbol(layer, info.LAYER_SYMBOL);
             ArcgisService.setLayerTransparency(layer, info.LAYER_TRANSPARENCY);
         }
 

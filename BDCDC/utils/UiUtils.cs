@@ -59,6 +59,14 @@ namespace BDCDC.utils
             }
         }
 
+        public static void dgvValidateAndEndEdit(DataGridView dgv)
+        {
+            DataGridViewCell cell = dgv.CurrentCell;
+            dgv.CurrentCell = null;
+            dgv.CurrentCell = cell;
+            dgv.EndEdit();
+        }
+
         public static void initArcgisToolbar(AxToolbarControl toolbar)
         {
             toolbar.AddItem("esriControls.ControlsMapZoomInTool", -1, -1, true, 0, esriCommandStyles.esriCommandStyleIconOnly);

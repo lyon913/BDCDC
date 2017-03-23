@@ -106,6 +106,7 @@ namespace BDCDC.service
             Dictionary<String, String> layerQuerys = new Dictionary<string, string>();
             layerQuerys.Add("ZDJBXX", "QJDCXM_ID=" + dcxmId);
             layerQuerys.Add("ZRZ", "QJDCXM_ID=" + dcxmId);
+            layerQuerys.Add("JZD", "QJDCXM_ID=" + dcxmId);
             return LayerConfig.getAllConfigedLayers(layerQuerys);
         }
 

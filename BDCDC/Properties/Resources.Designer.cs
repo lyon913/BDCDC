@@ -353,6 +353,26 @@ namespace BDCDC.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap file_extension_txt {
+            get {
+                object obj = ResourceManager.GetObject("file_extension_txt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap file_extension_xls {
+            get {
+                object obj = ResourceManager.GetObject("file_extension_xls", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap folder_search {
             get {
                 object obj = ResourceManager.GetObject("folder_search", resourceCulture);

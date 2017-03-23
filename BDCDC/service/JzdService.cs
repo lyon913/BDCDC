@@ -13,6 +13,15 @@ namespace BDCDC.service
 {
     class JzdService : Service
     {
+        public JZD newJZD()
+        {
+            JZD d = new JZD();
+            d.JZDLX = "1";
+            d.JBLX = "2";
+            d.ZT = 0;
+
+            return d;
+        }
         public List<JZD> getJzdListFromShape(ZDJBXX zdjbxx)
         {
             List<IPoint> pList = ArcgisService.getPolygonPoints(zdjbxx.SHAPE);
@@ -127,9 +136,10 @@ namespace BDCDC.service
         private void saveJzdList(String zddm, int dcxmId, List<JZD> jzdList,DbContext ctx)
         {
 
-            foreach(JZD jzd in jzdList)
+            for(int i =0;i<jzdList.Count;i++)
             {
-                
+                JZD jzd = jzdList[i];
+                jzd.SXH = i + 1;
                 jzd.ZDDM = zddm;
                 jzd.QJDCXMID = dcxmId;
                 if(jzd.SHAPE == null)
@@ -158,10 +168,6 @@ namespace BDCDC.service
             }
             foreach (JZD jzd in jzdList)
             {
-                if (jzd.SXH == null)
-                {
-                    throw new Exception("顺序号不能为空");
-                }
                 if (jzd.JZDH == null || jzd.JZDH.Length == 0)
                 {
                     throw new Exception("界址点号不能为空");
@@ -176,7 +182,7 @@ namespace BDCDC.service
         {
             if(jzxList == null || jzxList.Count < jzdList.Count)
             {
-                throw new Exception("界址线数量不正确。");
+                //throw new Exception("界址线数量不正确。");
             }
             for(int i= 0;i < jzdList.Count; i++) 
             {
