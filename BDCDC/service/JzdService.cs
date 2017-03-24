@@ -68,7 +68,7 @@ namespace BDCDC.service
                 x.QDH = start.JZDH;
                 x.ZDH = end.JZDH;
                 double cd = distance((double)start.X, (double)start.Y, (double)end.X, (double)end.Y);
-                x.JZXCD = Decimal.Round((decimal)cd,3);
+                x.JZXCD = Decimal.Round((decimal)cd,2);
                 x.JXXZ = "600001";
                 x.JZXLB = "6";
                 x.JZXWZ = "2";

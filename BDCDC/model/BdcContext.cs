@@ -18,6 +18,7 @@ namespace BDCDC.model
         public DbSet<JZD> JZD { get; set; }
         public DbSet<JZX> JZX { get; set; }
         public DbSet<QJDCXM> QJDCXM { get; set; }
+        public DbSet<SysUser> SysUser { get; set; }
 
         public static String CONN_STRING = getConnString();
 
@@ -62,6 +63,12 @@ namespace BDCDC.model
             modelBuilder.Entity<ZRZ>().Property(entity => entity.YCJZMJ).HasPrecision(15, 3);
             //实测建筑面积
             modelBuilder.Entity<ZRZ>().Property(entity => entity.SCJZMJ).HasPrecision(15, 3);
+
+            modelBuilder.Entity<JZD>().Property(entity => entity.X).HasPrecision(15, 3);
+            modelBuilder.Entity<JZD>().Property(entity => entity.Y).HasPrecision(15, 3);
+            modelBuilder.Entity<JZD>().Property(entity => entity.GC).HasPrecision(15, 3);
+
+            modelBuilder.Entity<JZX>().Property(entity => entity.JZXCD).HasPrecision(15, 2);
 
 
             base.OnModelCreating(modelBuilder);

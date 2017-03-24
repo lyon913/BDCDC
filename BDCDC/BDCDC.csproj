@@ -180,6 +180,12 @@
     <Compile Include="form\FormLayerSelect.Designer.cs">
       <DependentUpon>FormLayerSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,7 @@
     <Compile Include="model\JZD.cs" />
     <Compile Include="model\JZX.cs" />
     <Compile Include="model\QJDCXM.cs" />
+    <Compile Include="model\SysUser.cs" />
     <Compile Include="model\ZDJBXX.cs" />
     <Compile Include="model\ZRZ.cs" />
     <Compile Include="Program.cs" />
@@ -225,8 +232,10 @@
     <Compile Include="service\LayerConfig.cs" />
     <Compile Include="service\MapPanCommand.cs" />
     <Compile Include="service\Service.cs" />
+    <Compile Include="service\UserService.cs" />
     <Compile Include="service\ZdService.cs" />
     <Compile Include="service\ZrzService.cs" />
+    <Compile Include="utils\HashUtils.cs" />
     <Compile Include="utils\StringUtils.cs" />
     <Compile Include="utils\UiUtils.cs" />
     <Compile Include="utils\ValidationUtils.cs" />
@@ -254,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormLayerSelect.resx">
       <DependentUpon>FormLayerSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

@@ -43,8 +43,8 @@ namespace BDCDC.form
 
         private void initArcgisControls()
         {
-            //ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
-            //this.mapControl.Map.SpatialReference = spatialReferenceFactory.CreateProjectedCoordinateSystem(srid);
+            ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
+            this.mapControl.Map.SpatialReference = spatialReferenceFactory.CreateProjectedCoordinateSystem(srid);
             this.mapControl.Map.Name = "不动产要素图层";
             this.tocControl.SetBuddyControl(this.mapControl);
 
@@ -169,6 +169,7 @@ namespace BDCDC.form
                 mapControl.AddLayer(layer);
             }
 
+            this.mapControl.ActiveView.ScreenDisplay.DisplayTransformation.ScaleRatio = 1000;
             mapControl.Refresh();
         }
 
@@ -306,14 +307,14 @@ namespace BDCDC.form
 
         private void mapControl_OnMouseMove(object sender, IMapControlEvents2_OnMouseMoveEvent e)
         {
-            this.lb_coords.Text = e.mapX.ToString("0.0000") + "  " + e.mapY.ToString("0.0000");
+            this.lb_coords.Text = "坐标 " + e.mapX.ToString("0.000") + "  " + e.mapY.ToString("0.000");
             
         }
 
         private void mapControl_OnViewRefreshed(object sender, IMapControlEvents2_OnViewRefreshedEvent e)
         {
-            String unit = this.mapControl.MapUnits.ToString();
-            this.lb_scale.Text = unit;
+            double scale = mapControl.MapScale;
+            this.lb_scale.Text = "比例尺 1:"+Math.Round(scale);
         }
     }
 }

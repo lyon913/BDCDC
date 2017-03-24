@@ -46,6 +46,7 @@
             this.lb_spring = new System.Windows.Forms.ToolStripStatusLabel();
             this.lb_scale = new System.Windows.Forms.ToolStripStatusLabel();
             this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -201,7 +202,7 @@
             this.tab_xm.Location = new System.Drawing.Point(4, 22);
             this.tab_xm.Name = "tab_xm";
             this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_xm.Size = new System.Drawing.Size(1000, 613);
+            this.tab_xm.Size = new System.Drawing.Size(1000, 609);
             this.tab_xm.TabIndex = 1;
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
@@ -210,8 +211,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lb_spring,
-            this.lb_coords,
-            this.lb_scale});
+            this.lb_scale,
+            this.toolStripStatusLabel1,
+            this.lb_coords});
             this.statusStrip1.Location = new System.Drawing.Point(0, 639);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
@@ -220,9 +222,10 @@
             // 
             // lb_coords
             // 
+            this.lb_coords.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.lb_coords.Name = "lb_coords";
-            this.lb_coords.Size = new System.Drawing.Size(80, 17);
-            this.lb_coords.Text = "                  ";
+            this.lb_coords.Size = new System.Drawing.Size(44, 17);
+            this.lb_coords.Text = "坐标值";
             // 
             // lb_spring
             // 
@@ -232,9 +235,10 @@
             // 
             // lb_scale
             // 
+            this.lb_scale.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.lb_scale.Name = "lb_scale";
-            this.lb_scale.Size = new System.Drawing.Size(32, 17);
-            this.lb_scale.Text = "      ";
+            this.lb_scale.Size = new System.Drawing.Size(44, 17);
+            this.lb_scale.Text = "比例尺";
             // 
             // mapToolbar1
             // 
@@ -244,6 +248,12 @@
             this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
             this.mapToolbar1.TabIndex = 1;
             this.mapToolbar1.Text = "mapToolbar1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 17);
+            this.toolStripStatusLabel1.Text = "  ";
             // 
             // FormProjectMain
             // 
@@ -298,5 +308,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lb_coords;
         private System.Windows.Forms.ToolStripStatusLabel lb_spring;
         private System.Windows.Forms.ToolStripStatusLabel lb_scale;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

@@ -115,3 +115,16 @@ alter table JZX add	[fLastUpdaterLoginName] [varchar](100);
 alter table JZX add	[fLastUpdaterName] [varchar](100);
 alter table JZX add	[fLstUpdateTime] [datetime];
 go
+
+--XTYH
+alter table XTYH_XTJS drop constraint FK_belm320ldybqm3yc8udg7hprb;
+alter table YHJS drop constraint FKo4co1j9pdrv54orgjpc86oi0h;
+alter table XTYH drop constraint PK__XTYH__D9F8227C0BC6C43E;
+
+alter table XTYH alter column FID int ;
+alter table XTYH add constraint PK_XTYH_FID primary key clustered(FID) ;
+go
+alter table XTYH alter column fCreatorId int;
+go
+alter table XTYH alter column fLastUpdaterId int;
+go
