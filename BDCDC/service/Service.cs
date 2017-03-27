@@ -66,26 +66,26 @@ namespace BDCDC.service
         private void setAuditInfo(BaseEntity entity)
         {
             bool isCreate = entity.fId == 0 ? true : false;
-
+           
             if (entity is BaseAuditEntity)
             {
-                //BaseAuditEntity audit = (BaseAuditEntity)entity;
+                SysUser u = UserService.getCurrentUser();
                 if (isCreate)
                 {
-                    ((BaseAuditEntity)entity).QXDM = "9999";
-                    ((BaseAuditEntity)entity).QXMC = "审计功能未实现";
+                    ((BaseAuditEntity)entity).QXDM = u.QXDM;
+                    ((BaseAuditEntity)entity).QXMC = u.QXMC;
                     ((BaseAuditEntity)entity).fCreateTime = DateTime.Now;
-                    ((BaseAuditEntity)entity).fCreatorId = 9999;
+                    ((BaseAuditEntity)entity).fCreatorId = u.fId;
                     ((BaseAuditEntity)entity).fCreatorIp = "0.0.0.0";
-                    ((BaseAuditEntity)entity).fCreatorLoginName = "test_user_1";
-                    ((BaseAuditEntity)entity).fCreatorName = "审计功能未实现";
+                    ((BaseAuditEntity)entity).fCreatorLoginName = u.DLM;
+                    ((BaseAuditEntity)entity).fCreatorName = u.XM;
                 }
 
                 ((BaseAuditEntity)entity).fLstUpdateTime = DateTime.Now;
-                ((BaseAuditEntity)entity).fLastUpdaterId = 9999;
+                ((BaseAuditEntity)entity).fLastUpdaterId = u.fId;
                 ((BaseAuditEntity)entity).fLastUpdaterIp = "0.0.0.0";
-                ((BaseAuditEntity)entity).fLastUpdaterLoginName = "test_user_1";
-                ((BaseAuditEntity)entity).fLastUpdaterName = "审计功能未实现";
+                ((BaseAuditEntity)entity).fLastUpdaterLoginName = u.DLM;
+                ((BaseAuditEntity)entity).fLastUpdaterName = u.XM;
             }
         }
     }

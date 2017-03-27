@@ -12,6 +12,10 @@ namespace BDCDC.service
     {
         private static SysUser currentUser = null;
 
+        public static SysUser getCurrentUser()
+        {
+            return currentUser;
+        }
         public SysUser findByLoginName(string loginName)
         {
             return useDbContext(ctx =>

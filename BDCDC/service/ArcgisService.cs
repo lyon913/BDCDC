@@ -80,14 +80,19 @@ namespace BDCDC.service
 
         private static IPropertySet getDbProperties()
         {
+            String server = ConfigurationManager.AppSettings["server"];
+            String port = ConfigurationManager.AppSettings["port"];
+            String database = ConfigurationManager.AppSettings["database"];
+            String user = ConfigurationManager.AppSettings["user"];
+            String password = ConfigurationManager.AppSettings["password"];
+
             IPropertySet props = new PropertySet();
             props.SetProperty("dbclient", "SQLServer");
-            //props.SetProperty("serverinstance", "127.0.0.1");
-            props.SetProperty("instance", "sde:sqlserver:127.0.0.1");
-            props.SetProperty("database", "bdcdj_fm"); // Only if it is needed
+            props.SetProperty("instance", "sde:sqlserver:"+ server+","+port);
+            props.SetProperty("database", database); 
             props.SetProperty("authentication_mode", "DBMS");
-            props.SetProperty("user", "sa");
-            props.SetProperty("password", "xqx123456@");
+            props.SetProperty("user", user);
+            props.SetProperty("password", password);
 
             return props;
         }

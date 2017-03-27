@@ -19,31 +19,10 @@ namespace BDCDC.model
         public DbSet<JZX> JZX { get; set; }
         public DbSet<QJDCXM> QJDCXM { get; set; }
         public DbSet<SysUser> SysUser { get; set; }
-
-        public static String CONN_STRING = getConnString();
-
-        private static String getConnString()
-        {
-            String connString = ConfigurationManager.AppSettings["connString"];
-            String server = ConfigurationManager.AppSettings["server"];
-            String database = ConfigurationManager.AppSettings["database"];
-            String user = ConfigurationManager.AppSettings["user"];
-            String password = ConfigurationManager.AppSettings["password"];
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
-            {
-                DataSource = server, // server address
-                InitialCatalog = database, // database name
-                IntegratedSecurity = false, // server auth(false)/win auth(true)
-                MultipleActiveResultSets = true, // activate/deactivate MARS
-                UserID = user, // user name
-                Password = password // password
-            };
-            return builder.ToString();
-        }
-
+        
         public BdcContext():base("bdcContext")
         {
-            Debug.WriteLine(CONN_STRING);
+            Database.SetInitializer<BdcContext>(null);
         }
 
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)

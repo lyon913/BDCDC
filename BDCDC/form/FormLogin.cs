@@ -23,7 +23,8 @@ namespace BDCDC.form
 
         private void b_config_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            FormDbConfig f = new FormDbConfig();
+            f.ShowDialog(this);
         }
 
         private void b_login_Click(object sender, EventArgs e)

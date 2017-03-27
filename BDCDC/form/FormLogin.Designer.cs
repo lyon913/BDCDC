@@ -42,13 +42,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 130);
+            this.panel1.Size = new System.Drawing.Size(384, 100);
             this.panel1.TabIndex = 0;
             // 
             // tb_name
             // 
             this.tb_name.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_name.Location = new System.Drawing.Point(137, 152);
+            this.tb_name.Location = new System.Drawing.Point(112, 122);
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(176, 26);
             this.tb_name.TabIndex = 1;
@@ -56,7 +56,7 @@
             // tb_password
             // 
             this.tb_password.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_password.Location = new System.Drawing.Point(137, 184);
+            this.tb_password.Location = new System.Drawing.Point(112, 154);
             this.tb_password.Name = "tb_password";
             this.tb_password.PasswordChar = '*';
             this.tb_password.Size = new System.Drawing.Size(176, 26);
@@ -66,7 +66,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(29, 157);
+            this.label1.Location = new System.Drawing.Point(34, 126);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 3;
@@ -76,7 +76,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(28, 190);
+            this.label2.Location = new System.Drawing.Point(34, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 16);
             this.label2.TabIndex = 4;
@@ -84,8 +84,8 @@
             // 
             // b_login
             // 
-            this.b_login.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.b_login.Location = new System.Drawing.Point(137, 238);
+            this.b_login.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.b_login.Location = new System.Drawing.Point(112, 192);
             this.b_login.Name = "b_login";
             this.b_login.Size = new System.Drawing.Size(176, 33);
             this.b_login.TabIndex = 5;
@@ -96,7 +96,7 @@
             // b_config
             // 
             this.b_config.AutoSize = true;
-            this.b_config.Location = new System.Drawing.Point(333, 290);
+            this.b_config.Location = new System.Drawing.Point(283, 240);
             this.b_config.Name = "b_config";
             this.b_config.Size = new System.Drawing.Size(89, 12);
             this.b_config.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 311);
+            this.ClientSize = new System.Drawing.Size(384, 261);
             this.Controls.Add(this.b_config);
             this.Controls.Add(this.b_login);
             this.Controls.Add(this.label2);
