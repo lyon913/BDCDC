@@ -41,5 +41,8 @@ namespace BDCDC.model
 
         [StringLength(255)]
         public string signImgName { get; set; }
+
+        [NotMapped]
+        public string clientIp { get; set; }
     }
 }

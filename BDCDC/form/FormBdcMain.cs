@@ -61,5 +61,11 @@ namespace BDCDC.form
             FormProjectMain form = new FormProjectMain(dcxm);
             form.ShowDialog();
         }
+
+        private void m_connection_config_Click(object sender, EventArgs e)
+        {
+            FormDbConfig f = new FormDbConfig();
+            f.ShowDialog(this);
+        }
     }
 }

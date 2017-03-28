@@ -76,17 +76,18 @@ namespace BDCDC.service
                     ((BaseAuditEntity)entity).QXMC = u.QXMC;
                     ((BaseAuditEntity)entity).fCreateTime = DateTime.Now;
                     ((BaseAuditEntity)entity).fCreatorId = u.fId;
-                    ((BaseAuditEntity)entity).fCreatorIp = "0.0.0.0";
+                    ((BaseAuditEntity)entity).fCreatorIp = u.clientIp;
                     ((BaseAuditEntity)entity).fCreatorLoginName = u.DLM;
                     ((BaseAuditEntity)entity).fCreatorName = u.XM;
                 }
 
                 ((BaseAuditEntity)entity).fLstUpdateTime = DateTime.Now;
                 ((BaseAuditEntity)entity).fLastUpdaterId = u.fId;
-                ((BaseAuditEntity)entity).fLastUpdaterIp = "0.0.0.0";
+                ((BaseAuditEntity)entity).fLastUpdaterIp = u.clientIp;
                 ((BaseAuditEntity)entity).fLastUpdaterLoginName = u.DLM;
                 ((BaseAuditEntity)entity).fLastUpdaterName = u.XM;
             }
         }
+
     }
 }

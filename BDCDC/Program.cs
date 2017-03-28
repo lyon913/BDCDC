@@ -30,6 +30,10 @@ namespace BDCDC
             //程序初始化
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.Run(new FormBdcMain());
+
+            /*
             FormLogin loginForm = new FormLogin();
             if(loginForm.ShowDialog() == DialogResult.OK)
             {
@@ -39,7 +43,7 @@ namespace BDCDC
             {
                 Application.Exit();
             }
-            
+            */
         }
     }
 }

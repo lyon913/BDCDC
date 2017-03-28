@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace BDCDC.form
         public FormLogin()
         {
             InitializeComponent();
+            this.AcceptButton = b_login;
         }
 
         private void b_config_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -46,6 +48,11 @@ namespace BDCDC.form
                 MessageBox.Show(this,ex.Message,"错误",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

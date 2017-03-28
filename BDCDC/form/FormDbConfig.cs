@@ -152,5 +152,10 @@ namespace BDCDC.form
         {
             this.Close();
         }
+
+        private void FormDbConfig_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

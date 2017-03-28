@@ -188,6 +188,7 @@
             this.Name = "FormDbConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据库连接配置";
+            this.Load += new System.EventHandler(this.FormDbConfig_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

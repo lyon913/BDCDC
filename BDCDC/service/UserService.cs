@@ -24,6 +24,15 @@ namespace BDCDC.service
             });
         }
 
+        public String getClientIp()
+        {
+            return useDbContext(ctx =>
+            {
+                String sql = "SELECT CONVERT(varchar(100), CONNECTIONPROPERTY('client_net_address'))";
+                return ctx.Database.SqlQuery<String>(sql).Single();
+            });
+        }
+
         public void login(string loginName, string password)
         {
             SysUser u = findByLoginName(loginName);
@@ -40,6 +49,7 @@ namespace BDCDC.service
             String pwdHash = HashUtils.md5Hash(password, u.XM + u.salt, 2);
             if (HashUtils.match(pwdHash,u.MM))
             {
+                u.clientIp = getClientIp();
                 currentUser = u;
                 return;
             }
