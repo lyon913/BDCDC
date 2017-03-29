@@ -2,6 +2,7 @@
 using ESRI.ArcGIS.Geometry;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Spatial;
 using System.Data.SqlClient;
@@ -39,7 +40,7 @@ namespace BDCDC.service
                 d.JZDH = "J" + d.SXH;
                 d.X = Decimal.Round(new Decimal(x),3);
                 d.Y = Decimal.Round(new Decimal(y),3);
-                d.SHAPE = DbGeometry.FromText(wktPoint(x, y));
+                d.SHAPE = ArcgisService.pointToDbGeometry(x, y);
                 d.ZT = 0;
                 list.Add(d);
             }
@@ -109,17 +110,7 @@ namespace BDCDC.service
             return Math.Abs(Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2)));
         }
 
-        private String wktPoint(double x,double y)
-        {
-            String wkt = "POINT({0} {1})";
-            return String.Format(wkt, x, y);
-        }
 
-        private String wktLine(double x1,double y1,double x2,double y2)
-        {
-            String wkt = "LINESTRING({0} {1},{2} {3})";
-            return String.Format(wkt, x1,y1,x2,y2);
-        }
 
         public void saveJzdJzx(String zddm,int dcxmId, List<JZD> jzdList, List<JZX> jzxList)
         {
@@ -144,7 +135,7 @@ namespace BDCDC.service
                 jzd.QJDCXMID = dcxmId;
                 if(jzd.SHAPE == null)
                 {
-                    jzd.SHAPE = DbGeometry.FromText(wktPoint((double)jzd.X, (double)jzd.Y));
+                    jzd.SHAPE = ArcgisService.pointToDbGeometry((double)jzd.X, (double)jzd.Y);
                 }
                 insertOrUpdate(jzd,ctx);
             }

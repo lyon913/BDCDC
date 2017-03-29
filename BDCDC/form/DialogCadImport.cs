@@ -65,12 +65,23 @@ namespace BDCDC.form
         private void importAndClose()
         {
             List<IFeature> features = ArcgisService.getFeaturesFromMapSelection(this.mapControl);
+
             if (features == null || features.Count == 0)
             {
                 MessageBox.Show("请选择要导入的图形。");
                 return;
             }
-
+            foreach (IFeature f in features)
+            {
+                try
+                {
+                    ArcgisService.checkGeometryCoordinates(f.Shape);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
             this.features = features;
             this.DialogResult = DialogResult.OK;
             this.Close();

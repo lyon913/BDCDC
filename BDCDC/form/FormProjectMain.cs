@@ -25,7 +25,8 @@ namespace BDCDC.form
 {
     public partial class FormProjectMain : Form
     {
-        private static int srid = 4543;//4543代表CGCS2000_3_Degree_GK_CM_102E
+        private static int srid = ArcgisService.SRID;
+
         private static String ZD_LAYER_NAME = "宗地";
         private static String ZRZ_LAYER_NAME = "自然幢";
 

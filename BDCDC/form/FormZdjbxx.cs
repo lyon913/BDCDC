@@ -319,15 +319,5 @@ namespace BDCDC.form
             }
         }
 
-        //选择宗地图按钮
-        private void bt_zdt_Click(object sender, EventArgs e)
-        {
-            //用户选取宗地对应的宗地图，设置到SHAPE字段
-
-            //TODO 此代码为模拟的多边形，需要替换为实际图形代码
-            //坐标系4543为：CGCS2000_3_Degree_GK_CM_102E
-            zdjbxx.SHAPE = DbGeometry.PolygonFromText("POLYGON ((0 450000, 100 450000, 100 450100, 0 450100,0 450000))", 4543);
-        }
-
     }
 }

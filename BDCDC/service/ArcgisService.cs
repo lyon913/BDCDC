@@ -26,6 +26,9 @@ namespace BDCDC.service
 {
     static class ArcgisService
     {
+        public static int SRID = int.Parse(ConfigurationManager.AppSettings["srid"]);
+        public static double FALSE_EASTING = double.Parse(ConfigurationManager.AppSettings["false_easting"]);
+
         public static class MAP_COLOR
         {
             public static IColor COLOR_ZD_OUTLINE= getRgbColor(200,0,0);
@@ -176,8 +179,31 @@ namespace BDCDC.service
             byte[] wkb_bytes = new byte[wkb.WkbSize];
             int byte_count = wkb.WkbSize;
             wkb.ExportToWkb(ref byte_count, out wkb_bytes[0]);
-            DbGeometry result = DbGeometry.FromBinary(wkb_bytes);
+            DbGeometry result = DbGeometry.FromBinary(wkb_bytes, SRID);
             return result;
+        }
+
+        public static DbGeometry pointToDbGeometry(double x, double y)
+        {
+            return DbGeometry.FromText(wktPoint(x, y), SRID);
+        }
+
+        public static DbGeometry lineToDbGeometry(double x1, double y1, double x2, double y2)
+        {
+            return DbGeometry.FromText(wktLine(x1,y1,x2,y2),SRID);
+        }
+
+
+        public static String wktPoint(double x, double y)
+        {
+            String wkt = "POINT({0} {1})";
+            return String.Format(wkt, x, y);
+        }
+
+        public static String wktLine(double x1, double y1, double x2, double y2)
+        {
+            String wkt = "LINESTRING({0} {1},{2} {3})";
+            return String.Format(wkt, x1, y1, x2, y2);
         }
 
         public static IGeometry dbGeometryToGeometry(DbGeometry dbGeometry)
@@ -535,6 +561,16 @@ namespace BDCDC.service
             return pList;
         }
 
-        
+        /**
+         * 检查坐标是否为指定的投影带内
+         **/
+        public static void checkGeometryCoordinates(IGeometry geometry)
+        {
+            IPoint p = geometry.Envelope.LowerLeft;
+            if(p.X - FALSE_EASTING < 0)
+            {
+                throw new Exception("坐标值不在投影坐标系允许的范围内，请检查坐标值、带号等是否正确。");
+            }
+        }
     }
 }
