@@ -36,9 +36,6 @@ namespace BDCDC.model
         [StringLength(100)]
         public string KSMC { get; set; }
 
-        [StringLength(200)]
-        public string QXMC { get; set; }
-
         [StringLength(255)]
         public string signImgName { get; set; }
 

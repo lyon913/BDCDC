@@ -26,15 +26,34 @@ namespace BDCDC.service
 {
     static class ArcgisService
     {
-        public static int SRID = int.Parse(ConfigurationManager.AppSettings["srid"]);
-        public static double FALSE_EASTING = double.Parse(ConfigurationManager.AppSettings["false_easting"]);
+        /// <summary>
+        /// 系统使用的投影坐标系WKID
+        /// </summary>
+        public static int SRID = ConfigManager.SRID;
 
-        public static class MAP_COLOR
+        /// <summary>
+        /// 系统使用的投影坐标系
+        /// </summary>
+        public static IProjectedCoordinateSystem PCS = getPcsById(SRID);
+
+        /// <summary>
+        /// 从srid获取投影坐标系统
+        /// </summary>
+        /// <param name="srid"></param>
+        /// <returns></returns>
+        public static IProjectedCoordinateSystem getPcsById(int srid)
         {
-            public static IColor COLOR_ZD_OUTLINE= getRgbColor(200,0,0);
-
+            ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
+            return spatialReferenceFactory.CreateProjectedCoordinateSystem(SRID);
         }
 
+        /// <summary>
+        /// 构造RGB颜色
+        /// </summary>
+        /// <param name="intR"></param>
+        /// <param name="intG"></param>
+        /// <param name="intB"></param>
+        /// <returns></returns>
         static public IRgbColor getRgbColor(int intR, int intG, int intB)
         {
             IRgbColor pRgbColor = null;
@@ -49,6 +68,14 @@ namespace BDCDC.service
             return pRgbColor;
         }
 
+        /// <summary>
+        /// 构造RGBa颜色
+        /// </summary>
+        /// <param name="intR"></param>
+        /// <param name="intG"></param>
+        /// <param name="intB"></param>
+        /// <param name="alpha"></param>
+        /// <returns></returns>
         static public IRgbColor getRgbColor(int intR, int intG, int intB, byte alpha)
         {
             IRgbColor pRgbColor = null;
@@ -64,6 +91,10 @@ namespace BDCDC.service
             return pRgbColor;
         }
 
+        /// <summary>
+        /// 构造空颜色
+        /// </summary>
+        /// <returns></returns>
         static public IRgbColor getNullColor()
         {
             IRgbColor pRgbColor = new RgbColor();
@@ -71,6 +102,10 @@ namespace BDCDC.service
             return pRgbColor;
         }
 
+        /// <summary>
+        /// 打开数据库工作空间
+        /// </summary>
+        /// <returns></returns>
         public static IWorkspace openBdcWorkspace()
         {
             Type factoryType = Type.GetTypeFromProgID("esriDataSourcesGDB.SdeWorkspaceFactory");
@@ -81,6 +116,10 @@ namespace BDCDC.service
             return workspaceFactory.Open(props, 0);
         }
 
+        /// <summary>
+        /// 获取数据库连接参数，用于arc SDE 数据库连接
+        /// </summary>
+        /// <returns></returns>
         private static IPropertySet getDbProperties()
         {
             String server = ConfigurationManager.AppSettings["server"];
@@ -100,10 +139,12 @@ namespace BDCDC.service
             return props;
         }
 
-        /**
-         * 
-         * 打开CAD数据集
-         * */
+        /// <summary>
+        /// 打开CAD数据集
+        /// </summary>
+        /// <param name="cadWorkspacePath"></param>
+        /// <param name="cadFileName"></param>
+        /// <returns></returns>
         public static ICadDrawingDataset getCadDataset(string cadWorkspacePath, string cadFileName)
         {
             //Create a WorkspaceName object
@@ -121,10 +162,11 @@ namespace BDCDC.service
             return (ICadDrawingDataset)name.Open();
         }
 
-        /**
-         * 
-         * 打开CAD工作空间
-         * */
+        /// <summary>
+        /// 打开CAD工作空间
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <returns></returns>
         public static IWorkspace openCadWorkspace(string folderPath)
         {
             //Create a WorkspaceName object
@@ -133,9 +175,13 @@ namespace BDCDC.service
             return ws;
         }
 
-        /**
-         * 获取ITable记录的某一字段唯一值
-         * */
+        /// <summary>
+        /// 获取ITable记录的某一字段唯一值
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="whereClause"></param>
+        /// <returns></returns>
         public static List<String> getUniqeValues(ITable table, String fieldName, String whereClause)
         {
             IQueryFilter qf = new QueryFilter();
@@ -155,24 +201,12 @@ namespace BDCDC.service
             return list;
         }
 
-        public static IFeatureLayer getCadFeatureLayer(IFeatureWorkspace ws ,String cadFileName)
-        {
-            IFeatureClass fcPolygon = ws.OpenFeatureClass(cadFileName + ":Polygon");
-            IFeatureLayer layer_import = new FeatureLayer();
-            layer_import.FeatureClass = fcPolygon;
-            layer_import.Name = cadFileName;
 
-            List<String> layers = ArcgisService.getUniqeValues((ITable)fcPolygon, "Layer", null);
-            String cadLayer = DialogLayerSelect.showDialog("CAD图层选择", layers);
-
-            IQueryFilter qf = new QueryFilterClass();
-            qf.WhereClause = "Layer = '" + cadLayer + "'";
-            ((IFeatureSelection)layer_import).SelectFeatures(qf, esriSelectionResultEnum.esriSelectionResultNew, false);
-            IFeatureLayerDefinition layer_import_def = (IFeatureLayerDefinition)layer_import;
-            IFeatureLayer layer_selected = layer_import_def.CreateSelectionLayer(cadLayer + "@" + cadFileName, true, null, null);
-            return layer_selected;
-        }
-
+        /// <summary>
+        /// IFeature转换为DbGeometry
+        /// </summary>
+        /// <param name="feature"></param>
+        /// <returns></returns>
         public static DbGeometry featureToDbGeometry(IFeature feature)
         {
             IWkb wkb = (IWkb)feature.Shape;
@@ -183,29 +217,61 @@ namespace BDCDC.service
             return result;
         }
 
+        /// <summary>
+        /// 从坐标点构造DbGeometry的点
+        /// </summary>
+        /// <param name="x">x坐标</param>
+        /// <param name="y">y坐标</param>
+        /// <returns></returns>
         public static DbGeometry pointToDbGeometry(double x, double y)
         {
             return DbGeometry.FromText(wktPoint(x, y), SRID);
         }
 
+        /// <summary>
+        /// 从坐标点构造DbGeometry的直线
+        /// </summary>
+        /// <param name="x1">点1的x坐标</param>
+        /// <param name="y1">点1的y坐标</param>
+        /// <param name="x2">点2的x坐标</param>
+        /// <param name="y2">点2的y坐标</param>
+        /// <returns></returns>
         public static DbGeometry lineToDbGeometry(double x1, double y1, double x2, double y2)
         {
             return DbGeometry.FromText(wktLine(x1,y1,x2,y2),SRID);
         }
 
-
+        /// <summary>
+        /// 构造点的文本表达形式（WKT）
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public static String wktPoint(double x, double y)
         {
             String wkt = "POINT({0} {1})";
             return String.Format(wkt, x, y);
         }
 
+        /// <summary>
+        /// 构造直线的文本表达形式（WKT）
+        /// </summary>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
         public static String wktLine(double x1, double y1, double x2, double y2)
         {
             String wkt = "LINESTRING({0} {1},{2} {3})";
             return String.Format(wkt, x1, y1, x2, y2);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dbGeometry"></param>
+        /// <returns></returns>
         public static IGeometry dbGeometryToGeometry(DbGeometry dbGeometry)
         {
             if(dbGeometry == null)
@@ -220,6 +286,13 @@ namespace BDCDC.service
             return geomOut;
         }
 
+
+        /// <summary>
+        /// 向地图控件添加指定类型的CAD图层
+        /// </summary>
+        /// <param name="mapControl"></param>
+        /// <param name="cadFullPath"></param>
+        /// <param name="featureType"></param>
         public static void addCadLayersToMap(AxMapControl mapControl,String cadFullPath, EnumFeatureType featureType)
         {
             String fileName = System.IO.Path.GetFileName(cadFullPath);
@@ -249,6 +322,11 @@ namespace BDCDC.service
 
         }
 
+        /// <summary>
+        /// 向地图控件中添加CAD所有图层
+        /// </summary>
+        /// <param name="mapControl"></param>
+        /// <param name="cadFullPath"></param>
         public static void addCadToMapAsRaster(AxMapControl mapControl, String cadFullPath)
         {
             String fileName = System.IO.Path.GetFileName(cadFullPath);
@@ -264,6 +342,13 @@ namespace BDCDC.service
             mapControl.ActiveView.Refresh();
         }
 
+        /// <summary>
+        /// 以SQL where 条件创建IFeatureLayer
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="newLayerName"></param>
+        /// <param name="whereClause"></param>
+        /// <returns></returns>
         public static IFeatureLayer createFilterLayer(IFeatureLayer layer, String newLayerName,String whereClause)
         {
 
@@ -278,6 +363,11 @@ namespace BDCDC.service
             return layer_filtered;
         }
 
+        /// <summary>
+        /// 从地图控件获取所有被选中的要素
+        /// </summary>
+        /// <param name="mapControl"></param>
+        /// <returns></returns>
         public static List<IFeature> getFeaturesFromMapSelection(AxMapControl mapControl)
         {
             ISelection selection = mapControl.Map.FeatureSelection;
@@ -291,6 +381,12 @@ namespace BDCDC.service
             return fList;
         }
 
+        /// <summary>
+        /// 查找地图控件上的图层
+        /// </summary>
+        /// <param name="mapControl"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static ILayer findMapLayer(AxMapControl mapControl, String name)
         {
             IEnumLayer layers = mapControl.Map.Layers;
@@ -305,6 +401,12 @@ namespace BDCDC.service
             return null;
         }
 
+        /// <summary>
+        /// 以SQL where 条件选择地图上的要素
+        /// </summary>
+        /// <param name="whereClause"></param>
+        /// <param name="layerName"></param>
+        /// <param name="mapControl"></param>
         public static void selectMapFeatures(String whereClause, String layerName, AxMapControl mapControl)
         {
             IQueryFilter qf = new QueryFilterClass();
@@ -318,18 +420,31 @@ namespace BDCDC.service
             mapControl.Refresh();
         }
 
+        /// <summary>
+        /// 清空地图控件上已选择的图形
+        /// </summary>
+        /// <param name="mapControl"></param>
         public static void clearMapSelection(AxMapControl mapControl)
         {
             mapControl.Map.ClearSelection();
             mapControl.Refresh();
         }
 
+        /// <summary>
+        /// 从地图控件移除所有图层
+        /// </summary>
+        /// <param name="mapControl"></param>
         public static void removeAllLayers(AxMapControl mapControl)
         {
             mapControl.Map.ClearLayers();
             mapControl.Refresh();
         }
 
+        /// <summary>
+        /// 设置图层符号
+        /// </summary>
+        /// <param name="pFeaturelayer"></param>
+        /// <param name="symbol"></param>
         public static void setLayerSymbol(IFeatureLayer pFeaturelayer, ISymbol symbol)
         {
             if(pFeaturelayer == null)
@@ -342,6 +457,11 @@ namespace BDCDC.service
             layer.Renderer = renderer as IFeatureRenderer;
         }
 
+        /// <summary>
+        /// 设置图层透明度
+        /// </summary>
+        /// <param name="pFeaturelayer"></param>
+        /// <param name="transparency"></param>
         public static void setLayerTransparency(IFeatureLayer pFeaturelayer, short transparency)
         {
             if (pFeaturelayer == null)
@@ -355,6 +475,12 @@ namespace BDCDC.service
             }
         }
 
+        /// <summary>
+        /// 设置图层注释
+        /// </summary>
+        /// <param name="pFeaturelayer"></param>
+        /// <param name="expression"></param>
+        /// <param name="textSymbol"></param>
         public static void setLayerAnnotation(IFeatureLayer pFeaturelayer, string expression, ITextSymbol textSymbol)
         {
             //判断图层是否为空
@@ -400,7 +526,12 @@ namespace BDCDC.service
             pGeoFeaturelayer.DisplayAnnotation = true;//很重要，必须设置 
         }
 
-        public static void annotateLayer(IGeoFeatureLayer pGeoFeatLyr, string annoField)
+        /// <summary>
+        /// 用maplex渲染图层注释
+        /// </summary>
+        /// <param name="pGeoFeatLyr"></param>
+        /// <param name="annoField"></param>
+        public static void annotateLayerMaplexPro(IGeoFeatureLayer pGeoFeatLyr, string annoField)
         {
 
             //如果Map没有用Maplex引擎，要先设置Map使用这个引擎
@@ -434,6 +565,12 @@ namespace BDCDC.service
             pGeoFeatLyr.DisplayAnnotation = true;
         }
 
+        /// <summary>
+        /// 从数据库中获取数据表记录
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="whereClause"></param>
+        /// <returns></returns>
         public static ITable queryTable(String tableName, String whereClause)
         {
 
@@ -452,10 +589,16 @@ namespace BDCDC.service
             return table;
         }
 
+        /// <summary>
+        /// 从数据表中查询指定的记录并创建图层
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="whereClause"></param>
+        /// <returns></returns>
         public static IFeatureLayer queryLayer(String tableName, String whereClause)
         {
-            
-            whereClause += " and SHAPE is not null";//创建Layer对象的数据记录SHAPE不能为空，否则报错
+            //创建Layer对象的数据记录SHAPE不能为空，否则报错
+            whereClause += " and SHAPE is not null";
             ITable fc = queryTable(tableName, whereClause);
             if (fc == null)
             {
@@ -466,70 +609,13 @@ namespace BDCDC.service
             return layer;
         }
 
-        /*
-        public static int countFeatures(String tableName, String whereClause)
-        {
-            String query = "select count(*) from " + tableName + " where SHAPE is not null and " + whereClause;
-
-        }
-        */
-
-        public static BasicLayers getBasicLayers(IWorkspace ws)
-        {
-            BasicLayers layers = new BasicLayers();
-
-            IFeatureClass fcTmp = null;
-            IEnumDataset ds = ws.Datasets[esriDatasetType.esriDTFeatureClass];
-            while ((fcTmp = (IFeatureClass)ds.Next()) != null)
-            {
-                if ("bdcdj.dbo.ZDJBXX".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "宗地";
-                    layers.ZDJBXX = layer;
-                }
-                if ("bdcdj.dbo.ZRZ".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "自然幢";
-                    layers.ZRZ = layer;
-                }
-                if ("bdcdj.dbo.XZQ".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "行政区";
-                    layers.XZQ = layer;
-                }
-                if ("bdcdj.dbo.DJQ".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "地籍区";
-                    layers.DJQ = layer;
-                }
-                if ("bdcdj.dbo.DJZQ".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "地籍子区";
-                    layers.DJZQ = layer;
-                }
-                if ("bdcdj.dbo.JZD".Equals(fcTmp.AliasName))
-                {
-                    IFeatureLayer layer = new FeatureLayer();
-                    layer.FeatureClass = (IFeatureClass)fcTmp;
-                    layer.Name = "界址点";
-                    layers.JZD = layer;
-                }
-
-            }
-
-            return layers;
-        }
-
+        /// <summary>
+        /// 从指定的要素集中进行空间查询
+        /// </summary>
+        /// <param name="featureClass">查询的要素集</param>
+        /// <param name="geometry">查询参数几何图形</param>
+        /// <param name="spatialRelationship">空间关系</param>
+        /// <returns></returns>
         public static List<IFeature> spatialQuery(IFeatureClass featureClass, IGeometry geometry, esriSpatialRelEnum spatialRelationship)
         {
             ISpatialFilter spatialFilter = new SpatialFilterClass();
@@ -547,6 +633,11 @@ namespace BDCDC.service
             return results;
         }
 
+        /// <summary>
+        /// 获取多边形的折点集合
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <returns></returns>
         public static List<IPoint> getPolygonPoints(DbGeometry shape)
         {
             Polygon p = (Polygon)ArcgisService.dbGeometryToGeometry(shape);
@@ -561,13 +652,15 @@ namespace BDCDC.service
             return pList;
         }
 
-        /**
-         * 检查坐标是否为指定的投影带内
-         **/
+
+        /// <summary>
+        ///检查几何图形的坐标是否为指定的投影带内
+        /// </summary>
+        /// <param name="geometry"></param>
         public static void checkGeometryCoordinates(IGeometry geometry)
         {
             IPoint p = geometry.Envelope.LowerLeft;
-            if(p.X - FALSE_EASTING < 0)
+            if(p.X - PCS.FalseEasting < 0)
             {
                 throw new Exception("坐标值不在投影坐标系允许的范围内，请检查坐标值、带号等是否正确。");
             }

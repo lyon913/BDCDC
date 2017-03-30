@@ -33,6 +33,23 @@ create table QJDCXM(
 );
 go
 
+--增加配置表
+CREATE TABLE Config(
+	fId int IDENTITY(1,1) NOT NULL,
+	keyName [varchar](200) NOT NULL,
+	cfgValue [varchar](1000) NOT NULL,
+	note [varchar](500) NULL,
+	primary key (fId)
+);
+
+CREATE NONCLUSTERED INDEX [IX_Config_cfgKey] ON Config
+(
+	cfgKey ASC
+);
+GO
+--插入配置项(富民xian80 34度带)
+insert into config values('SRID','2358','');
+go
 
 --ZDJBXX
 alter table zdjbxx add QJDCXM_ID int;

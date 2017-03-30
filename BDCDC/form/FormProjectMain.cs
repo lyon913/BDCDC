@@ -44,8 +44,7 @@ namespace BDCDC.form
 
         private void initArcgisControls()
         {
-            ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
-            this.mapControl.Map.SpatialReference = spatialReferenceFactory.CreateProjectedCoordinateSystem(srid);
+            this.mapControl.Map.SpatialReference = ArcgisService.PCS;
             this.mapControl.Map.Name = "不动产要素图层";
             this.tocControl.SetBuddyControl(this.mapControl);
 
