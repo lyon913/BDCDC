@@ -29,12 +29,13 @@ namespace BDCDC.form
 
         private void init()
         {
-            this.mapControl.Map.Name = "导入图层";
-            this.mapToolbar1.setMapControl(this.mapControl);
+            this.mapControl.Map.Name = "CAD图层";
             this.tocControl.SetBuddyControl(this.mapControl);
 
-            this.mapToolbar1.addButton("加载CAD", Resources.folder_search, openCad_click);
+            this.mapToolbar1.setMapControl(this.mapControl);
             this.mapToolbar1.addButton("导入选择的图形", Resources.arcgis_Import_Feature_Class32, import_click);
+            this.mapToolbar1.addSeparator();
+            this.mapToolbar1.addButton("加载CAD文件", Resources.file_extension_dwg, openCad_click);
         }
 
         private void FormCadImport_Load(object sender, EventArgs e)

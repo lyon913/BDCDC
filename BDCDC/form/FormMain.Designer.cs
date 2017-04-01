@@ -1,6 +1,6 @@
 ﻿namespace BDCDC.form
 {
-    partial class FormBdcMain
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBdcMain));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menu_main = new System.Windows.Forms.MenuStrip();
             this.mi_sys = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_quit = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,21 +51,22 @@
             this.tab_main = new System.Windows.Forms.TabControl();
             this.tab_todo = new System.Windows.Forms.TabPage();
             this.dgv_todoList = new System.Windows.Forms.DataGridView();
+            this.toolbar = new System.Windows.Forms.ToolStrip();
+            this.tb_newProj = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tb_search = new System.Windows.Forms.ToolStripButton();
+            this.tb_map = new System.Windows.Forms.ToolStripButton();
             this.fid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XMBH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QJDCXMMC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BSDW = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DCDW = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LXR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LXDH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SLR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SLRQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolbar = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tb_newProj = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.tb_search = new System.Windows.Forms.ToolStripButton();
-            this.tb_map = new System.Windows.Forms.ToolStripButton();
+            this.ZT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menu_main.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -104,7 +105,7 @@
             // 
             this.mi_quit.Name = "mi_quit";
             this.mi_quit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.mi_quit.Size = new System.Drawing.Size(152, 22);
+            this.mi_quit.Size = new System.Drawing.Size(147, 22);
             this.mi_quit.Text = "退出";
             this.mi_quit.Click += new System.EventHandler(this.mi_quit_Click);
             // 
@@ -120,13 +121,13 @@
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.新建ToolStripMenuItem.Text = "新增业务";
             // 
             // 查找ToolStripMenuItem
             // 
             this.查找ToolStripMenuItem.Name = "查找ToolStripMenuItem";
-            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.查找ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.查找ToolStripMenuItem.Text = "业务查询";
             // 
             // 房屋落宗ToolStripMenuItem
@@ -141,13 +142,13 @@
             // 新增房屋落宗业务ToolStripMenuItem
             // 
             this.新增房屋落宗业务ToolStripMenuItem.Name = "新增房屋落宗业务ToolStripMenuItem";
-            this.新增房屋落宗业务ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新增房屋落宗业务ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.新增房屋落宗业务ToolStripMenuItem.Text = "新增业务";
             // 
             // 落宗业务查询ToolStripMenuItem
             // 
             this.落宗业务查询ToolStripMenuItem.Name = "落宗业务查询ToolStripMenuItem";
-            this.落宗业务查询ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.落宗业务查询ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.落宗业务查询ToolStripMenuItem.Text = "业务查询";
             // 
             // 基础数据管理ToolStripMenuItem
@@ -243,32 +244,33 @@
             // 
             this.dgv_todoList.AllowUserToAddRows = false;
             this.dgv_todoList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_todoList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_todoList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_todoList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_todoList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fid,
             this.XMBH,
             this.QJDCXMMC,
-            this.BSDW,
+            this.DCDW,
             this.LXR,
             this.LXDH,
             this.SLR,
-            this.SLRQ});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_todoList.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SLRQ,
+            this.ZT});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_todoList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_todoList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_todoList.Location = new System.Drawing.Point(0, 0);
             this.dgv_todoList.Name = "dgv_todoList";
@@ -279,6 +281,72 @@
             this.dgv_todoList.Size = new System.Drawing.Size(1006, 461);
             this.dgv_todoList.TabIndex = 0;
             this.dgv_todoList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_todoList_CellDoubleClick);
+            // 
+            // toolbar
+            // 
+            this.toolbar.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolbar.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tb_newProj,
+            this.toolStripSeparator3,
+            this.toolStripButton2,
+            this.toolStripSeparator1,
+            this.tb_search,
+            this.tb_map});
+            this.toolbar.Location = new System.Drawing.Point(3, 25);
+            this.toolbar.Name = "toolbar";
+            this.toolbar.Size = new System.Drawing.Size(264, 56);
+            this.toolbar.TabIndex = 0;
+            this.toolbar.Text = "toolStrip1";
+            // 
+            // tb_newProj
+            // 
+            this.tb_newProj.Image = global::BDCDC.Properties.Resources.LayerBasemap32;
+            this.tb_newProj.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tb_newProj.Name = "tb_newProj";
+            this.tb_newProj.Size = new System.Drawing.Size(60, 53);
+            this.tb_newProj.Text = "宗地调查";
+            this.tb_newProj.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tb_newProj.ToolTipText = "新增案卷";
+            this.tb_newProj.Click += new System.EventHandler(this.tb_newProj_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 56);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::BDCDC.Properties.Resources.ArcScene32;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(60, 53);
+            this.toolStripButton2.Text = "房屋调查";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 56);
+            // 
+            // tb_search
+            // 
+            this.tb_search.Image = global::BDCDC.Properties.Resources.folder_search;
+            this.tb_search.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(60, 53);
+            this.tb_search.Text = "业务查询";
+            this.tb_search.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tb_search.ToolTipText = "业务查询";
+            // 
+            // tb_map
+            // 
+            this.tb_map.Image = ((System.Drawing.Image)(resources.GetObject("tb_map.Image")));
+            this.tb_map.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tb_map.Name = "tb_map";
+            this.tb_map.Size = new System.Drawing.Size(60, 53);
+            this.tb_map.Text = "权籍地图";
+            this.tb_map.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // fid
             // 
@@ -302,12 +370,12 @@
             this.QJDCXMMC.Name = "QJDCXMMC";
             this.QJDCXMMC.ReadOnly = true;
             // 
-            // BSDW
+            // DCDW
             // 
-            this.BSDW.DataPropertyName = "BSDW";
-            this.BSDW.HeaderText = "报送单位";
-            this.BSDW.Name = "BSDW";
-            this.BSDW.ReadOnly = true;
+            this.DCDW.DataPropertyName = "DCDW";
+            this.DCDW.HeaderText = "调查单位";
+            this.DCDW.Name = "DCDW";
+            this.DCDW.ReadOnly = true;
             // 
             // LXR
             // 
@@ -337,80 +405,21 @@
             this.SLRQ.Name = "SLRQ";
             this.SLRQ.ReadOnly = true;
             // 
-            // toolbar
+            // ZT
             // 
-            this.toolbar.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolbar.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tb_newProj,
-            this.toolStripSeparator3,
-            this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.tb_search,
-            this.tb_map});
-            this.toolbar.Location = new System.Drawing.Point(3, 25);
-            this.toolbar.Name = "toolbar";
-            this.toolbar.Size = new System.Drawing.Size(264, 56);
-            this.toolbar.TabIndex = 0;
-            this.toolbar.Text = "toolStrip1";
+            this.ZT.DataPropertyName = "ZT";
+            this.ZT.HeaderText = "状态";
+            this.ZT.Name = "ZT";
+            this.ZT.ReadOnly = true;
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 56);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 56);
-            // 
-            // tb_newProj
-            // 
-            this.tb_newProj.Image = global::BDCDC.Properties.Resources.LayerBasemap32;
-            this.tb_newProj.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tb_newProj.Name = "tb_newProj";
-            this.tb_newProj.Size = new System.Drawing.Size(60, 53);
-            this.tb_newProj.Text = "宗地调查";
-            this.tb_newProj.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tb_newProj.ToolTipText = "新增案卷";
-            this.tb_newProj.Click += new System.EventHandler(this.tb_newProj_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::BDCDC.Properties.Resources.ArcScene32;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(60, 53);
-            this.toolStripButton2.Text = "房屋调查";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tb_search
-            // 
-            this.tb_search.Image = global::BDCDC.Properties.Resources.folder_search;
-            this.tb_search.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tb_search.Name = "tb_search";
-            this.tb_search.Size = new System.Drawing.Size(60, 53);
-            this.tb_search.Text = "业务查询";
-            this.tb_search.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tb_search.ToolTipText = "业务查询";
-            // 
-            // tb_map
-            // 
-            this.tb_map.Image = ((System.Drawing.Image)(resources.GetObject("tb_map.Image")));
-            this.tb_map.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tb_map.Name = "tb_map";
-            this.tb_map.Size = new System.Drawing.Size(60, 53);
-            this.tb_map.Text = "权籍地图";
-            this.tb_map.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // FormBdcMain
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 568);
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menu_main;
-            this.Name = "FormBdcMain";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "不动产权籍调查成果管理系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -455,18 +464,19 @@
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem m_connection_config;
         private System.Windows.Forms.ToolStripMenuItem m_dataitems_config;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn XMBH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QJDCXMMC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BSDW;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LXR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LXDH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SLR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SLRQ;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem 房屋落宗ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新增房屋落宗业务ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 落宗业务查询ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn XMBH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QJDCXMMC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DCDW;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LXR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LXDH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SLR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SLRQ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZT;
     }
 }

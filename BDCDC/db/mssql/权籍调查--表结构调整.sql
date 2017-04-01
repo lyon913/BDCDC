@@ -36,7 +36,7 @@ go
 --增加配置表
 CREATE TABLE Config(
 	fId int IDENTITY(1,1) NOT NULL,
-	keyName [varchar](200) NOT NULL,
+	cfgKey [varchar](200) NOT NULL,
 	cfgValue [varchar](1000) NOT NULL,
 	note [varchar](500) NULL,
 	primary key (fId)

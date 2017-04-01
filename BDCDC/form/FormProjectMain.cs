@@ -220,7 +220,7 @@ namespace BDCDC.form
         private void b_importZd_Click(object sender, EventArgs e)
         {
             DialogCadImport d = new DialogCadImport(EnumFeatureType.Polygon);
-            if (d.ShowDialog() == DialogResult.OK)
+            if (d.ShowDialog(this) == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
                 dcServ.importZdFeatures(dcxm.fId, features);
@@ -233,7 +233,7 @@ namespace BDCDC.form
 
 
             DialogCadImport d = new DialogCadImport(EnumFeatureType.Polygon);
-            if (d.ShowDialog() == DialogResult.OK)
+            if (d.ShowDialog(this) == DialogResult.OK)
             {
                 List<IFeature> features = d.getFeatures();
                 dcServ.importZrzFeatures(dcxm.fId, features);

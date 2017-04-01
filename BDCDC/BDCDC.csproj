@@ -162,18 +162,17 @@
     <Compile Include="form\ctrl\MapToolbar.Designer.cs">
       <DependentUpon>MapToolbar.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\DialogLayerSelect.cs" />
     <Compile Include="form\DialogStringSelect.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="form\DialogStringSelect.Designer.cs">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\FormBdcMain.cs">
+    <Compile Include="form\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\FormBdcMain.Designer.cs">
-      <DependentUpon>FormBdcMain.cs</DependentUpon>
+    <Compile Include="form\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="form\DialogCadImport.cs">
       <SubType>Form</SubType>
@@ -192,12 +191,6 @@
     </Compile>
     <Compile Include="form\FormDcxm.Designer.cs">
       <DependentUpon>FormDcxm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\FormJzd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\FormJzd.Designer.cs">
-      <DependentUpon>FormJzd.cs</DependentUpon>
     </Compile>
     <Compile Include="form\FormJzdJzx.cs">
       <SubType>Form</SubType>
@@ -281,8 +274,8 @@
     <EmbeddedResource Include="form\DialogStringSelect.resx">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\FormBdcMain.resx">
-      <DependentUpon>FormBdcMain.cs</DependentUpon>
+    <EmbeddedResource Include="form\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\DialogCadImport.resx">
       <DependentUpon>DialogCadImport.cs</DependentUpon>
@@ -292,9 +285,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormDcxm.resx">
       <DependentUpon>FormDcxm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\FormJzd.resx">
-      <DependentUpon>FormJzd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormJzdJzx.resx">
       <DependentUpon>FormJzdJzx.cs</DependentUpon>
@@ -566,6 +556,8 @@
     <Content Include="db\mssql\Drop_SDE.sql" />
     <Content Include="db\mssql\权籍调查--表结构调整.sql" />
     <Content Include="db\mssql\权籍调查系统--DataItems.sql" />
+    <None Include="Resources\file_extension_dwg.png" />
+    <None Include="Resources\ElementSelectTool32.png" />
     <None Include="Resources\LayerBasemap32.png" />
     <None Include="Resources\Map32.png" />
     <None Include="Resources\ArcScene32.png" />

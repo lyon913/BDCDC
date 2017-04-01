@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogCadImport));
-            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -38,6 +37,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -45,15 +45,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapControl)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mapToolbar1
-            // 
-            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
-            this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(922, 56);
-            this.mapToolbar1.TabIndex = 2;
-            this.mapToolbar1.Text = "mapToolbar1";
             // 
             // BottomToolStripPanel
             // 
@@ -126,6 +117,15 @@
             this.mapControl.Size = new System.Drawing.Size(729, 555);
             this.mapControl.TabIndex = 0;
             // 
+            // mapToolbar1
+            // 
+            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
+            this.mapToolbar1.Name = "mapToolbar1";
+            this.mapToolbar1.Size = new System.Drawing.Size(922, 56);
+            this.mapToolbar1.TabIndex = 2;
+            this.mapToolbar1.Text = "mapToolbar1";
+            // 
             // DialogCadImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -134,6 +134,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mapToolbar1);
             this.Name = "DialogCadImport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CAD文件导入";
             this.Load += new System.EventHandler(this.FormCadImport_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

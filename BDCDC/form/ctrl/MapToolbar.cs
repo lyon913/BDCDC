@@ -35,7 +35,7 @@ namespace BDCDC.form.ctrl
             addSeparator();
             addButton("清空选择", Resources.arcgis_SelectionClearSelection_B_32, clearSelection_click);
             addButton("缩放到选择", Resources.arcgis_SelectionZoomToHighlighted32, zoomToSelection_click);
-            addButton("选择图形", Resources.arcgis_SelectionSelectTool32, selectFeature_click);
+            addButton("选择图形", Resources.ElementSelectTool32, selectFeature_click);
             addSeparator();
             this.ImageScalingSize = new Size(32, 32);
         }

@@ -87,7 +87,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 7;
-            this.label4.Text = "报送单位：";
+            this.label4.Text = "调查单位：";
             // 
             // t_bsdw
             // 
@@ -204,7 +204,7 @@
             this.Controls.Add(this.t_xmmc);
             this.Name = "FormDcxm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "权籍调查项目";
+            this.Text = "权籍调查项目信息";
             this.Load += new System.EventHandler(this.FormDcxm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

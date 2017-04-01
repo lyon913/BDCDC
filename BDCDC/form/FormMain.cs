@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace BDCDC.form
 {
-    public partial class FormBdcMain : Form
+    public partial class FormMain : Form
     {
         private DcxmService xmServ = new DcxmService();
 
-        public FormBdcMain()
+        public FormMain()
         {
             InitializeComponent();
             this.dgv_todoList.AutoGenerateColumns = false;
@@ -35,7 +35,7 @@ namespace BDCDC.form
             if (result == DialogResult.OK)
             {
                 FormProjectMain formPrj = new FormProjectMain(form.getQjdcxm());
-                formPrj.ShowDialog();
+                formPrj.ShowDialog(this);
             }
         }
 
@@ -59,7 +59,7 @@ namespace BDCDC.form
             }
             QJDCXM dcxm = dgv_todoList.Rows[e.RowIndex].DataBoundItem as QJDCXM;
             FormProjectMain form = new FormProjectMain(dcxm);
-            form.ShowDialog();
+            form.ShowDialog(this);
         }
 
         private void m_connection_config_Click(object sender, EventArgs e)

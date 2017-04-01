@@ -36,7 +36,7 @@ namespace BDCDC
             FormLogin loginForm = new FormLogin();
             if(loginForm.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new FormBdcMain());
+                Application.Run(new FormMain());
             }
             else
             {
