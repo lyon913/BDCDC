@@ -16,5 +16,10 @@ namespace BDCDC.form.house
         {
             InitializeComponent();
         }
+
+        private void b_save_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

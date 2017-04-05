@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.b_get_zddm = new System.Windows.Forms.Button();
             this.tb_dzwtzm = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tb_bdcdyh = new System.Windows.Forms.TextBox();
@@ -81,7 +82,6 @@
             this.dp_jgrq = new System.Windows.Forms.DateTimePicker();
             this.b_zydmj_get = new System.Windows.Forms.Button();
             this.b_zzdmj_calc = new System.Windows.Forms.Button();
-            this.b_get_zddm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zydmj)).BeginInit();
@@ -114,10 +114,20 @@
             this.groupBox1.Controls.Add(this.tb_zddm);
             this.groupBox1.Location = new System.Drawing.Point(13, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(938, 125);
+            this.groupBox1.Size = new System.Drawing.Size(880, 125);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "不动产单元号";
+            // 
+            // b_get_zddm
+            // 
+            this.b_get_zddm.Location = new System.Drawing.Point(133, 75);
+            this.b_get_zddm.Name = "b_get_zddm";
+            this.b_get_zddm.Size = new System.Drawing.Size(93, 23);
+            this.b_get_zddm.TabIndex = 15;
+            this.b_get_zddm.Text = "查找宗地代码";
+            this.b_get_zddm.UseVisualStyleBackColor = true;
+            this.b_get_zddm.Click += new System.EventHandler(this.b_get_zddm_Click);
             // 
             // tb_dzwtzm
             // 
@@ -545,7 +555,7 @@
             // 
             // bt_cancel
             // 
-            this.bt_cancel.Location = new System.Drawing.Point(827, 481);
+            this.bt_cancel.Location = new System.Drawing.Point(801, 449);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(92, 35);
             this.bt_cancel.TabIndex = 63;
@@ -555,7 +565,7 @@
             // 
             // bt_save
             // 
-            this.bt_save.Location = new System.Drawing.Point(718, 481);
+            this.bt_save.Location = new System.Drawing.Point(683, 449);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(92, 35);
             this.bt_save.TabIndex = 62;
@@ -627,21 +637,11 @@
             this.b_zzdmj_calc.UseVisualStyleBackColor = true;
             this.b_zzdmj_calc.Click += new System.EventHandler(this.b_zzdmj_calc_Click);
             // 
-            // b_get_zddm
-            // 
-            this.b_get_zddm.Location = new System.Drawing.Point(133, 75);
-            this.b_get_zddm.Name = "b_get_zddm";
-            this.b_get_zddm.Size = new System.Drawing.Size(93, 23);
-            this.b_get_zddm.TabIndex = 15;
-            this.b_get_zddm.Text = "查找宗地代码";
-            this.b_get_zddm.UseVisualStyleBackColor = true;
-            this.b_get_zddm.Click += new System.EventHandler(this.b_get_zddm_Click);
-            // 
             // FormZrz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(963, 528);
+            this.ClientSize = new System.Drawing.Size(908, 496);
             this.Controls.Add(this.b_zzdmj_calc);
             this.Controls.Add(this.b_zydmj_get);
             this.Controls.Add(this.dp_jgrq);
