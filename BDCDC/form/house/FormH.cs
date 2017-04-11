@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BDCDC.model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,26 @@ namespace BDCDC.form.house
 {
     public partial class FormH : Form
     {
-        public FormH()
+        private ZRZ zrz;
+        private LJZ ljz;
+        private H h;
+
+        public FormH(ZRZ zrz,H h)
         {
+            this.zrz = zrz;
+            this.h = h;
+
             InitializeComponent();
+        }
+
+        private void init()
+        {
+
+        }
+
+        private void dataBinding()
+        {
+
         }
 
         private void b_save_Click(object sender, EventArgs e)

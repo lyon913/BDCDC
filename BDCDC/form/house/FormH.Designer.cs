@@ -30,13 +30,11 @@
         {
             this.tb_zrzh = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.b_find_zrz = new System.Windows.Forms.Button();
             this.b_getMaxSxh = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_sxh = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_bdcdyh = new System.Windows.Forms.TextBox();
-            this.b_find_ljz = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_ljzh = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -94,6 +92,7 @@
             this.nb_gytdmj = new System.Windows.Forms.NumericUpDown();
             this.nb_fttdmj = new System.Windows.Forms.NumericUpDown();
             this.nb_dytdmj = new System.Windows.Forms.NumericUpDown();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -110,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nb_gytdmj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_fttdmj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_dytdmj)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_zrzh
@@ -117,7 +117,7 @@
             this.tb_zrzh.Location = new System.Drawing.Point(88, 38);
             this.tb_zrzh.Name = "tb_zrzh";
             this.tb_zrzh.ReadOnly = true;
-            this.tb_zrzh.Size = new System.Drawing.Size(178, 21);
+            this.tb_zrzh.Size = new System.Drawing.Size(198, 21);
             this.tb_zrzh.TabIndex = 0;
             // 
             // label1
@@ -128,15 +128,6 @@
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "自然幢号：";
-            // 
-            // b_find_zrz
-            // 
-            this.b_find_zrz.Location = new System.Drawing.Point(272, 37);
-            this.b_find_zrz.Name = "b_find_zrz";
-            this.b_find_zrz.Size = new System.Drawing.Size(46, 23);
-            this.b_find_zrz.TabIndex = 2;
-            this.b_find_zrz.Text = "查询";
-            this.b_find_zrz.UseVisualStyleBackColor = true;
             // 
             // b_getMaxSxh
             // 
@@ -150,7 +141,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(358, 42);
+            this.label2.Location = new System.Drawing.Point(344, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 4;
@@ -180,15 +171,6 @@
             this.tb_bdcdyh.Size = new System.Drawing.Size(198, 21);
             this.tb_bdcdyh.TabIndex = 6;
             // 
-            // b_find_ljz
-            // 
-            this.b_find_ljz.Location = new System.Drawing.Point(234, 28);
-            this.b_find_ljz.Name = "b_find_ljz";
-            this.b_find_ljz.Size = new System.Drawing.Size(52, 23);
-            this.b_find_ljz.TabIndex = 10;
-            this.b_find_ljz.Text = "查询";
-            this.b_find_ljz.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -203,7 +185,7 @@
             this.tb_ljzh.Location = new System.Drawing.Point(88, 29);
             this.tb_ljzh.Name = "tb_ljzh";
             this.tb_ljzh.ReadOnly = true;
-            this.tb_ljzh.Size = new System.Drawing.Size(140, 21);
+            this.tb_ljzh.Size = new System.Drawing.Size(198, 21);
             this.tb_ljzh.TabIndex = 8;
             // 
             // label5
@@ -298,7 +280,6 @@
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tb_zrzh);
-            this.groupBox1.Controls.Add(this.b_find_zrz);
             this.groupBox1.Controls.Add(this.tb_sxh);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.b_getMaxSxh);
@@ -332,7 +313,6 @@
             this.groupBox2.Controls.Add(this.tb_ljzh);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.b_find_ljz);
             this.groupBox2.Controls.Add(this.tb_dyh);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label5);
@@ -391,7 +371,7 @@
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Location = new System.Drawing.Point(12, 347);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(722, 150);
+            this.groupBox3.Size = new System.Drawing.Size(664, 189);
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "面积";
@@ -497,7 +477,7 @@
             // 
             // b_save
             // 
-            this.b_save.Location = new System.Drawing.Point(775, 513);
+            this.b_save.Location = new System.Drawing.Point(775, 554);
             this.b_save.Name = "b_save";
             this.b_save.Size = new System.Drawing.Size(87, 35);
             this.b_save.TabIndex = 32;
@@ -507,7 +487,7 @@
             // 
             // b_quit
             // 
-            this.b_quit.Location = new System.Drawing.Point(890, 513);
+            this.b_quit.Location = new System.Drawing.Point(890, 554);
             this.b_quit.Name = "b_quit";
             this.b_quit.Size = new System.Drawing.Size(87, 35);
             this.b_quit.TabIndex = 33;
@@ -516,7 +496,7 @@
             // 
             // b_upload_hxt
             // 
-            this.b_upload_hxt.Location = new System.Drawing.Point(896, 347);
+            this.b_upload_hxt.Location = new System.Drawing.Point(173, 20);
             this.b_upload_hxt.Name = "b_upload_hxt";
             this.b_upload_hxt.Size = new System.Drawing.Size(81, 23);
             this.b_upload_hxt.TabIndex = 34;
@@ -525,7 +505,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(740, 347);
+            this.pictureBox1.Location = new System.Drawing.Point(17, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.TabIndex = 35;
@@ -533,7 +513,7 @@
             // 
             // b_preview_hxt
             // 
-            this.b_preview_hxt.Location = new System.Drawing.Point(896, 376);
+            this.b_preview_hxt.Location = new System.Drawing.Point(173, 49);
             this.b_preview_hxt.Name = "b_preview_hxt";
             this.b_preview_hxt.Size = new System.Drawing.Size(81, 23);
             this.b_preview_hxt.TabIndex = 36;
@@ -542,7 +522,7 @@
             // 
             // b_remove_hxt
             // 
-            this.b_remove_hxt.Location = new System.Drawing.Point(896, 472);
+            this.b_remove_hxt.Location = new System.Drawing.Point(173, 145);
             this.b_remove_hxt.Name = "b_remove_hxt";
             this.b_remove_hxt.Size = new System.Drawing.Size(81, 23);
             this.b_remove_hxt.TabIndex = 37;
@@ -800,15 +780,25 @@
             this.nb_dytdmj.Size = new System.Drawing.Size(67, 21);
             this.nb_dytdmj.TabIndex = 58;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Controls.Add(this.b_remove_hxt);
+            this.groupBox4.Controls.Add(this.b_upload_hxt);
+            this.groupBox4.Controls.Add(this.b_preview_hxt);
+            this.groupBox4.Location = new System.Drawing.Point(682, 347);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(295, 189);
+            this.groupBox4.TabIndex = 38;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "户型图";
+            // 
             // FormH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 560);
-            this.Controls.Add(this.b_remove_hxt);
-            this.Controls.Add(this.b_preview_hxt);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.b_upload_hxt);
+            this.ClientSize = new System.Drawing.Size(989, 600);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.b_quit);
             this.Controls.Add(this.b_save);
             this.Controls.Add(this.groupBox3);
@@ -836,6 +826,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nb_gytdmj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_fttdmj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_dytdmj)).EndInit();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -844,13 +835,11 @@
 
         private System.Windows.Forms.TextBox tb_zrzh;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button b_find_zrz;
         private System.Windows.Forms.Button b_getMaxSxh;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_sxh;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_bdcdyh;
-        private System.Windows.Forms.Button b_find_ljz;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_ljzh;
         private System.Windows.Forms.Label label5;
@@ -908,5 +897,6 @@
         private System.Windows.Forms.NumericUpDown nb_scdxjzmj;
         private System.Windows.Forms.NumericUpDown nb_sctnmj;
         private System.Windows.Forms.NumericUpDown nb_scftmj;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

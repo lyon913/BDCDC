@@ -168,6 +168,12 @@
     <Compile Include="form\DialogStringSelect.Designer.cs">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\FormLjz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormLjz.Designer.cs">
+      <DependentUpon>FormLjz.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\DialogStringSelect.resx">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormLjz.resx">
+      <DependentUpon>FormLjz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
