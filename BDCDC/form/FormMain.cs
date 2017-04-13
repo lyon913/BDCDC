@@ -34,7 +34,7 @@ namespace BDCDC.form
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                FormProjectMain formPrj = new FormProjectMain(form.getQjdcxm());
+                FormProjectZd formPrj = new FormProjectZd(form.getQjdcxm());
                 formPrj.ShowDialog(this);
             }
         }
@@ -58,7 +58,7 @@ namespace BDCDC.form
                 return;
             }
             QJDCXM dcxm = dgv_todoList.Rows[e.RowIndex].DataBoundItem as QJDCXM;
-            FormProjectMain form = new FormProjectMain(dcxm);
+            FormProjectZd form = new FormProjectZd(dcxm);
             form.ShowDialog(this);
         }
 

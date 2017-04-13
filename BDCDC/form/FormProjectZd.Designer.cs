@@ -1,6 +1,6 @@
 ﻿namespace BDCDC.form
 {
-    partial class FormProjectMain
+    partial class FormProjectZd
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProjectMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProjectZd));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeVew = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();

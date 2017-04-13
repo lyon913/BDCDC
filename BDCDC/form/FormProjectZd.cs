@@ -23,7 +23,7 @@ using static BDCDC.service.DcxmService;
 
 namespace BDCDC.form
 {
-    public partial class FormProjectMain : Form
+    public partial class FormProjectZd : Form
     {
         private static int srid = ArcgisService.SRID;
 
@@ -35,7 +35,7 @@ namespace BDCDC.form
         private ZrzService zrzServ = new ZrzService();
         private DcxmService dcServ = new DcxmService();
         
-        public FormProjectMain(QJDCXM dcxm)
+        public FormProjectZd(QJDCXM dcxm)
         {
             InitializeComponent();
             this.dcxm = dcxm;

@@ -216,11 +216,17 @@
     <Compile Include="form\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\FormProjectMain.cs">
+    <Compile Include="form\FormProjectFw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\FormProjectMain.Designer.cs">
-      <DependentUpon>FormProjectMain.cs</DependentUpon>
+    <Compile Include="form\FormProjectFw.Designer.cs">
+      <DependentUpon>FormProjectFw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormProjectZd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormProjectZd.Designer.cs">
+      <DependentUpon>FormProjectZd.cs</DependentUpon>
     </Compile>
     <Compile Include="form\FormZdjbxx.cs">
       <SubType>Form</SubType>
@@ -304,8 +310,11 @@
     <EmbeddedResource Include="form\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\FormProjectMain.resx">
-      <DependentUpon>FormProjectMain.cs</DependentUpon>
+    <EmbeddedResource Include="form\FormProjectFw.resx">
+      <DependentUpon>FormProjectFw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormProjectZd.resx">
+      <DependentUpon>FormProjectZd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormZdjbxx.resx">
       <DependentUpon>FormZdjbxx.cs</DependentUpon>
@@ -355,6 +364,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="form\NewFolder1\" />
     <Folder Include="gdb\Default.gdb\" />
   </ItemGroup>
   <ItemGroup>
