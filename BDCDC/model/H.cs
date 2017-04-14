@@ -88,5 +88,10 @@ namespace BDCDC.model
 
         public string FH { get; set; }
 
+        public int? LJZID { get; set; }
+
+        [Column("QJDCXM_ID")]
+        public int? QJDCXMID { get; set; }
+
     }
 }

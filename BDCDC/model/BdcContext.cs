@@ -19,7 +19,9 @@ namespace BDCDC.model
         public DbSet<JZX> JZX { get; set; }
         public DbSet<QJDCXM> QJDCXM { get; set; }
         public DbSet<SysUser> SysUser { get; set; }
-        
+        public DbSet<LJZ> LJZ { get; set; }
+        public DbSet<H> H { get; set; }
+
         public BdcContext():base("bdcContext")
         {
             Database.SetInitializer<BdcContext>(null);
