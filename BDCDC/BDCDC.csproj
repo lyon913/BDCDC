@@ -131,6 +131,8 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -148,6 +150,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="form\CtrlDcxm.cs">
@@ -173,6 +176,12 @@
     </Compile>
     <Compile Include="form\FormLjz.Designer.cs">
       <DependentUpon>FormLjz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormLjzSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormLjzSelect.Designer.cs">
+      <DependentUpon>FormLjzSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="form\FormMain.cs">
       <SubType>Form</SubType>
@@ -290,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormLjz.resx">
       <DependentUpon>FormLjz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormLjzSelect.resx">
+      <DependentUpon>FormLjzSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

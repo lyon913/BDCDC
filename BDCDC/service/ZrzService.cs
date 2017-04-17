@@ -55,7 +55,7 @@ namespace BDCDC.service
             });
         }
 
-        public List<ZRZ> getZrzByDcxmIdAndZddm(int dcxmId, String zddm)
+        public List<ZRZ> findByDcxmIdAndZddm(int dcxmId, String zddm)
         {
             return useDbContext(ctx =>
             {
@@ -63,7 +63,7 @@ namespace BDCDC.service
             });
         }
 
-        public List<ZRZ> getZrzByDcxmId(int dcxmId)
+        public List<ZRZ> findByDcxmId(int dcxmId)
         {
             return useDbContext(ctx =>
             {
@@ -71,7 +71,23 @@ namespace BDCDC.service
             });
         }
 
-        public ZRZ getZrzById(int zrzId)
+        public List<ZRZ> findByZddm(string zddm)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.ZRZ.Where(z => z.ZDDM == zddm && (z.ZT == 0 || z.ZT == 1)).ToList();
+            });
+        }
+
+        public List<ZRZ> findByZrzh(string zrzh)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.ZRZ.Where(z => z.ZRZH == zrzh && (z.ZT == 0 || z.ZT == 1)).ToList();
+            });
+        }
+
+        public ZRZ findById(int zrzId)
         {
             return useDbContext(ctx => {
                 return ctx.ZRZ.Where(zd => zd.fId == zrzId).Single();

@@ -39,6 +39,7 @@ namespace BDCDC.form
                 dcxm.XMLX = "3";
                 dcxm.SLRQ = DateTime.Now;
                 dcxm.ZT = 0;
+                dcxm.SLR = UserService.getCurrentUser().XM;
             }
             else
             {

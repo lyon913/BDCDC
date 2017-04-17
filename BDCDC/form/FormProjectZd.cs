@@ -119,7 +119,7 @@ namespace BDCDC.form
             {
                 return;
             }
-            List<ZRZ> zList = zrzServ.getZrzByDcxmIdAndZddm(zd.QJDCXMID, zd.ZDDM);
+            List<ZRZ> zList = zrzServ.findByDcxmIdAndZddm(zd.QJDCXMID, zd.ZDDM);
             foreach(ZRZ zrz in zList)
             {
                 TreeNode zNode = new TreeNode();
@@ -134,7 +134,7 @@ namespace BDCDC.form
             TreeNode zrzRoot = new TreeNode(ZRZ_LAYER_NAME);
             treeVew.Nodes.Add(zrzRoot);
 
-            List<ZRZ> zrzList = zrzServ.getZrzByDcxmId(dcxm.fId);
+            List<ZRZ> zrzList = zrzServ.findByDcxmId(dcxm.fId);
             foreach (ZRZ zrz in zrzList)
             {
                 TreeNode zrzNode = new TreeNode();
@@ -206,7 +206,7 @@ namespace BDCDC.form
             }
             else if (name.Contains("ZRZ"))
             {
-                ZRZ zrz = zrzServ.getZrzById(feature.OID);
+                ZRZ zrz = zrzServ.findById(feature.OID);
                 FormZrz form = new FormZrz(zrz);
                 return form.ShowDialog(this);
             }

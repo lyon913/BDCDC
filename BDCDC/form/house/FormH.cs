@@ -14,7 +14,6 @@ namespace BDCDC.form.house
     public partial class FormH : Form
     {
         private ZRZ zrz;
-        private LJZ ljz;
         private H h;
 
         public FormH(ZRZ zrz,H h)

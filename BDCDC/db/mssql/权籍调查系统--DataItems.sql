@@ -1432,13 +1432,9 @@ INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode],
 GO
 INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (707, N'土地用途', N'C3', N'裸地', N'127', N'C3_127', NULL, N'土地利用现状二级分类')
 GO
-INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (708, N'权籍调查项目类型', N'C4', N'宗地', N'1', N'C4_1', 2, NULL)
+INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (708, N'权籍调查项目类型', N'C4', N'宗地\林地\自然幢', N'1', N'C4_1', 2, NULL)
 GO
-INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (709, N'权籍调查项目类型', N'C4', N'自然幢', N'2', N'C4_2', 3, NULL)
-GO
-INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (710, N'权籍调查项目类型', N'C4', N'宗地和自然幢', N'3', N'C4_3', 1, NULL)
-GO
-INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (711, N'权籍调查项目类型', N'C4', N'林地', N'4', N'C4_4', 4, NULL)
+INSERT [dbo].[DataItems] ([fid], [typeName], [typeCode], [itemName], [itemCode], [code], [itemOrder], [remark]) VALUES (709, N'权籍调查项目类型', N'C4', N'房屋（户）', N'2', N'C4_2', 3, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[DataItems] OFF
 GO

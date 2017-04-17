@@ -30,7 +30,29 @@ namespace BDCDC.form
 
         private void init()
         {
+            initData();
+            initTreeView();
+        }
+
+        private void initData()
+        {
             ljzList = ls.findByDcxmId(dcxm.fId);
+        }
+
+        private void initTreeView()
+        {
+            TreeNode root = new TreeNode("逻辑幢");
+            foreach(LJZ ljz in ljzList)
+            {
+                TreeNode n = new TreeNode(ljz.LJZH);
+                n.Tag = ljz;
+                root.Nodes.Add(n);
+            }
+        }
+
+        private void FormProjectFw_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void m_create_ljz_Click(object sender, EventArgs e)
@@ -46,6 +68,18 @@ namespace BDCDC.form
         private void m_fwlz_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tv_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            TreeNode n = e.Node;
+            if(n.Tag is LJZ)
+            {
+                LJZ ljz = (LJZ)n.Tag;
+                int id = ljz.fId;
+                List<H> hList = hs.findByLjzId(id);
+                dgv.DataSource = hList;
+            }
         }
     }
 }

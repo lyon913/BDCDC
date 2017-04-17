@@ -145,3 +145,6 @@ alter table XTYH alter column fCreatorId int;
 go
 alter table XTYH alter column fLastUpdaterId int;
 go
+
+--H
+alter table H add QJDCXM_ID int;

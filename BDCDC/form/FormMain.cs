@@ -34,8 +34,7 @@ namespace BDCDC.form
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                FormProjectZd formPrj = new FormProjectZd(form.getQjdcxm());
-                formPrj.ShowDialog(this);
+                openForm(form.getQjdcxm());
             }
         }
 
@@ -58,14 +57,33 @@ namespace BDCDC.form
                 return;
             }
             QJDCXM dcxm = dgv_todoList.Rows[e.RowIndex].DataBoundItem as QJDCXM;
-            FormProjectZd form = new FormProjectZd(dcxm);
-            form.ShowDialog(this);
+
+            openForm(dcxm);
+
+
         }
 
         private void m_connection_config_Click(object sender, EventArgs e)
         {
             FormDbConfig f = new FormDbConfig();
             f.ShowDialog(this);
+        }
+
+        private void openForm(QJDCXM dcxm)
+        {
+            //宗地调查项目
+            if ("1".Equals(dcxm.XMLX))
+            {
+                FormProjectZd form = new FormProjectZd(dcxm);
+                form.ShowDialog(this);
+            }
+
+            //房屋调查项目
+            else if ("2".Equals(dcxm.XMLX))
+            {
+                FormProjectFw form = new FormProjectFw(dcxm);
+                form.ShowDialog(this);
+            }
         }
     }
 }

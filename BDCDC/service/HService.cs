@@ -16,5 +16,13 @@ namespace BDCDC.service
                 return ctx.H.Where(h => h.QJDCXMID == dcxmId && (h.ZT == 0 || h.ZT == 1)).ToList();
             });
         }
+
+        public List<H> findByLjzId(int ljzId)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.H.Where(h => h.LJZID == ljzId && (h.ZT == 0 || h.ZT == 1)).ToList();
+            });
+        }
     }
 }
