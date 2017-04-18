@@ -249,10 +249,10 @@
     <Compile Include="form\FormZrz.Designer.cs">
       <DependentUpon>FormZrz.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\house\FormH.cs">
+    <Compile Include="form\FormH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\house\FormH.Designer.cs">
+    <Compile Include="form\FormH.Designer.cs">
       <DependentUpon>FormH.cs</DependentUpon>
     </Compile>
     <Compile Include="model\BaseAuditEntity.cs" />
@@ -336,7 +336,7 @@
     <EmbeddedResource Include="form\FormZrz.resx">
       <DependentUpon>FormZrz.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\house\FormH.resx">
+    <EmbeddedResource Include="form\FormH.resx">
       <DependentUpon>FormH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -378,7 +378,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="form\NewFolder1\" />
     <Folder Include="gdb\Default.gdb\" />
   </ItemGroup>
   <ItemGroup>

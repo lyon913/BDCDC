@@ -97,6 +97,7 @@
             this.bt_cancel.TabIndex = 101;
             this.bt_cancel.Text = "退出";
             this.bt_cancel.UseVisualStyleBackColor = true;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
             // 
             // bt_save
             // 
@@ -106,6 +107,7 @@
             this.bt_save.TabIndex = 100;
             this.bt_save.Text = "保存";
             this.bt_save.UseVisualStyleBackColor = true;
+            this.bt_save.Click += new System.EventHandler(this.bt_save_Click);
             // 
             // nb_dxcs
             // 

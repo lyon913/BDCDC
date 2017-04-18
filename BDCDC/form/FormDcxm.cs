@@ -36,7 +36,7 @@ namespace BDCDC.form
             if (dcxm_id == null)
             {
                 dcxm = new QJDCXM();
-                dcxm.XMLX = "3";
+                dcxm.XMLX = "1";
                 dcxm.SLRQ = DateTime.Now;
                 dcxm.ZT = 0;
                 dcxm.SLR = UserService.getCurrentUser().XM;

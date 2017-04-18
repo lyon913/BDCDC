@@ -28,14 +28,23 @@ namespace BDCDC.form
         {
             InitializeComponent();
             this.zrz = zrz;
+            init();
         }
 
-        private void FormZrz_Load(object sender, EventArgs e)
+        private void init()
         {
+            initUI();
+            initDataBinding();
+        }
 
-            UiUtils.comboboxDataItems(cb_ghyt, "房屋用途",false);
+        private void initUI()
+        {
+            UiUtils.comboboxDataItems(cb_ghyt, "房屋用途", false);
             UiUtils.comboboxDataItems(cb_fwjg, "房屋结构", false);
+        }
 
+        private void initDataBinding()
+        {
             //表单绑定
             //宗地代码
             tb_zddm.DataBindings.Add("Text", zrz, "ZDDM", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -44,15 +53,15 @@ namespace BDCDC.form
             //自然幢号
             tb_zrzh.DataBindings.Add("Text", zrz, "ZRZH", false, DataSourceUpdateMode.OnPropertyChanged);
             //规划用途
-            cb_ghyt.DataBindings.Add("SelectedValue", zrz, "GHYT", true, DataSourceUpdateMode.OnPropertyChanged,"11");
+            cb_ghyt.DataBindings.Add("SelectedValue", zrz, "GHYT", false, DataSourceUpdateMode.OnPropertyChanged);
             //房屋结构
-            cb_fwjg.DataBindings.Add("SelectedValue", zrz, "FWJG", true, DataSourceUpdateMode.OnPropertyChanged,"3");
+            cb_fwjg.DataBindings.Add("SelectedValue", zrz, "FWJG", true, DataSourceUpdateMode.OnPropertyChanged);
             //项目名称
             tb_xmmc.DataBindings.Add("Text", zrz, "XMMC", false, DataSourceUpdateMode.OnPropertyChanged);
             //建筑物名称
             tb_jzwmc.DataBindings.Add("Text", zrz, "JZWMC", false, DataSourceUpdateMode.OnPropertyChanged);
             //竣工日期
-            dp_jgrq.DataBindings.Add("Value", zrz, "JGRQ", true, DataSourceUpdateMode.OnPropertyChanged,new DateTime(2010,1,1));
+            dp_jgrq.DataBindings.Add("Value", zrz, "JGRQ", true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(2010, 1, 1));
             //总套数
             nb_zts.DataBindings.Add("Value", zrz, "ZTS", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
 
@@ -69,6 +78,14 @@ namespace BDCDC.form
 
             //备注
             tb_bz.DataBindings.Add("Text", zrz, "BZ", false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        private void FormZrz_Load(object sender, EventArgs e)
+        {
+
+
+
+
         }
 
         private void bt_getZrzsxh_Click(object sender, EventArgs e)

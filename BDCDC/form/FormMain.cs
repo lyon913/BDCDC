@@ -35,6 +35,7 @@ namespace BDCDC.form
             if (result == DialogResult.OK)
             {
                 openForm(form.getQjdcxm());
+                loadData();
             }
         }
 
@@ -59,8 +60,6 @@ namespace BDCDC.form
             QJDCXM dcxm = dgv_todoList.Rows[e.RowIndex].DataBoundItem as QJDCXM;
 
             openForm(dcxm);
-
-
         }
 
         private void m_connection_config_Click(object sender, EventArgs e)

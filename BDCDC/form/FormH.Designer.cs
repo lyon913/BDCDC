@@ -1,4 +1,4 @@
-﻿namespace BDCDC.form.house
+﻿namespace BDCDC.form
 {
     partial class FormH
     {

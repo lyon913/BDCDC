@@ -84,7 +84,7 @@ alter table JZD alter column JBLX varchar(10);
 alter table JZD alter column JZDLX varchar(10);
 alter table JZD alter column X numeric(15, 3);
 alter table JZD alter column Y numeric(15, 3);
-alter table JZD add  GC numeric(15, 3);
+--alter table JZD add  GC numeric(15, 3);
 
 alter table JZD add  SXH int;
 alter table JZD add  ZDDM varchar(50);
@@ -147,4 +147,51 @@ alter table XTYH alter column fLastUpdaterId int;
 go
 
 --H
+alter table H drop constraint PK__H__D9F8227C6DCC4D03;
+alter table H alter column fid int;
+alter table H add constraint PK_H_FID primary key clustered(FID) ;
+alter table H alter column fCreatorId int;
+alter table H alter column fLastUpdaterId int;
+
 alter table H add QJDCXM_ID int;
+alter table H add SXH int;
+
+
+alter table H alter column QSC int;
+alter table H alter column ZZC int;
+
+alter table H alter column buildingId int;
+alter table H alter column houseId int;
+
+alter table H alter column SCDXBFJZMJ numeric(15,3);
+alter table H alter column SCFTJZMJ numeric(15,6);
+alter table H alter column SCFTXS numeric(15,6);
+alter table H alter column SCJZMJ numeric(15,3);
+alter table H alter column SCQTJZMJ numeric(15,3);
+alter table H alter column SCTNJZMJ numeric(15,3);
+
+alter table H alter column YCDXBFJZMJ numeric(15,3);
+alter table H alter column YCFTJZMJ numeric(15,3);
+alter table H alter column YCFTXS numeric(15,6);
+alter table H alter column YCJZMJ numeric(15,3);
+alter table H alter column YCQTJZMJ numeric(15,3);
+alter table H alter column YCTNJZMJ numeric(15,3);
+
+alter table H alter column GYTDMJ numeric(15,3);
+alter table H alter column FTTDMJ numeric(15,3);
+alter table H alter column DYTDMJ numeric(15,3);
+
+
+
+--LJZ
+
+alter table LJZ drop constraint PK__LJZ__D9F8227C76619304;
+alter table LJZ alter column fid int;
+alter table LJZ add constraint PK_LJZ_FID primary key clustered(FID) ;
+
+alter table LJZ add ZTS int;
+
+alter table LJZ alter column fCreatorId int;
+alter table LJZ alter column fLastUpdaterId int;
+
+

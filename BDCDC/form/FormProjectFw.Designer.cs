@@ -31,10 +31,9 @@
             this.tv = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.集体土地房屋ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_create_ljz = new System.Windows.Forms.ToolStripMenuItem();
-            this.create_h = new System.Windows.Forms.ToolStripMenuItem();
-            this.国有建设用地房屋ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_jttd = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
             this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
@@ -63,44 +62,36 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.集体土地房屋ToolStripMenuItem,
-            this.国有建设用地房屋ToolStripMenuItem});
+            this.m_jttd,
+            this.m_gytd});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(934, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 集体土地房屋ToolStripMenuItem
+            // m_jttd
             // 
-            this.集体土地房屋ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_create_ljz,
-            this.create_h});
-            this.集体土地房屋ToolStripMenuItem.Name = "集体土地房屋ToolStripMenuItem";
-            this.集体土地房屋ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.集体土地房屋ToolStripMenuItem.Text = "集体土地房屋";
+            this.m_jttd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_create_h});
+            this.m_jttd.Name = "m_jttd";
+            this.m_jttd.Size = new System.Drawing.Size(92, 21);
+            this.m_jttd.Text = "集体土地房屋";
             // 
-            // m_create_ljz
+            // m_create_h
             // 
-            this.m_create_ljz.Name = "m_create_ljz";
-            this.m_create_ljz.Size = new System.Drawing.Size(152, 22);
-            this.m_create_ljz.Text = "新建逻辑幢";
-            this.m_create_ljz.Click += new System.EventHandler(this.m_create_ljz_Click);
+            this.m_create_h.Name = "m_create_h";
+            this.m_create_h.Size = new System.Drawing.Size(152, 22);
+            this.m_create_h.Text = "新建户";
+            this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
             // 
-            // create_h
+            // m_gytd
             // 
-            this.create_h.Name = "create_h";
-            this.create_h.Size = new System.Drawing.Size(152, 22);
-            this.create_h.Text = "新建户";
-            this.create_h.Click += new System.EventHandler(this.create_h_Click);
-            // 
-            // 国有建设用地房屋ToolStripMenuItem
-            // 
-            this.国有建设用地房屋ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_gytd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_fwlz});
-            this.国有建设用地房屋ToolStripMenuItem.Name = "国有建设用地房屋ToolStripMenuItem";
-            this.国有建设用地房屋ToolStripMenuItem.Size = new System.Drawing.Size(116, 21);
-            this.国有建设用地房屋ToolStripMenuItem.Text = "国有建设用地房屋";
+            this.m_gytd.Name = "m_gytd";
+            this.m_gytd.Size = new System.Drawing.Size(116, 21);
+            this.m_gytd.Text = "国有建设用地房屋";
             // 
             // m_fwlz
             // 
@@ -147,10 +138,9 @@
         private System.Windows.Forms.TreeView tv;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 集体土地房屋ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_create_ljz;
-        private System.Windows.Forms.ToolStripMenuItem create_h;
-        private System.Windows.Forms.ToolStripMenuItem 国有建设用地房屋ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_jttd;
+        private System.Windows.Forms.ToolStripMenuItem m_create_h;
+        private System.Windows.Forms.ToolStripMenuItem m_gytd;
         private System.Windows.Forms.ToolStripMenuItem m_fwlz;
         private System.Windows.Forms.DataGridView dgv;
     }

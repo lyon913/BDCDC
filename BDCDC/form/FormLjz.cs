@@ -1,4 +1,6 @@
 ﻿using BDCDC.model;
+using BDCDC.service;
+using BDCDC.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace BDCDC.form
     public partial class FormLjz : Form
     {
         private LJZ ljz;
+        private LjzService ls = new LjzService();
 
         public FormLjz(LJZ ljz)
         {
@@ -24,7 +27,19 @@ namespace BDCDC.form
         }
         private void init()
         {
+            initUI();
+            databinding();
+        }
 
+        private void initUI()
+        {
+            UiUtils.comboboxDataItems(cb_fwjg1, "房屋结构", false);
+            UiUtils.comboboxDataItems(cb_fwjg2, "房屋结构", false);
+            UiUtils.comboboxDataItems(cb_fwjg3, "房屋结构", false);
+
+            UiUtils.comboboxDataItems(cb_fwyt1, "房屋用途", false);
+            UiUtils.comboboxDataItems(cb_fwyt2, "房屋用途", false);
+            UiUtils.comboboxDataItems(cb_fwyt3, "房屋用途", false);
         }
 
         private void databinding()
@@ -55,6 +70,24 @@ namespace BDCDC.form
         private void FormLjz_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bt_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bt_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ls.saveOrUpdate(ljz);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

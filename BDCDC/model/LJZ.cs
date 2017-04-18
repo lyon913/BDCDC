@@ -52,6 +52,8 @@ namespace BDCDC.model
 
         public int? ZCS { get; set; }
 
+        public int? ZTS { get; set; }
+
         public string ZRZBDCDYH { get; set; }
 
         public string ZRZH { get; set; }

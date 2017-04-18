@@ -58,8 +58,6 @@ namespace BDCDC.model
 
         public string SHBW { get; set; }
 
-        public double? SJCS { get; set; }
-
         public decimal? YCDXBFJZMJ { get; set; }
 
         public decimal? YCFTJZMJ { get; set; }
@@ -82,7 +80,11 @@ namespace BDCDC.model
 
         public int? ZT { get; set; }
 
-        public string SZC { get; set; }
+        public int? QSC { get; set; }
+
+        public int? ZZC { get; set; }
+
+        public int? ZCS { get; set; }
 
         public int? DYH { get; set; }
 
@@ -92,6 +94,8 @@ namespace BDCDC.model
 
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }
+
+        public int? SXH { get; set; }
 
     }
 }

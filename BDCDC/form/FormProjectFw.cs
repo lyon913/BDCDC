@@ -62,7 +62,21 @@ namespace BDCDC.form
 
         private void create_h_Click(object sender, EventArgs e)
         {
+            FormLjzSelect f = new FormLjzSelect();
+            DialogResult r = f.ShowDialog(this);
+            if(r == DialogResult.OK)
+            {
+                ZRZ z = f.selectedZrz;
+                LJZ l = f.selectedLjz;
 
+                H h = hs.newH(z, l);
+                FormH fh = new FormH(h);
+                DialogResult rh = fh.ShowDialog(this);
+                if(rh == DialogResult.OK)
+                {
+                    loadHList();
+                }
+            }
         }
 
         private void m_fwlz_Click(object sender, EventArgs e)
@@ -72,8 +86,13 @@ namespace BDCDC.form
 
         private void tv_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            TreeNode n = e.Node;
-            if(n.Tag is LJZ)
+            loadHList();
+        }
+
+        private void loadHList()
+        {
+            TreeNode n = tv.SelectedNode;
+            if (n.Tag is LJZ)
             {
                 LJZ ljz = (LJZ)n.Tag;
                 int id = ljz.fId;
