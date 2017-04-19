@@ -91,7 +91,5 @@ namespace BDCDC.model
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }
 
-        public int? SXH { get; set; }
-
     }
 }

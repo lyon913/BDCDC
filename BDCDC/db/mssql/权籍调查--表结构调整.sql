@@ -154,8 +154,6 @@ alter table H alter column fCreatorId int;
 alter table H alter column fLastUpdaterId int;
 
 alter table H add QJDCXM_ID int;
-alter table H add SXH int;
-
 
 alter table H alter column QSC int;
 alter table H alter column ZZC int;

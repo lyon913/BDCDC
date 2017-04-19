@@ -187,7 +187,7 @@ namespace BDCDC.form
             String name = fc.AliasName;
             if (name.Contains("ZDJBXX"))
             {
-                ZDJBXX zd = zdServ.getZdjbxxById(feature.OID);
+                ZDJBXX zd = zdServ.findZdjbxxById(feature.OID);
                 FormZdjbxx form = new FormZdjbxx(zd);
                 return form.ShowDialog(this);
             }

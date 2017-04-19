@@ -33,7 +33,7 @@ namespace BDCDC.service
                 {
                     H = h,
                     LJZ = ljz
-                }).Where(a => a.H.QJDCXMID == dcxmId).Select(a => a.LJZ).ToList();
+                }).Where(a => a.H.QJDCXMID == dcxmId).Select(a => a.LJZ).Distinct().ToList();
             });
         }
 

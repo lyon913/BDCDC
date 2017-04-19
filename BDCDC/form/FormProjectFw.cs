@@ -36,12 +36,17 @@ namespace BDCDC.form
         private void initTreeView()
         {
             TreeNode root = new TreeNode("逻辑幢");
-            foreach(LJZ ljz in ljzList)
+            tv.Nodes.Add(root);
+
+            foreach (LJZ ljz in ljzList)
             {
                 TreeNode n = new TreeNode(ljz.LJZH);
                 n.Tag = ljz;
                 root.Nodes.Add(n);
             }
+
+            tv.ExpandAll();
+            
         }
 
         private void FormProjectFw_Load(object sender, EventArgs e)
@@ -63,7 +68,7 @@ namespace BDCDC.form
                 ZRZ z = f.selectedZrz;
                 LJZ l = f.selectedLjz;
 
-                H h = hs.newH(z, l);
+                H h = hs.newH(dcxm.fId, z, l);
                 FormH fh = new FormH(h);
                 DialogResult rh = fh.ShowDialog(this);
                 if(rh == DialogResult.OK)
@@ -86,7 +91,7 @@ namespace BDCDC.form
         private void loadHList()
         {
             TreeNode n = tv.SelectedNode;
-            if (n.Tag is LJZ)
+            if (n != null && n.Tag is LJZ)
             {
                 LJZ ljz = (LJZ)n.Tag;
                 int id = ljz.fId;

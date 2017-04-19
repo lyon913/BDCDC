@@ -106,7 +106,7 @@ namespace BDCDC.service
 
         }
 
-        public List<ZDJBXX> getByDcxm(int dcxmId)
+        public List<ZDJBXX> findByDcxm(int dcxmId)
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.QJDCXMID == dcxmId).ToList();
@@ -115,13 +115,13 @@ namespace BDCDC.service
         }
 
 
-        public ZDJBXX getZdjbxxById(int zdId)
+        public ZDJBXX findZdjbxxById(int zdId)
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
-        public ZDJBXX getZdjbxxByZdmd(String zddm)
+        public ZDJBXX findZdjbxxByZdmd(String zddm)
         {
             if(zddm == null)
             {
@@ -145,7 +145,7 @@ namespace BDCDC.service
 
         public decimal? getZdmjByZdmd(String zddm)
         {
-            ZDJBXX zd = getZdjbxxByZdmd(zddm);
+            ZDJBXX zd = findZdjbxxByZdmd(zddm);
             if(zd == null)
             {
                 return null;
