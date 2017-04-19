@@ -1,25 +1,12 @@
 ﻿using BDCDC.model;
 using BDCDC.Properties;
 using BDCDC.service;
-using BDCDC.utils;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
-using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
-using ESRI.ArcGIS.Geometry;
-using ESRI.ArcGIS.Maplex;
-using ESRI.ArcGIS.SystemUI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BDCDC.service.DcxmService;
 
 namespace BDCDC.form
 {

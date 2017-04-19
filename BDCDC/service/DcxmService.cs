@@ -1,5 +1,4 @@
 ﻿using BDCDC.model;
-using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
@@ -7,10 +6,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BDCDC.service
 {

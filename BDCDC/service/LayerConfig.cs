@@ -1,13 +1,9 @@
 ﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
-using ESRI.ArcGIS.Geodatabase;
-using ESRI.ArcGIS.Geometry;
 using stdole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BDCDC.service
 {

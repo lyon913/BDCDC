@@ -153,12 +153,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="form\CtrlDcxm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="form\CtrlDcxm.Designer.cs">
-      <DependentUpon>CtrlDcxm.cs</DependentUpon>
-    </Compile>
     <Compile Include="form\ctrl\MapToolbar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -291,9 +285,6 @@
     <Compile Include="utils\UiUtils.cs" />
     <Compile Include="utils\ValidationUtils.cs" />
     <Compile Include="vo\BasicLayers.cs" />
-    <EmbeddedResource Include="form\CtrlDcxm.resx">
-      <DependentUpon>CtrlDcxm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\DialogStringSelect.resx">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </EmbeddedResource>
@@ -377,9 +368,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="gdb\Default.gdb\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>

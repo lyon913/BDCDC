@@ -1,10 +1,7 @@
 ﻿using BDCDC.model;
 using BDCDC.utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BDCDC.service
 {

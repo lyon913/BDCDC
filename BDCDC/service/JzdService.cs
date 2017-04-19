@@ -2,13 +2,9 @@
 using ESRI.ArcGIS.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.Spatial;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BDCDC.service
 {

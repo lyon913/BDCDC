@@ -2,11 +2,7 @@
 using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.SystemUI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace BDCDC.form.ctrl
