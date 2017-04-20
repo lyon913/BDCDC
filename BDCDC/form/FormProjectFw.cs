@@ -40,7 +40,7 @@ namespace BDCDC.form
 
             foreach (LJZ ljz in ljzList)
             {
-                TreeNode n = new TreeNode(ljz.LJZH);
+                TreeNode n = new TreeNode(ljz.ZRZH + " - " + ljz.LJZH);
                 n.Tag = ljz;
                 root.Nodes.Add(n);
             }

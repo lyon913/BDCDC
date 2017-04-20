@@ -79,6 +79,15 @@ namespace BDCDC.form
             nb_dytdmj.DataBindings.Add("Value", h, "DYTDMJ", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
         }
 
+        private void initSxh()
+        {
+            if (!string.IsNullOrEmpty(h.BDCDYH))
+            {
+                string sxh = h.BDCDYH.Substring(24);
+                tb_sxh.Text = sxh;
+            }
+        }
+
         private void getMaxSxh()
         {
             string sxh = hs.getMaxSxh(h);

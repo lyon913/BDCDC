@@ -153,6 +153,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="form\ctrl\DcxmInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="form\ctrl\DcxmInfo.Designer.cs">
+      <DependentUpon>DcxmInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\ctrl\MapToolbar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     <Compile Include="utils\UiUtils.cs" />
     <Compile Include="utils\ValidationUtils.cs" />
     <Compile Include="vo\BasicLayers.cs" />
+    <EmbeddedResource Include="form\ctrl\DcxmInfo.resx">
+      <DependentUpon>DcxmInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\DialogStringSelect.resx">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </EmbeddedResource>

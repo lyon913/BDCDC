@@ -72,7 +72,7 @@ namespace BDCDC.model
 
         public string ZRZBDCDYH { get; set; }
 
-       public string ZRZH { get; set; }
+        public string ZRZH { get; set; }
 
         public int? ZT { get; set; }
 

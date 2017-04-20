@@ -28,6 +28,7 @@ namespace BDCDC.form
         {
             initUI();
             initDataBinding();
+            initSxh();
         }
 
         private void initUI()
@@ -73,11 +74,17 @@ namespace BDCDC.form
             tb_bz.DataBindings.Add("Text", zrz, "BZ", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        private void initSxh()
+        {
+            if (!string.IsNullOrEmpty(zrz.ZRZH))
+            {
+                string sxh = zrz.ZRZH.Substring(20);
+                tb_zsxh.Text = sxh;
+            }
+        }
+
         private void FormZrz_Load(object sender, EventArgs e)
         {
-
-
-
 
         }
 
@@ -208,7 +215,6 @@ namespace BDCDC.form
                 }
                 return;
             }
-            
         }
     }
 }

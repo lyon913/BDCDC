@@ -30,15 +30,15 @@
         {
             this.tv = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.m_jttd = new System.Windows.Forms.ToolStripMenuItem();
             this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
             this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
             this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgv = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tv
@@ -46,7 +46,7 @@
             this.tv.Dock = System.Windows.Forms.DockStyle.Left;
             this.tv.Location = new System.Drawing.Point(0, 25);
             this.tv.Name = "tv";
-            this.tv.Size = new System.Drawing.Size(243, 536);
+            this.tv.Size = new System.Drawing.Size(294, 536);
             this.tv.TabIndex = 1;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
             // 
@@ -54,10 +54,23 @@
             // 
             this.panel1.Controls.Add(this.dgv);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(243, 25);
+            this.panel1.Location = new System.Drawing.Point(294, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(691, 536);
+            this.panel1.Size = new System.Drawing.Size(640, 536);
             this.panel1.TabIndex = 2;
+            // 
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowTemplate.Height = 23;
+            this.dgv.Size = new System.Drawing.Size(640, 536);
+            this.dgv.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -81,7 +94,7 @@
             // m_create_h
             // 
             this.m_create_h.Name = "m_create_h";
-            this.m_create_h.Size = new System.Drawing.Size(152, 22);
+            this.m_create_h.Size = new System.Drawing.Size(112, 22);
             this.m_create_h.Text = "新建户";
             this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
             // 
@@ -96,22 +109,9 @@
             // m_fwlz
             // 
             this.m_fwlz.Name = "m_fwlz";
-            this.m_fwlz.Size = new System.Drawing.Size(152, 22);
+            this.m_fwlz.Size = new System.Drawing.Size(124, 22);
             this.m_fwlz.Text = "房屋落宗";
             this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
-            // 
-            // dgv
-            // 
-            this.dgv.AllowUserToAddRows = false;
-            this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.Name = "dgv";
-            this.dgv.ReadOnly = true;
-            this.dgv.RowTemplate.Height = 23;
-            this.dgv.Size = new System.Drawing.Size(691, 536);
-            this.dgv.TabIndex = 0;
             // 
             // FormProjectFw
             // 
@@ -123,12 +123,14 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormProjectFw";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "房屋调查成果";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormProjectFw_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
