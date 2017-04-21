@@ -26,11 +26,18 @@ namespace BDCDC.form
         {
             initData();
             initTreeView();
+            initDataGridView();
         }
 
         private void initData()
         {
             ljzList = ls.findByDcxmId(dcxm.fId);
+            dcxmInfo.setData(dcxm);
+        }
+
+        private void initDataGridView()
+        {
+            dgv.AutoGenerateColumns = false;
         }
 
         private void initTreeView()
@@ -98,6 +105,11 @@ namespace BDCDC.form
                 List<H> hList = hs.findByLjzId(id);
                 dgv.DataSource = hList;
             }
+        }
+
+        private void splitContainer1_SizeChanged(object sender, EventArgs e)
+        {
+            splitContainer1.SplitterDistance = 300;
         }
     }
 }

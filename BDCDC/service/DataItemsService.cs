@@ -21,6 +21,16 @@ namespace BDCDC.service
             
         }
 
+        public string translateDataItem(string type,string itemCode)
+        {
+            return useDbContext(ctx =>
+            {
+                DataItems result = ctx.DataItems
+                    .Where(item => item.typeName == type && item.itemCode == itemCode).Single();
+                return result.itemName;
+            });
+        }
+
 
     }
 }
