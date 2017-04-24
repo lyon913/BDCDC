@@ -1,5 +1,6 @@
 ﻿using BDCDC.model;
 using BDCDC.service;
+using BDCDC.utils;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -38,6 +39,8 @@ namespace BDCDC.form
         private void initDataGridView()
         {
             dgv.AutoGenerateColumns = false;
+            UiUtils.dataGridComboboxDataItems(FWYT1, "房屋用途", false);
+            UiUtils.dataGridComboboxDataItems(FWXZ, "房屋性质", false);
         }
 
         private void initTreeView()
@@ -110,6 +113,25 @@ namespace BDCDC.form
         private void splitContainer1_SizeChanged(object sender, EventArgs e)
         {
             splitContainer1.SplitterDistance = 300;
+        }
+
+        private void dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dgv.CurrentRow != null)
+            {
+                H h = (H)dgv.CurrentRow.DataBoundItem;
+                openFormH(h);
+            }
+        }
+
+        private void openFormH(H h)
+        {
+            FormH f = new FormH(h);
+            DialogResult r = f.ShowDialog(this);
+            if(r == DialogResult.OK)
+            {
+                loadHList();
+            }
         }
     }
 }

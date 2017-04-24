@@ -46,6 +46,25 @@ namespace BDCDC.model
             modelBuilder.Entity<JZX>().Property(entity => entity.JZXCD).HasPrecision(15, 2);
 
 
+            modelBuilder.Entity<H>().Property(entity => entity.SCJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.SCFTJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.SCTNJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.SCQTJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.SCDXBFJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.SCFTXS).HasPrecision(15, 6);
+
+            modelBuilder.Entity<H>().Property(entity => entity.YCJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.YCFTJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.YCTNJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.YCQTJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.YCDXBFJZMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.YCFTXS).HasPrecision(15, 6);
+
+            modelBuilder.Entity<H>().Property(entity => entity.GYTDMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.FTTDMJ).HasPrecision(15, 3);
+            modelBuilder.Entity<H>().Property(entity => entity.DYTDMJ).HasPrecision(15, 3);
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

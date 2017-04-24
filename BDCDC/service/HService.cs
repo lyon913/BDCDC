@@ -85,5 +85,11 @@ namespace BDCDC.service
                 return sxh;
             });
         }
+
+        public string generateZl(H h)
+        {
+            string zrzZl = 
+            return "";
+        }
     }
 }

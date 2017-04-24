@@ -129,5 +129,10 @@ namespace BDCDC.form
         {
             this.Close();
         }
+
+        private void b_getZl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

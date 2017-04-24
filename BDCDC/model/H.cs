@@ -44,7 +44,7 @@ namespace BDCDC.model
 
         public decimal? SCFTJZMJ { get; set; }
 
-        public double? SCFTXS { get; set; }
+        public decimal? SCFTXS { get; set; }
 
         public decimal? SCJZMJ { get; set; }
 
@@ -58,7 +58,7 @@ namespace BDCDC.model
 
         public decimal? YCFTJZMJ { get; set; }
 
-        public double? YCFTXS { get; set; }
+        public decimal? YCFTXS { get; set; }
 
         public decimal? YCJZMJ { get; set; }
 
@@ -82,7 +82,7 @@ namespace BDCDC.model
 
         public int? ZCS { get; set; }
 
-        public int? DYH { get; set; }
+        public string DYH { get; set; }
 
         public string FH { get; set; }
 
