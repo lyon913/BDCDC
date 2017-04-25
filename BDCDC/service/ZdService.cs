@@ -106,7 +106,7 @@ namespace BDCDC.service
 
         }
 
-        public List<ZDJBXX> findByDcxm(int dcxmId)
+        public List<ZDJBXX> findByDcxmId(int dcxmId)
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.QJDCXMID == dcxmId).ToList();
@@ -115,37 +115,26 @@ namespace BDCDC.service
         }
 
 
-        public ZDJBXX findZdjbxxById(int zdId)
+        public ZDJBXX findById(int zdId)
         {
             return useDbContext(ctx => {
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
-        public ZDJBXX findZdjbxxByZdmd(String zddm)
+        public ZDJBXX findByZdmd(String zddm)
         {
             if(zddm == null)
             {
                 return null;
             }
             return useDbContext(ctx => {
-                List<ZDJBXX> list = ctx.ZDJBXX.Where(zd => zd.ZDDM == zddm && (zd.ZT == 0 || zd.ZT == 1)).ToList();
-                if(list.Count == 1)
-                {
-                    return list[0];
-                }
-                if(list.Count == 0)
-                {
-                    return null;
-                }else
-                {
-                    throw new Exception("查找到多个重复的宗地号");
-                }
+                return ctx.ZDJBXX.Where(zd => zd.ZDDM == zddm && (zd.ZT == 0 || zd.ZT == 1)).SingleOrDefault();
             });
         }
 
-        public decimal? getZdmjByZdmd(String zddm)
+        public decimal? getZdmjByZddm(String zddm)
         {
-            ZDJBXX zd = findZdjbxxByZdmd(zddm);
+            ZDJBXX zd = findByZdmd(zddm);
             if(zd == null)
             {
                 return null;

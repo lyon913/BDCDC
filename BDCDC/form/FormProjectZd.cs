@@ -79,7 +79,7 @@ namespace BDCDC.form
 
         private void addZdTreeNode(TreeNode root)
         {
-            List<ZDJBXX> zdList = dcServ.getZdjbxxByDcxmId(dcxm.fId);
+            List<ZDJBXX> zdList = zdServ.findByDcxmId(dcxm.fId);
             foreach (ZDJBXX zd in zdList)
             {
                 TreeNode zdNode = new TreeNode();
@@ -187,7 +187,7 @@ namespace BDCDC.form
             String name = fc.AliasName;
             if (name.Contains("ZDJBXX"))
             {
-                ZDJBXX zd = zdServ.findZdjbxxById(feature.OID);
+                ZDJBXX zd = zdServ.findById(feature.OID);
                 FormZdjbxx form = new FormZdjbxx(zd);
                 return form.ShowDialog(this);
             }

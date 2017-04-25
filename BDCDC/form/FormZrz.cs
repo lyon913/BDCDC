@@ -168,7 +168,7 @@ namespace BDCDC.form
 
         private void b_zydmj_get_Click(object sender, EventArgs e)
         {
-            decimal? zydmj = zdService.getZdmjByZdmd(zrz.ZDDM);
+            decimal? zydmj = zdService.getZdmjByZddm(zrz.ZDDM);
             if(zydmj == null)
             {
                 zydmj = 0;
@@ -194,7 +194,7 @@ namespace BDCDC.form
                 return;
             }
 
-            List<String> dmList = zrzService.findZddmOfZrz(zrz);
+            List<String> dmList = zrzService.findZddmIntersectZrz(zrz);
             if(dmList.Count == 0)
             {
                 MessageBox.Show("未找到与该自然幢相交的宗地，请检查宗地和自然幢图形数据。");

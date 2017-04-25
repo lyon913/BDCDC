@@ -64,7 +64,7 @@ namespace BDCDC.service
 
         }
 
-        public QJDCXM getById(int id)
+        public QJDCXM findById(int id)
         {
             return useDbContext(ctx =>
             {
@@ -131,12 +131,6 @@ namespace BDCDC.service
             });
         }
 
-        public List<ZDJBXX> getZdjbxxByDcxmId(int dcxmId)
-        {
-            return useDbContext(ctx =>
-            {
-                return ctx.ZDJBXX.Where(zd => zd.QJDCXMID == dcxmId).ToList();
-            });
-        }
+
     }
 }

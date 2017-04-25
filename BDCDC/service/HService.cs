@@ -9,6 +9,7 @@ namespace BDCDC.service
     class HService:Service
     {
         private ZdService zs = new ZdService();
+        private ZrzService rs = new ZrzService();
 
         public H newH(int dcxmId, ZRZ zrz, LJZ ljz)
         {
@@ -26,9 +27,18 @@ namespace BDCDC.service
             h.FWXZ = "99";
 
             
-            h.GYTDMJ = zs.getZdmjByZdmd(zrz.ZDDM);
+            h.GYTDMJ = zs.getZdmjByZddm(zrz.ZDDM);
             return h;
         }
+
+        public H findById(int hId)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.H.Where(h => h.fId == hId).Single();
+            });
+        }
+
         public List<H> findByDcxmId(int dcxmId)
         {
             return useDbContext(ctx =>
@@ -88,7 +98,8 @@ namespace BDCDC.service
 
         public string generateZl(H h)
         {
-            string zrzZl = 
+            //ZRZ zrz = rs.findByZrzh(h.ZRZH);
+            //string zrzZl = 
             return "";
         }
     }

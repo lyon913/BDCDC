@@ -73,11 +73,11 @@ namespace BDCDC.service
             });
         }
 
-        public List<ZRZ> findByZrzh(string zrzh)
+        public ZRZ findByZrzh(string zrzh)
         {
             return useDbContext(ctx =>
             {
-                return ctx.ZRZ.Where(z => z.ZRZH == zrzh && (z.ZT == 0 || z.ZT == 1)).ToList();
+                return ctx.ZRZ.Where(z => z.ZRZH == zrzh && (z.ZT == 0 || z.ZT == 1)).SingleOrDefault();
             });
         }
 
@@ -88,7 +88,7 @@ namespace BDCDC.service
             });
         }
 
-        public List<String> findZddmOfZrz(ZRZ zrz)
+        public List<String> findZddmIntersectZrz(ZRZ zrz)
         {
             ITable table = ArcgisService.queryTable("ZDJBXX", "ZT in (0,1)");
             IGeometry geom = ArcgisService.dbGeometryToGeometry(zrz.SHAPE);

@@ -25,6 +25,15 @@ namespace BDCDC.service
 
             return ljz;
         }
+
+        public LJZ findById(int ljzId)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.LJZ.Where(l => l.fId == ljzId).Single();
+            });
+        }
+
         public List<LJZ> findByDcxmId(int dcxmId)
         {
             return useDbContext(ctx =>
@@ -33,7 +42,7 @@ namespace BDCDC.service
                 {
                     H = h,
                     LJZ = ljz
-                }).Where(a => a.H.QJDCXMID == dcxmId).Select(a => a.LJZ).Distinct().ToList();
+                }).Where(a => a.H.QJDCXMID == dcxmId).Select(a => a.LJZ).Distinct().OrderBy(a => a.LJZH).ToList();
             });
         }
 

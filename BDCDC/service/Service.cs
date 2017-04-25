@@ -51,6 +51,8 @@ namespace BDCDC.service
 
         }
 
+
+
         protected DbRawSqlQuery<T> createSqlQuery<T>(String sqlQuery,object[] param)
         {
             return useDbContext(ctx => {

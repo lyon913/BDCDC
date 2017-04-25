@@ -36,7 +36,7 @@ namespace BDCDC.form
             }
             else
             {
-                dcxm = xmService.getById((int)dcxm_id);
+                dcxm = xmService.findById((int)dcxm_id);
             }
 
         }
