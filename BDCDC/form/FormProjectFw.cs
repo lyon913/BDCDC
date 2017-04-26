@@ -128,10 +128,7 @@ namespace BDCDC.form
         {
             FormH f = new FormH(h);
             DialogResult r = f.ShowDialog(this);
-            if(r == DialogResult.OK)
-            {
-                loadHList();
-            }
+            loadHList();
         }
     }
 }

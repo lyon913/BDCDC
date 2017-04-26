@@ -27,6 +27,9 @@ namespace BDCDC.form
 
         private void initUI()
         {
+            //从不动产单元号提取房屋顺序号
+            extractSxh();
+
             UiUtils.comboboxDataItems(cb_fwlx, "房屋类型", false);
             UiUtils.comboboxDataItems(cb_fwxz, "房屋性质", false);
 
@@ -90,10 +93,17 @@ namespace BDCDC.form
 
         private void getMaxSxh()
         {
-            string sxh = hs.getMaxSxh(h);
-            tb_sxh.Text = sxh;
-            updateBdcdyh();
-
+            string bdycyh = h.BDCDYH;
+            if (!string.IsNullOrEmpty(bdycyh))
+            {
+                DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                if(r == DialogResult.Yes)
+                {
+                    string sxh = hs.getMaxSxh(h);
+                    tb_sxh.Text = sxh;
+                    updateBdcdyh();
+                }
+            }
         }
 
         private void updateBdcdyh()
@@ -115,24 +125,36 @@ namespace BDCDC.form
                 this.Close();
             }catch(Exception ex)
             {
-                MessageBox.Show(this,ex.Message);
+                UiUtils.alertException(this, ex);
             }
             
         }
 
         private void b_getMaxSxh_Click(object sender, EventArgs e)
         {
+            
             getMaxSxh();
         }
 
         private void b_quit_Click(object sender, EventArgs e)
         {
+            
             this.Close();
         }
 
         private void b_getZl_Click(object sender, EventArgs e)
         {
+            string zl = hs.generateZl(h);
+            tb_zl.Text = zl;
+        }
 
+        private void extractSxh()
+        {
+            string bdcdyh = h.BDCDYH;
+            if (!string.IsNullOrEmpty(bdcdyh))
+            {
+                tb_sxh.Text = bdcdyh.Substring(24, 4);
+            }
         }
     }
 }

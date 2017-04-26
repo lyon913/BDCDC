@@ -98,9 +98,21 @@ namespace BDCDC.service
 
         public string generateZl(H h)
         {
-            //ZRZ zrz = rs.findByZrzh(h.ZRZH);
-            //string zrzZl = 
-            return "";
+
+            ZRZ zrz = rs.findByZrzh(h.ZRZH);
+            ZDJBXX zd = zs.findByZdmd(zrz.ZDDM);
+
+            string zdzl = zd.ZL;
+            string jzwmc = zrz.JZWMC;
+            string dyh = ""+h.DYH;
+            if(!string.IsNullOrEmpty(dyh) && !dyh.Contains("单元"))
+            {
+                dyh += "单元";
+            }
+            string shbw = h.SHBW+"号";
+
+            string zl = zdzl + jzwmc + dyh + shbw;
+            return zl;
         }
     }
 }

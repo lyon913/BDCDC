@@ -1,5 +1,6 @@
 ﻿using BDCDC.Properties;
 using BDCDC.service;
+using BDCDC.utils;
 using ESRI.ArcGIS.Geodatabase;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace BDCDC.form
                     ArcgisService.checkGeometryCoordinates(f.Shape);
                 }catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    UiUtils.alertException(this, ex);
                     return;
                 }
             }

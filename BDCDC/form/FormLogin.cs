@@ -1,4 +1,5 @@
 ﻿using BDCDC.service;
+using BDCDC.utils;
 using System;
 using System.Windows.Forms;
 
@@ -36,7 +37,7 @@ namespace BDCDC.form
                 this.Close();
             }catch(Exception ex)
             {
-                MessageBox.Show(this,ex.Message,"错误",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                UiUtils.alertException(this, ex);
             }
             
         }

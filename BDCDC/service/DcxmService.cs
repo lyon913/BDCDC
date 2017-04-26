@@ -17,6 +17,19 @@ namespace BDCDC.service
         private ZdService zdServ = new ZdService();
         private ZrzService zrzServ = new ZrzService();
 
+        public QJDCXM newQjdcxm(string xmlx)
+        {
+            QJDCXM dcxm = new QJDCXM();
+            dcxm = new QJDCXM();
+            dcxm.XMBH = getXmbh();
+            dcxm.ZT = 0;
+            dcxm.XMLX = xmlx;
+            dcxm.DCRQ = DateTime.Now;
+            dcxm.SLRQ = DateTime.Now;
+            dcxm.SLR = UserService.getCurrentUser().XM;
+            return dcxm;
+        }
+
         public class LayerInfo
         {
             public String layerName { get; set; }
@@ -55,12 +68,45 @@ namespace BDCDC.service
 
         public void save(QJDCXM xm)
         {
+            validate(xm);
             useTransaction(ctx =>
             {
-                xm.XMBH = generateXmbh();
+                
                 insertOrUpdate(xm, ctx);
                 return xm;
             });
+
+        }
+
+        public void validate(QJDCXM dcxm)
+        {
+            if (string.IsNullOrEmpty(dcxm.XMMC))
+            {
+                throw new Exception("项目名称不能为空");
+            }
+            if (string.IsNullOrEmpty(dcxm.XMLX))
+            {
+                throw new Exception("项目类型不能为空");
+            }
+            if (string.IsNullOrEmpty(dcxm.XMBH))
+            {
+                throw new Exception("项目编号不能为空");
+            }
+
+            if (string.IsNullOrEmpty(dcxm.DCDW))
+            {
+                throw new Exception("调查单位不能为空");
+            }
+
+            if (string.IsNullOrEmpty(dcxm.DCDW))
+            {
+                throw new Exception("调查人不能为空");
+            }
+
+            if (dcxm.DCRQ == null)
+            {
+                throw new Exception("调查日期不能为空");
+            }
 
         }
 
@@ -73,7 +119,7 @@ namespace BDCDC.service
 
         }
 
-        private String generateXmbh()
+        private String getXmbh()
         {
             return QJDCXM_PREFIX + DateTime.Now.ToShortTimeString();
         }

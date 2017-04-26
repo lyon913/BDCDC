@@ -74,8 +74,6 @@ namespace BDCDC.model
 
         public string ZRZH { get; set; }
 
-        public int? ZT { get; set; }
-
         public int? QSC { get; set; }
 
         public int? ZZC { get; set; }
@@ -90,6 +88,8 @@ namespace BDCDC.model
 
         [Column("QJDCXM_ID")]
         public int? QJDCXMID { get; set; }
+
+        public int ZT { get; set; }
 
     }
 }

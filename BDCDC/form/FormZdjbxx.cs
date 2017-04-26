@@ -14,9 +14,9 @@ namespace BDCDC.form
     public partial class FormZdjbxx : Form
     {
         //获取系统配置项服务类
-        private DataItemsService items;
+        private DataItemsService items = new DataItemsService();
         //宗地服务类
-        private ZdService zdService;
+        private ZdService zdService = new ZdService();
 
         public ZDJBXX zdjbxx { get; set; }
 
@@ -32,19 +32,12 @@ namespace BDCDC.form
         }
         private void init()
         {
-            initServices();
-            initDataItems();
+            initUI();
             initDataBandings();
             initBdcdyh();
         }
 
-        private void initServices()
-        {
-            items = new DataItemsService();
-            zdService = new ZdService();
-        }
-
-        private void initDataItems()
+        private void initUI()
         {
             //地籍子区
             List<DataItems> djzqList = zdService.getDjzqAsDataItems();
@@ -85,15 +78,15 @@ namespace BDCDC.form
             //不动产单元号
             tb_bdcdyh.DataBindings.Add("Text", zdjbxx, "BDCDYH", false, DataSourceUpdateMode.OnPropertyChanged);
             //权利类型
-            cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", true, DataSourceUpdateMode.OnPropertyChanged, "3");
+            cb_qllx.DataBindings.Add("SelectedValue", zdjbxx, "QLLX", false, DataSourceUpdateMode.OnPropertyChanged);
             //权利性质
-            cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", true, DataSourceUpdateMode.OnPropertyChanged, "102");
+            cb_qlxz.DataBindings.Add("SelectedValue", zdjbxx, "QLXZ", false, DataSourceUpdateMode.OnPropertyChanged);
             //土地用途
-            cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", true, DataSourceUpdateMode.OnPropertyChanged, "71");
+            cb_yt.DataBindings.Add("SelectedValue", zdjbxx, "YT", false, DataSourceUpdateMode.OnPropertyChanged);
             //土地等级
-            cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", true, DataSourceUpdateMode.OnPropertyChanged, "1");
+            cb_dj.DataBindings.Add("SelectedValue", zdjbxx, "DJ", false, DataSourceUpdateMode.OnPropertyChanged);
             //面积单位
-            cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", true, DataSourceUpdateMode.OnPropertyChanged, "1");
+            cb_mjdw.DataBindings.Add("SelectedValue", zdjbxx, "MJDW", true, DataSourceUpdateMode.OnPropertyChanged);
 
             //宗地面积
             nb_zdmj.DataBindings.Add("Value", zdjbxx, "ZDMJ", true, DataSourceUpdateMode.OnPropertyChanged, decimal.Zero);
@@ -150,9 +143,32 @@ namespace BDCDC.form
 
         }
 
+        private bool confirmUpdateBdcdyh()
+        {
+            string bdcdyh = zdjbxx.BDCDYH;
+            if (!string.IsNullOrEmpty(bdcdyh))
+            {
+                DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(r == DialogResult.No)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         //自动获取宗地顺序号
         private void bt_getMaxZdsxh_Click(object sender, EventArgs e)
         {
+            getMaxZdxsh();
+        }
+
+        private void getMaxZdxsh()
+        {
+            if(confirmUpdateBdcdyh() == false)
+            {
+                return;
+            }
             DataItems djzq = (DataItems)cb_djzq.SelectedItem;
             if (djzq == null)
             {
@@ -167,6 +183,15 @@ namespace BDCDC.form
         //自动获取定着物顺序号
         private void bt_getDzwsxh_Click(object sender, EventArgs e)
         {
+            getDzwsxh();
+        }
+
+        private void getDzwsxh()
+        {
+            if (confirmUpdateBdcdyh() == false)
+            {
+                return;
+            }
             String zddm = tb_zddm.Text;
             String dzwtzm = (String)cb_dzwtzm.SelectedValue;
             if (zddm == null || zddm.Length != 19)
@@ -177,7 +202,6 @@ namespace BDCDC.form
             String dzwsxh = zdService.getMaxDzwsxh(zddm, dzwtzm);
             tb_dzwsxh.Text = dzwsxh;
             updateBdcdyh();
-
         }
 
         //格式化地籍子区下拉列表
@@ -261,37 +285,19 @@ namespace BDCDC.form
 
         private void bt_save_Click(object sender, EventArgs e)
         {
-            if (validate())
+            try
             {
                 //存储ZDJBXX 和对应的宗地图
+                zdService.validate(zdjbxx);
                 zdService.saveOrUpdate(zdjbxx);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }catch(Exception ex)
+            {
+                UiUtils.alertException(this, ex);
             }
+
         }
-
-        private bool validate()
-        {
-            if (zdjbxx.ZDDM == null || "".Equals(zdjbxx.ZDDM))
-            {
-                MessageBox.Show(this, "请编制宗地代码", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (zdjbxx.BDCDYH == null || "".Equals(zdjbxx.BDCDYH))
-            {
-                MessageBox.Show(this, "请编制不动产单元号", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (zdjbxx.SHAPE == null)
-            {
-                MessageBox.Show(this, "请选择宗地图", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
-        }
-
 
         //退出按钮
         private void bt_cancel_Click(object sender, EventArgs e)

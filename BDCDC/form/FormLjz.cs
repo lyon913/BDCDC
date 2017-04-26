@@ -79,7 +79,7 @@ namespace BDCDC.form
                 this.Close();
             }catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                UiUtils.alertException(this, ex);
             }
         }
     }

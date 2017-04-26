@@ -58,7 +58,7 @@ namespace BDCDC.model
         [StringLength(50)]
         public string ZRZH { get; set; }
 
-        public int? ZT { get; set; }
+        public int ZT { get; set; }
 
         public int? ZTS { get; set; }
 

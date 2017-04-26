@@ -84,5 +84,10 @@ namespace BDCDC.utils
             toolbar.AddItem("esriControls.ControlsMapIdentifyTool", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
             toolbar.AddItem("esriControls.ControlsEditingToolbar", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
         }
+
+        public static void alertException(IWin32Window owner, Exception ex)
+        {
+            MessageBox.Show(owner, ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

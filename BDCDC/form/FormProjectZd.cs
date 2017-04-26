@@ -156,7 +156,7 @@ namespace BDCDC.form
                 mapControl.AddLayer(layer);
             }
 
-            this.mapControl.ActiveView.ScreenDisplay.DisplayTransformation.ScaleRatio = 1000;
+            //this.mapControl.ActiveView.ScreenDisplay.DisplayTransformation.ScaleRatio = 1000;
             mapControl.Refresh();
         }
 

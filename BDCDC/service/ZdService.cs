@@ -18,6 +18,11 @@ namespace BDCDC.service
         public ZDJBXX newZdjbxx()
         {
             ZDJBXX zd = new ZDJBXX();
+            zd.QLLX = "3";
+            zd.QLXZ = "102";
+            zd.YT = "71";
+            zd.DJ = "1";
+            zd.MJDW = "1";
             zd.ZT = 0;
             return zd;
         }
@@ -29,6 +34,54 @@ namespace BDCDC.service
                 insertOrUpdate(zd,ctx);
                 return zd;
             });
+        }
+
+        public void validate(ZDJBXX zd)
+        {
+            if (string.IsNullOrEmpty(zd.ZDDM))
+            {
+                throw new Exception("宗地代码不能为空");
+            }
+            if (string.IsNullOrEmpty(zd.BDCDYH))
+            {
+                throw new Exception("不动产单元号不能为空");
+            }
+
+            if (zd.SHAPE == null)
+            {
+                throw new Exception("宗地图不能为空");
+            }
+
+            if (string.IsNullOrEmpty(zd.QLLX))
+            {
+                throw new Exception("权利类型不能为空");
+            }
+
+            if (string.IsNullOrEmpty(zd.QLXZ))
+            {
+                throw new Exception("权利性质不能为空");
+            }
+
+            if (string.IsNullOrEmpty(zd.YT))
+            {
+                throw new Exception("用途不能为空");
+            }
+
+            if (string.IsNullOrEmpty(zd.ZL))
+            {
+                throw new Exception("坐落不能为空");
+            }
+
+            if (string.IsNullOrEmpty(zd.ZDSZD)|| string.IsNullOrEmpty(zd.ZDSZN)|| string.IsNullOrEmpty(zd.ZDSZX)|| string.IsNullOrEmpty(zd.ZDSZB))
+            {
+                throw new Exception("宗地四至不能为空");
+            }
+
+            if (zd.ZDMJ == null)
+            {
+                throw new Exception("宗地面积不能为空");
+            }
+
         }
 
         /**

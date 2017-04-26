@@ -7,7 +7,7 @@ namespace BDCDC.form
 {
     public partial class FormMain : Form
     {
-        private DcxmService xmServ = new DcxmService();
+        private DcxmService ds = new DcxmService();
 
         public FormMain()
         {
@@ -21,15 +21,9 @@ namespace BDCDC.form
             Application.Exit();
         }
 
-        private void tb_newProj_Click(object sender, EventArgs e)
+        private void b_newZdProj_Click(object sender, EventArgs e)
         {
-            FormDcxm form = new FormDcxm(null);
-            DialogResult result = form.ShowDialog(this);
-            if (result == DialogResult.OK)
-            {
-                openForm(form.getQjdcxm());
-                loadData();
-            }
+            newDcxmForm("1");
         }
 
         private void FormBdcMain_Load(object sender, EventArgs e)
@@ -39,7 +33,7 @@ namespace BDCDC.form
 
         private void loadData()
         {
-            dgv_todoList.DataSource = xmServ.getTodoList();
+            dgv_todoList.DataSource = ds.getTodoList();
         }
 
 
@@ -75,6 +69,23 @@ namespace BDCDC.form
             {
                 FormProjectFw form = new FormProjectFw(dcxm);
                 form.ShowDialog(this);
+            }
+        }
+
+        private void b_newFwProj_Click(object sender, EventArgs e)
+        {
+            newDcxmForm("2");
+        }
+
+        private void newDcxmForm(string xmlx)
+        {
+            QJDCXM dcxm = ds.newQjdcxm(xmlx);
+            FormDcxm form = new FormDcxm(dcxm);
+            DialogResult result = form.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                openForm(form.getQjdcxm());
+                loadData();
             }
         }
     }

@@ -103,7 +103,7 @@ namespace BDCDC.form
             }
             catch(Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "错误");
+                UiUtils.alertException(this, ex);
             }
             
         }
