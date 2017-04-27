@@ -112,11 +112,11 @@ namespace BDCDC.service
         /// <returns></returns>
         private static IPropertySet getDbProperties()
         {
-            String server = ConfigurationManager.AppSettings["server"];
-            String port = ConfigurationManager.AppSettings["port"];
-            String database = ConfigurationManager.AppSettings["database"];
-            String user = ConfigurationManager.AppSettings["user"];
-            String password = ConfigurationManager.AppSettings["password"];
+            string server = ConfigurationManager.AppSettings["server"];
+            string port = ConfigurationManager.AppSettings["port"];
+            string database = ConfigurationManager.AppSettings["database"];
+            string user = ConfigurationManager.AppSettings["user"];
+            string password = ConfigurationManager.AppSettings["password"];
 
             IPropertySet props = new PropertySet();
             props.SetProperty("dbclient", "SQLServer");
@@ -172,7 +172,7 @@ namespace BDCDC.service
         /// <param name="fieldName"></param>
         /// <param name="whereClause"></param>
         /// <returns></returns>
-        public static List<String> getUniqeValues(ITable table, String fieldName, String whereClause)
+        public static List<string> getUniqeValues(ITable table, string fieldName, string whereClause)
         {
             IQueryFilter qf = new QueryFilter();
             qf.WhereClause = whereClause;
@@ -182,10 +182,10 @@ namespace BDCDC.service
             dataStatistics.Cursor = cur;
 
             IEnumerator uniqueValues = dataStatistics.UniqueValues;
-            List<String> list = new List<string>();
+            List<string> list = new List<string>();
             while (uniqueValues.MoveNext())
             {
-                list.Add((String)uniqueValues.Current);
+                list.Add((string)uniqueValues.Current);
             }
             Marshal.ReleaseComObject(cur);
             return list;
@@ -237,9 +237,9 @@ namespace BDCDC.service
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public static String wktPoint(double x, double y)
+        public static string wktPoint(double x, double y)
         {
-            String wkt = "POINT({0} {1})";
+            string wkt = "POINT({0} {1})";
             return String.Format(wkt, x, y);
         }
 
@@ -251,9 +251,9 @@ namespace BDCDC.service
         /// <param name="x2"></param>
         /// <param name="y2"></param>
         /// <returns></returns>
-        public static String wktLine(double x1, double y1, double x2, double y2)
+        public static string wktLine(double x1, double y1, double x2, double y2)
         {
-            String wkt = "LINESTRING({0} {1},{2} {3})";
+            string wkt = "LINESTRING({0} {1},{2} {3})";
             return String.Format(wkt, x1, y1, x2, y2);
         }
 
@@ -283,10 +283,10 @@ namespace BDCDC.service
         /// <param name="mapControl"></param>
         /// <param name="cadFullPath"></param>
         /// <param name="featureType"></param>
-        public static void addCadLayersToMap(AxMapControl mapControl,String cadFullPath, EnumFeatureType featureType)
+        public static void addCadLayersToMap(AxMapControl mapControl,string cadFullPath, EnumFeatureType featureType)
         {
-            String fileName = System.IO.Path.GetFileName(cadFullPath);
-            String fileDir = System.IO.Path.GetDirectoryName(cadFullPath);
+            string fileName = System.IO.Path.GetFileName(cadFullPath);
+            string fileDir = System.IO.Path.GetDirectoryName(cadFullPath);
             IFeatureWorkspace ws = openCadWorkspace(fileDir) as IFeatureWorkspace;
 
             IFeatureClass fc = ws.OpenFeatureClass(fileName + ":" + featureType.ToString());
@@ -295,15 +295,15 @@ namespace BDCDC.service
             layer.Name = fileName;
 
 
-            List<String> cadLayers = getUniqeValues(fc as ITable, "Layer", "");
+            List<string> cadLayers = getUniqeValues(fc as ITable, "Layer", "");
             if (cadLayers == null || cadLayers.Count == 0)
             {
                 return;
             }
-            foreach (String layerName in cadLayers)
+            foreach (string layerName in cadLayers)
             {
 
-                String where = "Layer = '" + layerName + "'";
+                string where = "Layer = '" + layerName + "'";
                 IFeatureLayer layer_filtered = createFilterLayer(layer, layerName, where);
                 layer_filtered.Visible = false;
                 mapControl.Map.AddLayer(layer_filtered);
@@ -317,10 +317,10 @@ namespace BDCDC.service
         /// </summary>
         /// <param name="mapControl"></param>
         /// <param name="cadFullPath"></param>
-        public static void addCadToMapAsRaster(AxMapControl mapControl, String cadFullPath)
+        public static void addCadToMapAsRaster(AxMapControl mapControl, string cadFullPath)
         {
-            String fileName = System.IO.Path.GetFileName(cadFullPath);
-            String fileDir = System.IO.Path.GetDirectoryName(cadFullPath);
+            string fileName = System.IO.Path.GetFileName(cadFullPath);
+            string fileDir = System.IO.Path.GetDirectoryName(cadFullPath);
             ICadDrawingWorkspace ws = openCadWorkspace(fileDir) as ICadDrawingWorkspace;
             ICadDrawingDataset ds = ws.OpenCadDrawingDataset(fileName);
 
@@ -339,7 +339,7 @@ namespace BDCDC.service
         /// <param name="newLayerName"></param>
         /// <param name="whereClause"></param>
         /// <returns></returns>
-        public static IFeatureLayer createFilterLayer(IFeatureLayer layer, String newLayerName,String whereClause)
+        public static IFeatureLayer createFilterLayer(IFeatureLayer layer, string newLayerName,string whereClause)
         {
 
             IQueryFilter qf = new QueryFilterClass();
@@ -377,7 +377,7 @@ namespace BDCDC.service
         /// <param name="mapControl"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static ILayer findMapLayer(AxMapControl mapControl, String name)
+        public static ILayer findMapLayer(AxMapControl mapControl, string name)
         {
             IEnumLayer layers = mapControl.Map.Layers;
             ILayer layer = null;
@@ -397,7 +397,7 @@ namespace BDCDC.service
         /// <param name="whereClause"></param>
         /// <param name="layerName"></param>
         /// <param name="mapControl"></param>
-        public static void selectMapFeatures(String whereClause, String layerName, AxMapControl mapControl)
+        public static void selectMapFeatures(string whereClause, string layerName, AxMapControl mapControl)
         {
             IQueryFilter qf = new QueryFilterClass();
             qf.WhereClause = whereClause;
@@ -561,15 +561,15 @@ namespace BDCDC.service
         /// <param name="tableName"></param>
         /// <param name="whereClause"></param>
         /// <returns></returns>
-        public static ITable queryTable(String tableName, String whereClause)
+        public static ITable queryTable(string tableName, string whereClause)
         {
 
             ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
 
-            String query = "select * from " + tableName + " where 1=1 and " + whereClause;
+            string query = "select * from " + tableName + " where 1=1 and " + whereClause;
             IQueryDescription q = ws.GetQueryDescription(query);
             q.OIDFields = "fId";
-            String qName = "";
+            string qName = "";
             ws.CheckDatasetName(tableName, q, out qName);
             if (ws.OpenQueryCursor(query).NextRow() == null)
             {
@@ -585,7 +585,7 @@ namespace BDCDC.service
         /// <param name="tableName"></param>
         /// <param name="whereClause"></param>
         /// <returns></returns>
-        public static IFeatureLayer queryLayer(String tableName, String whereClause)
+        public static IFeatureLayer queryLayer(string tableName, string whereClause)
         {
             //创建Layer对象的数据记录SHAPE不能为空，否则报错
             whereClause += " and SHAPE is not null";

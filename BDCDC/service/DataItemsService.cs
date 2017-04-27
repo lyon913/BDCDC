@@ -8,7 +8,7 @@ namespace BDCDC.service
     class DataItemsService:Service
     {
         
-        public List<DataItems> getItemsByType(String type)
+        public List<DataItems> getItemsByType(string type)
         {
             return useDbContext(ctx =>
             {

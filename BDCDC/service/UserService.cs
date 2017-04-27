@@ -21,12 +21,12 @@ namespace BDCDC.service
             });
         }
 
-        public String getClientIp()
+        public string getClientIp()
         {
             return useDbContext(ctx =>
             {
-                String sql = "SELECT CONVERT(varchar(100), CONNECTIONPROPERTY('client_net_address'))";
-                return ctx.Database.SqlQuery<String>(sql).Single();
+                string sql = "SELECT CONVERT(varchar(100), CONNECTIONPROPERTY('client_net_address'))";
+                return ctx.Database.SqlQuery<string>(sql).Single();
             });
         }
 
@@ -43,7 +43,7 @@ namespace BDCDC.service
                 throw new Exception("用户名无效");
             }
 
-            String pwdHash = HashUtils.md5Hash(password, u.XM + u.salt, 2);
+            string pwdHash = HashUtils.md5Hash(password, u.XM + u.salt, 2);
             if (HashUtils.match(pwdHash,u.MM))
             {
                 u.clientIp = getClientIp();

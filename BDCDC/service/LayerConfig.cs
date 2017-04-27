@@ -9,9 +9,9 @@ namespace BDCDC.service
 {
     class LayerInfo
     {
-        public String LAYER_NAME { get; set; }
-        public String TABLE_NAME { get; set; }
-        public String ANNOTATION_EXPRESSION { get; set; }
+        public string LAYER_NAME { get; set; }
+        public string TABLE_NAME { get; set; }
+        public string ANNOTATION_EXPRESSION { get; set; }
         public short LAYER_TRANSPARENCY { get; set; }
         public ISymbol LAYER_SYMBOL { get; set; }
         public ITextSymbol LAYER_TEXT_SYMBOL { get; set; }
@@ -110,7 +110,7 @@ namespace BDCDC.service
             layerInfos.Add(JZD_LAYERINFO);
         }
 
-        public static IFeatureLayer getConfigedLayer(String tableName,String whereClause)
+        public static IFeatureLayer getConfigedLayer(string tableName,string whereClause)
         {
             LayerInfo info = layerInfos.Where(item => item.TABLE_NAME == tableName).Single();
             IFeatureLayer layer = ArcgisService.queryLayer(tableName, whereClause);
@@ -122,10 +122,10 @@ namespace BDCDC.service
             return layer;
         }
 
-        public static List<IFeatureLayer> getAllConfigedLayers(Dictionary<String,String> layerQueries)
+        public static List<IFeatureLayer> getAllConfigedLayers(Dictionary<string,string> layerQueries)
         {
             List<IFeatureLayer> result = new List<IFeatureLayer>();
-            foreach(KeyValuePair<String,String> item in layerQueries)
+            foreach(KeyValuePair<string,string> item in layerQueries)
             {
                 IFeatureLayer layer = getConfigedLayer(item.Key, item.Value);
                 if(layer!= null)

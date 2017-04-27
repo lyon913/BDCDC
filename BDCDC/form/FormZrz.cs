@@ -76,7 +76,7 @@ namespace BDCDC.form
 
         private void initSxh()
         {
-            if (!string.IsNullOrEmpty(zrz.ZRZH))
+            if (!String.IsNullOrEmpty(zrz.ZRZH))
             {
                 string sxh = zrz.ZRZH.Substring(20);
                 tb_zsxh.Text = sxh;
@@ -92,7 +92,7 @@ namespace BDCDC.form
         {
             using (var ctx = new BdcContext())
             {
-                String sxh = zrzService.getZrzsxh(this.zrz.ZDDM,ctx);
+                string sxh = zrzService.getZrzsxh(this.zrz.ZDDM,ctx);
                 this.tb_zsxh.Text = sxh;
                 upateBdcdyh();
             }
@@ -100,15 +100,15 @@ namespace BDCDC.form
 
         private void upateBdcdyh()
         {
-            String zddm = tb_zddm.Text;
-            String sxh = tb_zsxh.Text;
-            String dzwtzm = "F";
+            string zddm = tb_zddm.Text;
+            string sxh = tb_zsxh.Text;
+            string dzwtzm = "F";
 
             //自然幢号
-            String zrzh = zddm + dzwtzm + sxh;
+            string zrzh = zddm + dzwtzm + sxh;
 
             //不动产单元号
-            String bdcdyh = zrzh + "0000";
+            string bdcdyh = zrzh + "0000";
             if (zdService.checkBdcdyh(bdcdyh))
             {
                 tb_bdcdyh.Text = bdcdyh;
@@ -194,7 +194,7 @@ namespace BDCDC.form
                 return;
             }
 
-            List<String> dmList = zrzService.findZddmIntersectZrz(zrz);
+            List<string> dmList = zrzService.findZddmIntersectZrz(zrz);
             if(dmList.Count == 0)
             {
                 MessageBox.Show("未找到与该自然幢相交的宗地，请检查宗地和自然幢图形数据。");

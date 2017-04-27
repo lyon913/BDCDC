@@ -10,7 +10,7 @@ namespace BDCDC.utils
 {
     class UiUtils
     {
-        public static void comboboxDataItems(ComboBox cb,String itemType,bool formated)
+        public static void comboboxDataItems(ComboBox cb,string itemType,bool formated)
         {
             DataItemsService service = new DataItemsService();
             List<DataItems> items = service.getItemsByType(itemType);
@@ -34,7 +34,7 @@ namespace BDCDC.utils
             cb.ValueMember = "itemCode";
         }
 
-        public static void dataGridComboboxDataItems(DataGridViewComboBoxColumn cb, String itemType, bool formated)
+        public static void dataGridComboboxDataItems(DataGridViewComboBoxColumn cb, string itemType, bool formated)
         {
             DataItemsService service = new DataItemsService();
             List<DataItems> items = service.getItemsByType(itemType);

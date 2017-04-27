@@ -6,7 +6,7 @@ namespace BDCDC.utils
 {
     class HashUtils
     {
-        public static String md5Hash(String source,String salt,int hashIterations)
+        public static string md5Hash(string source,string salt,int hashIterations)
         {
             MD5 md5 = MD5.Create();
             byte[] saltSource = getSaltSource(salt, source);
@@ -21,12 +21,12 @@ namespace BDCDC.utils
 
         }
 
-        public static bool match(String hash1,String hash2)
+        public static bool match(string hash1,string hash2)
         {
             return hash1.ToLower().Equals(hash2.ToLower());
         }
 
-        private static byte[] getSaltSource(String salt,String source)
+        private static byte[] getSaltSource(string salt,string source)
         {
             if(salt == null)
             {
@@ -45,7 +45,7 @@ namespace BDCDC.utils
             return saltSource;
         }
 
-        public static byte[] getBytes(String str)
+        public static byte[] getBytes(string str)
         {
             if(str == null)
             {

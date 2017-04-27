@@ -117,15 +117,15 @@ namespace BDCDC.form
         {
             if (zdjbxx != null && zdjbxx.BDCDYH != null)
             {
-                String bdcdyh = zdjbxx.BDCDYH;
+                string bdcdyh = zdjbxx.BDCDYH;
                 if (bdcdyh.Length == 28)
                 {
-                    String djzq = bdcdyh.Substring(0, 12);
-                    String tzm1 = bdcdyh.Substring(12, 1);
-                    String tzm2 = bdcdyh.Substring(13, 1);
-                    String zdsxh = bdcdyh.Substring(14, 5);
-                    String dzwtzm = bdcdyh.Substring(19, 1);
-                    String dzwsxh = bdcdyh.Substring(20, 8);
+                    string djzq = bdcdyh.Substring(0, 12);
+                    string tzm1 = bdcdyh.Substring(12, 1);
+                    string tzm2 = bdcdyh.Substring(13, 1);
+                    string zdsxh = bdcdyh.Substring(14, 5);
+                    string dzwtzm = bdcdyh.Substring(19, 1);
+                    string dzwsxh = bdcdyh.Substring(20, 8);
 
                     this.cb_djzq.SelectedValue = djzq;
                     this.cb_syqlx.SelectedValue = tzm1;
@@ -146,7 +146,7 @@ namespace BDCDC.form
         private bool confirmUpdateBdcdyh()
         {
             string bdcdyh = zdjbxx.BDCDYH;
-            if (!string.IsNullOrEmpty(bdcdyh))
+            if (!String.IsNullOrEmpty(bdcdyh))
             {
                 DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if(r == DialogResult.No)
@@ -175,7 +175,7 @@ namespace BDCDC.form
                 MessageBox.Show(this, "请先选择地籍子区", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            String sxh = zdService.getMaxZdsxh(djzq.itemCode);
+            string sxh = zdService.getMaxZdsxh(djzq.itemCode);
             this.tb_zdsxh.Text = sxh;
             updateZddm();
         }
@@ -192,14 +192,14 @@ namespace BDCDC.form
             {
                 return;
             }
-            String zddm = tb_zddm.Text;
-            String dzwtzm = (String)cb_dzwtzm.SelectedValue;
+            string zddm = tb_zddm.Text;
+            string dzwtzm = (string)cb_dzwtzm.SelectedValue;
             if (zddm == null || zddm.Length != 19)
             {
                 MessageBox.Show("请先确定宗地代码");
                 return;
             }
-            String dzwsxh = zdService.getMaxDzwsxh(zddm, dzwtzm);
+            string dzwsxh = zdService.getMaxDzwsxh(zddm, dzwtzm);
             tb_dzwsxh.Text = dzwsxh;
             updateBdcdyh();
         }
@@ -222,12 +222,12 @@ namespace BDCDC.form
 
         private void updateZddm()
         {
-            String zdsxh = tb_zdsxh.Text;
+            string zdsxh = tb_zdsxh.Text;
             if (zdsxh != null && !"".Equals(zdsxh))
             {
-                String djzq = (String)cb_djzq.SelectedValue;
-                String syqlx = (String)cb_syqlx.SelectedValue;
-                String zdtzm = (String)cb_zdtzm.SelectedValue;
+                string djzq = (string)cb_djzq.SelectedValue;
+                string syqlx = (string)cb_syqlx.SelectedValue;
+                string zdtzm = (string)cb_zdtzm.SelectedValue;
 
                 tb_zddm.Text = djzq + syqlx + zdtzm + zdsxh;
             }
@@ -236,13 +236,13 @@ namespace BDCDC.form
 
         private void updateBdcdyh()
         {
-            String dzwsxh = tb_dzwsxh.Text;
+            string dzwsxh = tb_dzwsxh.Text;
 
             if (dzwsxh != null && !"".Equals(dzwsxh))
             {
 
-                String dzwtzm = (String)cb_dzwtzm.SelectedValue;
-                String zddm = (String)tb_zddm.Text;
+                string dzwtzm = (string)cb_dzwtzm.SelectedValue;
+                string zddm = (string)tb_zddm.Text;
                 if (zddm != null && !"".Equals(zddm))
                 {
                     tb_bdcdyh.Text = zddm + dzwtzm + dzwsxh;

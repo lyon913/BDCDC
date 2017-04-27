@@ -13,7 +13,7 @@ namespace BDCDC.service
     public class DcxmService : Service
     {
 
-        public static String QJDCXM_PREFIX = "QD";
+        public static string QJDCXM_PREFIX = "QD";
         private ZdService zdServ = new ZdService();
         private ZrzService zrzServ = new ZrzService();
 
@@ -32,9 +32,9 @@ namespace BDCDC.service
 
         public class LayerInfo
         {
-            public String layerName { get; set; }
-            public String tableName { get; set; }
-            public String annoExp { get; set; }
+            public string layerName { get; set; }
+            public string tableName { get; set; }
+            public string annoExp { get; set; }
 
             public ISymbol symbol { get; set; }
             public ITextSymbol textSymbol { get; set; }
@@ -80,25 +80,25 @@ namespace BDCDC.service
 
         public void validate(QJDCXM dcxm)
         {
-            if (string.IsNullOrEmpty(dcxm.XMMC))
+            if (String.IsNullOrEmpty(dcxm.XMMC))
             {
                 throw new Exception("项目名称不能为空");
             }
-            if (string.IsNullOrEmpty(dcxm.XMLX))
+            if (String.IsNullOrEmpty(dcxm.XMLX))
             {
                 throw new Exception("项目类型不能为空");
             }
-            if (string.IsNullOrEmpty(dcxm.XMBH))
+            if (String.IsNullOrEmpty(dcxm.XMBH))
             {
                 throw new Exception("项目编号不能为空");
             }
 
-            if (string.IsNullOrEmpty(dcxm.DCDW))
+            if (String.IsNullOrEmpty(dcxm.DCDW))
             {
                 throw new Exception("调查单位不能为空");
             }
 
-            if (string.IsNullOrEmpty(dcxm.DCDW))
+            if (String.IsNullOrEmpty(dcxm.DCDW))
             {
                 throw new Exception("调查人不能为空");
             }
@@ -119,22 +119,22 @@ namespace BDCDC.service
 
         }
 
-        private String getXmbh()
+        private string getXmbh()
         {
             return QJDCXM_PREFIX + DateTime.Now.ToShortTimeString();
         }
 
 
 
-        public IFeatureLayer getDcxmLayer(int dcxmId, String tableName)
+        public IFeatureLayer getDcxmLayer(int dcxmId, string tableName)
         {
             ISqlWorkspace ws = ArcgisService.openBdcWorkspace() as ISqlWorkspace;
 
-            String query = "select * from " + tableName + " where QJDCXM_ID=" + dcxmId;
+            string query = "select * from " + tableName + " where QJDCXM_ID=" + dcxmId;
             IQueryDescription q = ws.GetQueryDescription(query);
             q.OIDFields = "fId";
             q.GeometryType = esriGeometryType.esriGeometryPolygon;
-            String qName = "";
+            string qName = "";
             ws.CheckDatasetName(tableName, q, out qName);
             ITable table = ws.OpenQueryClass(qName, q);
 
@@ -145,7 +145,7 @@ namespace BDCDC.service
 
         public List<IFeatureLayer> getDcxmLayers(int dcxmId)
         {
-            Dictionary<String, String> layerQuerys = new Dictionary<string, string>();
+            Dictionary<string, string> layerQuerys = new Dictionary<string, string>();
             layerQuerys.Add("ZDJBXX", "QJDCXM_ID=" + dcxmId);
             layerQuerys.Add("ZRZ", "QJDCXM_ID=" + dcxmId);
             layerQuerys.Add("JZD", "QJDCXM_ID=" + dcxmId);
@@ -160,7 +160,7 @@ namespace BDCDC.service
             });
         }
 
-        public int countTableByDcxmId(int dcxmId, String tableName)
+        public int countTableByDcxmId(int dcxmId, string tableName)
         {
             return useDbContext(ctx =>
             {

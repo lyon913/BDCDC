@@ -14,8 +14,8 @@ namespace BDCDC.form
     {
         private static int srid = ArcgisService.SRID;
 
-        private static String ZD_LAYER_NAME = "宗地";
-        private static String ZRZ_LAYER_NAME = "自然幢";
+        private static string ZD_LAYER_NAME = "宗地";
+        private static string ZRZ_LAYER_NAME = "自然幢";
 
         private QJDCXM dcxm;
         private ZdService zdServ = new ZdService();
@@ -131,12 +131,12 @@ namespace BDCDC.form
             }
         }
 
-        private String getZdDisplayText(ZDJBXX zd)
+        private string getZdDisplayText(ZDJBXX zd)
         {
             return zd.ZDDM == null ? "未编号宗地" : zd.ZDDM;
         }
 
-        private String getZrzDisplayText(ZRZ zrz)
+        private string getZrzDisplayText(ZRZ zrz)
         {
             return zrz.ZRZH == null ? "未编号建筑物" : (zrz.ZRZH + "(" + zrz.JZWMC + ")");
         }
@@ -184,7 +184,7 @@ namespace BDCDC.form
         private DialogResult promptEditForm(IFeature feature)
         {
             IFeatureClass fc = feature.Table as IFeatureClass;
-            String name = fc.AliasName;
+            string name = fc.AliasName;
             if (name.Contains("ZDJBXX"))
             {
                 ZDJBXX zd = zdServ.findById(feature.OID);
@@ -239,12 +239,12 @@ namespace BDCDC.form
                 int id = (data as BaseEntity).fId;
                 if (data is ZDJBXX)
                 {
-                    String where = "fId=" + id;
+                    string where = "fId=" + id;
                     ArcgisService.selectMapFeatures(where, ZD_LAYER_NAME, this.mapControl);
                 }
                 else if (data is ZRZ)
                 {
-                    String where = "fId=" + id;
+                    string where = "fId=" + id;
                     ArcgisService.selectMapFeatures(where, ZRZ_LAYER_NAME, this.mapControl);
                 }
             }

@@ -87,14 +87,14 @@ namespace BDCDC.service
             });
         }
 
-        public List<JZD> getJzdListFromDb(String zddm,int dcxmId)
+        public List<JZD> getJzdListFromDb(string zddm,int dcxmId)
         {
             return useDbContext(ctx => {
                 return ctx.JZD.Where(jzd => jzd.ZDDM == zddm && jzd.QJDCXMID == dcxmId && (jzd.ZT >= 0)).ToList();
             });
         }
 
-        public List<JZX> getJzxListFromDb(String zddm, int dcxmId)
+        public List<JZX> getJzxListFromDb(string zddm, int dcxmId)
         {
             return useDbContext(ctx => {
                 return ctx.JZX.Where(jzx => jzx.ZDDM == zddm && jzx.QJDCXMID == dcxmId && (jzx.ZT >= 0)).ToList();
@@ -108,7 +108,7 @@ namespace BDCDC.service
 
 
 
-        public void saveJzdJzx(String zddm,int dcxmId, List<JZD> jzdList, List<JZX> jzxList)
+        public void saveJzdJzx(string zddm,int dcxmId, List<JZD> jzdList, List<JZX> jzxList)
         {
             checkJzd(jzdList);
             checkJzx(jzxList, jzdList);
@@ -120,7 +120,7 @@ namespace BDCDC.service
             });
         }
 
-        private void saveJzdList(String zddm, int dcxmId, List<JZD> jzdList,DbContext ctx)
+        private void saveJzdList(string zddm, int dcxmId, List<JZD> jzdList,DbContext ctx)
         {
 
             for(int i =0;i<jzdList.Count;i++)
@@ -137,7 +137,7 @@ namespace BDCDC.service
             }
         }
 
-        private void saveJzxList(String zddm, int dcxmId, List<JZX> jzxList, DbContext ctx)
+        private void saveJzxList(string zddm, int dcxmId, List<JZX> jzxList, DbContext ctx)
         {
             foreach (JZX jzx in jzxList)
             {
@@ -177,14 +177,14 @@ namespace BDCDC.service
             }
         }
 
-        public void removeAll(String zddm, int dcxmId)
+        public void removeAll(string zddm, int dcxmId)
         {
             useTransaction(ctx =>
             {
-                String deleteJzd = "delete JZD where ZDDM=@zddm and QJDCXM_ID=@dcxmId and ZT=0";
+                string deleteJzd = "delete JZD where ZDDM=@zddm and QJDCXM_ID=@dcxmId and ZT=0";
                 ctx.Database.ExecuteSqlCommand(deleteJzd, new SqlParameter("zddm",zddm), new SqlParameter("dcxmId", dcxmId));
 
-                String deleteJzx = "delete JZX where ZDDM=@zddm and QJDCXM_ID=@dcxmId and ZT=0";
+                string deleteJzx = "delete JZX where ZDDM=@zddm and QJDCXM_ID=@dcxmId and ZT=0";
                 ctx.Database.ExecuteSqlCommand(deleteJzx, new SqlParameter("zddm", zddm), new SqlParameter("dcxmId", dcxmId));
 
                 return 1;

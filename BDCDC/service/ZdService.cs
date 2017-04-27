@@ -12,8 +12,8 @@ namespace BDCDC.service
      * */
     class ZdService:Service
     {
-        private static String REGEX_ZDDM = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}";
-        private static String REGEX_BDCDYH = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}(W|F|L|Q)\d{8}";
+        private static string REGEX_ZDDM = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}";
+        private static string REGEX_BDCDYH = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}(W|F|L|Q)\d{8}";
 
         public ZDJBXX newZdjbxx()
         {
@@ -38,11 +38,11 @@ namespace BDCDC.service
 
         public void validate(ZDJBXX zd)
         {
-            if (string.IsNullOrEmpty(zd.ZDDM))
+            if (String.IsNullOrEmpty(zd.ZDDM))
             {
                 throw new Exception("宗地代码不能为空");
             }
-            if (string.IsNullOrEmpty(zd.BDCDYH))
+            if (String.IsNullOrEmpty(zd.BDCDYH))
             {
                 throw new Exception("不动产单元号不能为空");
             }
@@ -52,27 +52,27 @@ namespace BDCDC.service
                 throw new Exception("宗地图不能为空");
             }
 
-            if (string.IsNullOrEmpty(zd.QLLX))
+            if (String.IsNullOrEmpty(zd.QLLX))
             {
                 throw new Exception("权利类型不能为空");
             }
 
-            if (string.IsNullOrEmpty(zd.QLXZ))
+            if (String.IsNullOrEmpty(zd.QLXZ))
             {
                 throw new Exception("权利性质不能为空");
             }
 
-            if (string.IsNullOrEmpty(zd.YT))
+            if (String.IsNullOrEmpty(zd.YT))
             {
                 throw new Exception("用途不能为空");
             }
 
-            if (string.IsNullOrEmpty(zd.ZL))
+            if (String.IsNullOrEmpty(zd.ZL))
             {
                 throw new Exception("坐落不能为空");
             }
 
-            if (string.IsNullOrEmpty(zd.ZDSZD)|| string.IsNullOrEmpty(zd.ZDSZN)|| string.IsNullOrEmpty(zd.ZDSZX)|| string.IsNullOrEmpty(zd.ZDSZB))
+            if (String.IsNullOrEmpty(zd.ZDSZD)|| String.IsNullOrEmpty(zd.ZDSZN)|| String.IsNullOrEmpty(zd.ZDSZX)|| String.IsNullOrEmpty(zd.ZDSZB))
             {
                 throw new Exception("宗地四至不能为空");
             }
@@ -88,7 +88,7 @@ namespace BDCDC.service
          * 获取地籍子区内的宗地顺序号可取的值（当前最大值+1）
          * 
          * */
-        public String getMaxZdsxh(String djzq)
+        public string getMaxZdsxh(string djzq)
         {
             return useDbContext(ctx =>
             {
@@ -96,8 +96,8 @@ namespace BDCDC.service
                 //6位行政区划码 + 3位地籍区码 + 3位地籍子区码 + 2位特征码（GB、JA等） + 5位宗地顺序号（00001-99999）
 
                 //查询该地籍子区下当前最大的顺序号
-                String sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZT in(0,1) and ZDDM like {0}+'%'";
-                String sxh = ctx.Database.SqlQuery<String>(sql, djzq).Single();
+                string sql = "SELECT max(right(zddm,5))  from ZDJBXX where ZT in(0,1) and ZDDM like {0}+'%'";
+                string sxh = ctx.Database.SqlQuery<string>(sql, djzq).Single();
                 sxh = StringUtils.addSxh(sxh, 5);
                 return sxh;
             });
@@ -105,7 +105,7 @@ namespace BDCDC.service
         }
 
 
-        public String getMaxDzwsxh(String zddm, String dzwtzm)
+        public string getMaxDzwsxh(string zddm, string dzwtzm)
         {
             return useDbContext(ctx => {
                 if ("W".Equals(dzwtzm))
@@ -116,8 +116,8 @@ namespace BDCDC.service
                 else if ("L".Equals(dzwtzm) || "Q".Equals(dzwtzm))
                 {
                     //林地或其他
-                    String sql = "SELECT max(right(zddm,8))  from ZDJBXX where BDCDYH like {0}+{1}+'%' and ZT in(0,1)";
-                    String sxh = ctx.Database.SqlQuery<String>(sql, zddm, dzwtzm).Single();
+                    string sql = "SELECT max(right(zddm,8))  from ZDJBXX where BDCDYH like {0}+{1}+'%' and ZT in(0,1)";
+                    string sxh = ctx.Database.SqlQuery<string>(sql, zddm, dzwtzm).Single();
                     sxh = StringUtils.addSxh(sxh, 8);
                     return sxh;
                 }
@@ -174,7 +174,7 @@ namespace BDCDC.service
                 return ctx.ZDJBXX.Where(zd => zd.fId == zdId).Single();
             });
         }
-        public ZDJBXX findByZdmd(String zddm)
+        public ZDJBXX findByZdmd(string zddm)
         {
             if(zddm == null)
             {
@@ -185,7 +185,7 @@ namespace BDCDC.service
             });
         }
 
-        public decimal? getZdmjByZddm(String zddm)
+        public decimal? getZdmjByZddm(string zddm)
         {
             ZDJBXX zd = findByZdmd(zddm);
             if(zd == null)
@@ -198,7 +198,7 @@ namespace BDCDC.service
 
 
 
-        public bool checkZddm(String zddm)
+        public bool checkZddm(string zddm)
         {
             if(zddm == null)
             {
@@ -207,7 +207,7 @@ namespace BDCDC.service
             return Regex.Match(zddm, REGEX_ZDDM).Success;
         }
 
-        public bool checkZddmDuplicate(String zddm)
+        public bool checkZddmDuplicate(string zddm)
         {
             useDbContext(ctx =>
             {
@@ -217,7 +217,7 @@ namespace BDCDC.service
             return true;
         }
 
-        public bool checkBdcdyh(String bdcdyh)
+        public bool checkBdcdyh(string bdcdyh)
         {
             if (bdcdyh == null)
             {

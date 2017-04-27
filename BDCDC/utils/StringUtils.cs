@@ -15,7 +15,7 @@ namespace BDCDC.utils
                 sxh = "0";
             }
             //转为int
-            int sxh_int = Int32.Parse(sxh);
+            int sxh_int = int.Parse(sxh);
             //+1
             sxh_int++;
 

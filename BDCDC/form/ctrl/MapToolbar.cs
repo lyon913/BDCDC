@@ -36,7 +36,7 @@ namespace BDCDC.form.ctrl
             this.ImageScalingSize = new Size(32, 32);
         }
 
-        public void addButton(String text, Image image, EventHandler handler)
+        public void addButton(string text, Image image, EventHandler handler)
         {
             this.Items.Add(generateButton(text, image, handler));
         }
@@ -46,7 +46,7 @@ namespace BDCDC.form.ctrl
             this.Items.Add(new ToolStripSeparator());
         }
 
-        private ToolStripButton generateButton(String text,Image image,EventHandler handler)
+        private ToolStripButton generateButton(string text,Image image,EventHandler handler)
         {
             ToolStripButton button = new ToolStripButton(text, image,handler);
             button.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;

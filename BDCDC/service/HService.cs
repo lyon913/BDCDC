@@ -76,7 +76,7 @@ namespace BDCDC.service
             {
                 throw new Exception("户对象不能为空");
             }
-            if (string.IsNullOrEmpty(h.ZRZH))
+            if (String.IsNullOrEmpty(h.ZRZH))
             {
                 throw new Exception("自然幢不能为空");
             }
@@ -85,7 +85,7 @@ namespace BDCDC.service
             {
                 string zrzh = h.ZRZH;
                 string sql = "SELECT max(right(BDCDYH,4))  from H where ZT in(0,1) and BDCDYH like {0}+'%'";
-                string sxh = ctx.Database.SqlQuery<String>(sql, zrzh).Single();
+                string sxh = ctx.Database.SqlQuery<string>(sql, zrzh).Single();
                 if (sxh == null)
                 {
                     sxh = "0000";
@@ -105,7 +105,7 @@ namespace BDCDC.service
             string zdzl = zd.ZL;
             string jzwmc = zrz.JZWMC;
             string dyh = ""+h.DYH;
-            if(!string.IsNullOrEmpty(dyh) && !dyh.Contains("单元"))
+            if(!String.IsNullOrEmpty(dyh) && !dyh.Contains("单元"))
             {
                 dyh += "单元";
             }

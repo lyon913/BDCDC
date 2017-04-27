@@ -8,7 +8,7 @@ namespace BDCDC.form
     {
         private string[] data;
 
-        public DialogStringSelect(String title, List<String> data)
+        public DialogStringSelect(string title, List<string> data)
         {
             InitializeComponent();
 
@@ -22,9 +22,9 @@ namespace BDCDC.form
 
         }
 
-        public String getSelectedString()
+        public string getSelectedString()
         {
-            return (String)this.list.SelectedItem;
+            return (string)this.list.SelectedItem;
         }
 
         private void b_ok_Click(object sender, EventArgs e)

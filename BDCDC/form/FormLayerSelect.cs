@@ -6,14 +6,14 @@ namespace BDCDC.form
 {
     public partial class FormLayerSelect : Form
     {
-        private String selectedValue = null;
+        private string selectedValue = null;
 
-        public String getSelectedValue()
+        public string getSelectedValue()
         {
             return this.selectedValue;
         }
 
-        public FormLayerSelect(List<String> layers)
+        public FormLayerSelect(List<string> layers)
         {
             InitializeComponent();
             this.cb_layers.DataSource = layers;
@@ -21,7 +21,7 @@ namespace BDCDC.form
 
         private void bt_selected_Click(object sender, EventArgs e)
         {
-            this.selectedValue = (String)cb_layers.SelectedValue;
+            this.selectedValue = (string)cb_layers.SelectedValue;
             this.Close();
         }
 

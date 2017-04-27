@@ -84,7 +84,7 @@ namespace BDCDC.form
 
         private void initSxh()
         {
-            if (!string.IsNullOrEmpty(h.BDCDYH))
+            if (!String.IsNullOrEmpty(h.BDCDYH))
             {
                 string sxh = h.BDCDYH.Substring(24);
                 tb_sxh.Text = sxh;
@@ -94,7 +94,7 @@ namespace BDCDC.form
         private void getMaxSxh()
         {
             string bdycyh = h.BDCDYH;
-            if (!string.IsNullOrEmpty(bdycyh))
+            if (!String.IsNullOrEmpty(bdycyh))
             {
                 DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
                 if(r == DialogResult.Yes)
@@ -109,7 +109,7 @@ namespace BDCDC.form
         private void updateBdcdyh()
         {
             string sxh = tb_sxh.Text;
-            if(string.IsNullOrEmpty(sxh) || sxh.Length < 4)
+            if(String.IsNullOrEmpty(sxh) || sxh.Length < 4)
             {
                 return;
             }
@@ -151,7 +151,7 @@ namespace BDCDC.form
         private void extractSxh()
         {
             string bdcdyh = h.BDCDYH;
-            if (!string.IsNullOrEmpty(bdcdyh))
+            if (!String.IsNullOrEmpty(bdcdyh))
             {
                 tb_sxh.Text = bdcdyh.Substring(24, 4);
             }

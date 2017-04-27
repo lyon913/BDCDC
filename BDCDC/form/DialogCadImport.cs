@@ -51,7 +51,7 @@ namespace BDCDC.form
             OpenFileDialog fd = new OpenFileDialog();
             if (fd.ShowDialog(this) == DialogResult.OK)
             {
-                String file = fd.FileName;
+                string file = fd.FileName;
                 ArcgisService.addCadLayersToMap(this.mapControl, file, featureType);
                 ArcgisService.addCadToMapAsRaster(this.mapControl, file);
             }

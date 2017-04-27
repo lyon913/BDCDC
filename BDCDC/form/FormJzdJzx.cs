@@ -45,8 +45,8 @@ namespace BDCDC.form
             UiUtils.dataGridComboboxDataItems(this.JZXWZ, "界址线位置", false);
             UiUtils.dataGridComboboxDataItems(this.JXXZ, "界线性质", false);
 
-            String info1 = "宗地面积：{0} ";
-            String info2 = "宗地代码：{0} ";
+            string info1 = "宗地面积：{0} ";
+            string info2 = "宗地代码：{0} ";
             this.l_info1.Text = String.Format(info1, zdjbxx.ZDMJ);
             this.l_info2.Text = String.Format(info2, zdjbxx.ZDDM);
 
@@ -111,17 +111,17 @@ namespace BDCDC.form
         private void dg_jzd_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             int i = e.ColumnIndex;
-            String name = dg_jzd.Columns[i].DataPropertyName;
+            string name = dg_jzd.Columns[i].DataPropertyName;
             if ("JZDH".Equals(name))
             {
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     dg_jzd.Rows[e.RowIndex].ErrorText = "界址点号不能为空";
                     e.Cancel = true;
                 }
             }else if ("X".Equals(name)|| "Y".Equals(name))
             {
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     dg_jzd.Rows[e.RowIndex].ErrorText = "界址点坐标不能为空";
                     e.Cancel = true;
@@ -137,10 +137,10 @@ namespace BDCDC.form
         private void dg_jzx_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             int i = e.ColumnIndex;
-            String name = dg_jzx.Columns[i].DataPropertyName;
+            string name = dg_jzx.Columns[i].DataPropertyName;
             if ("QDH".Equals(name)|| "ZDH".Equals(name)|| "JZXCD".Equals(name))
             {
-                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
                     dg_jzx.Rows[e.RowIndex].ErrorText = "值不能为空";
                     e.Cancel = true;

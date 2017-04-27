@@ -18,14 +18,14 @@ namespace BDCDC.service
         }
 
         //自动获取自然幢顺序号
-        public String getZrzsxh(String zddm, BdcContext ctx)
+        public string getZrzsxh(string zddm, BdcContext ctx)
         {
             //自然幢不动产单元号规则：
             //宗地代码 + F + 4位幢顺序号（0001-9999） + 0000
 
             //查询宗地下当前最大的顺序号
-            String sql = "SELECT max(right(BDCDYH,8))  from ZRZ where ZT in(0,1) and BDCDYH like {0}+'F%'";
-            String sxh = ctx.Database.SqlQuery<String>(sql, zddm).Single();
+            string sql = "SELECT max(right(BDCDYH,8))  from ZRZ where ZT in(0,1) and BDCDYH like {0}+'F%'";
+            string sxh = ctx.Database.SqlQuery<string>(sql, zddm).Single();
             if(sxh == null)
             {
                 sxh = "00000000";
@@ -49,7 +49,7 @@ namespace BDCDC.service
             });
         }
 
-        public List<ZRZ> findByDcxmIdAndZddm(int dcxmId, String zddm)
+        public List<ZRZ> findByDcxmIdAndZddm(int dcxmId, string zddm)
         {
             return useDbContext(ctx =>
             {
@@ -88,15 +88,15 @@ namespace BDCDC.service
             });
         }
 
-        public List<String> findZddmIntersectZrz(ZRZ zrz)
+        public List<string> findZddmIntersectZrz(ZRZ zrz)
         {
             ITable table = ArcgisService.queryTable("ZDJBXX", "ZT in (0,1)");
             IGeometry geom = ArcgisService.dbGeometryToGeometry(zrz.SHAPE);
             List<IFeature> list = ArcgisService.spatialQuery(table as IFeatureClass, geom, esriSpatialRelEnum.esriSpatialRelIntersects);
-            List<String> result = new List<string>();
+            List<string> result = new List<string>();
             foreach (IFeature feature in list){
                 int idx_zddm = feature.Fields.FindField("ZDDM");
-                String dm = feature.Value[idx_zddm].ToString();
+                string dm = feature.Value[idx_zddm].ToString();
                 result.Add(dm);
             }
             return result;
