@@ -222,31 +222,31 @@ namespace BDCDC.form
 
         private void updateZddm()
         {
-            string zdsxh = tb_zdsxh.Text;
-            if (zdsxh != null && !"".Equals(zdsxh))
-            {
-                string djzq = (string)cb_djzq.SelectedValue;
-                string syqlx = (string)cb_syqlx.SelectedValue;
-                string zdtzm = (string)cb_zdtzm.SelectedValue;
 
-                tb_zddm.Text = djzq + syqlx + zdtzm + zdsxh;
+            string djzq = UiUtils.cbSelectedValueToString(cb_djzq);
+            string syqlx = UiUtils.cbSelectedValueToString(cb_syqlx); 
+            string zdtzm = UiUtils.cbSelectedValueToString(cb_zdtzm); 
+            string zdsxh = tb_zdsxh.Text;
+
+            string zddm = djzq + syqlx + zdtzm + zdsxh;
+            if (zdService.checkZddm(zddm))
+            {
+                tb_zddm.Text = zddm;
             }
 
         }
 
         private void updateBdcdyh()
         {
+            string zddm = tb_zddm.Text;
             string dzwsxh = tb_dzwsxh.Text;
+            string dzwtzm = UiUtils.cbSelectedValueToString(cb_dzwtzm);
 
-            if (dzwsxh != null && !"".Equals(dzwsxh))
+            string bdcdyh = zddm + dzwtzm + dzwsxh;
+
+            if (zdService.checkBdcdyh(bdcdyh))
             {
-
-                string dzwtzm = (string)cb_dzwtzm.SelectedValue;
-                string zddm = (string)tb_zddm.Text;
-                if (zddm != null && !"".Equals(zddm))
-                {
-                    tb_bdcdyh.Text = zddm + dzwtzm + dzwsxh;
-                }
+                tb_bdcdyh.Text = bdcdyh;
             }
         }
 
@@ -288,7 +288,6 @@ namespace BDCDC.form
             try
             {
                 //存储ZDJBXX 和对应的宗地图
-                zdService.validate(zdjbxx);
                 zdService.saveOrUpdate(zdjbxx);
                 this.DialogResult = DialogResult.OK;
                 this.Close();

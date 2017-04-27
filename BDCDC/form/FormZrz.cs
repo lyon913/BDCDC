@@ -90,9 +90,29 @@ namespace BDCDC.form
 
         private void bt_getZrzsxh_Click(object sender, EventArgs e)
         {
-            using (var ctx = new BdcContext())
+            getMaxSxh();
+        }
+
+        private bool confirmUpdateBdcdyh()
+        {
+            string bdcdyh = zrz.BDCDYH;
+            if (!String.IsNullOrEmpty(bdcdyh))
             {
-                string sxh = zrzService.getZrzsxh(this.zrz.ZDDM,ctx);
+                DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (r == DialogResult.No)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        private void getMaxSxh()
+        {
+            if (confirmUpdateBdcdyh())
+            {
+                string sxh = zrzService.getZrzsxh(this.zrz.ZDDM);
                 this.tb_zsxh.Text = sxh;
                 upateBdcdyh();
             }
@@ -124,11 +144,14 @@ namespace BDCDC.form
 
         private void bt_save_Click(object sender, EventArgs e)
         {
-            if (validate())
+            try
             {
                 zrzService.saveOrUpdate(this.zrz);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }catch(Exception ex)
+            {
+                UiUtils.alertException(this,ex);
             }
             
         }
@@ -138,28 +161,7 @@ namespace BDCDC.form
             this.Close();
         }
 
-        public bool validate()
-        {
-            if(!zdService.checkZddm(zrz.ZDDM))
-            {
-                MessageBox.Show(this, "宗地代码无效", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (zrz.BDCDYH == null || "".Equals(zrz.BDCDYH))
-            {
-                MessageBox.Show(this, "请编制不动产单元号", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (zrz.SHAPE == null)
-            {
-                MessageBox.Show(this, "请先关联自然幢图形", "校验", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
-        }
+        
 
         private void tb_zddm_TextChanged(object sender, EventArgs e)
         {
@@ -188,6 +190,11 @@ namespace BDCDC.form
 
         private void b_get_zddm_Click(object sender, EventArgs e)
         {
+            if (!confirmUpdateBdcdyh())
+            {
+                return;
+            }
+
             if(zrz.SHAPE == null)
             {
                 MessageBox.Show("未找到自然幢图形数据。");
@@ -216,5 +223,6 @@ namespace BDCDC.form
                 return;
             }
         }
+
     }
 }

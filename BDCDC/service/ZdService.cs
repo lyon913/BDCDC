@@ -27,11 +27,24 @@ namespace BDCDC.service
             return zd;
         }
 
-        public void saveOrUpdate(ZDJBXX zd)
+
+
+        public void saveWithoutValidate(ZDJBXX zd)
         {
             useTransaction(ctx =>
             {
                 insertOrUpdate(zd,ctx);
+                return zd;
+            });
+        }
+
+
+        public void saveOrUpdate(ZDJBXX zd)
+        {
+            validate(zd);
+            useTransaction(ctx =>
+            {
+                insertOrUpdate(zd, ctx);
                 return zd;
             });
         }
@@ -200,7 +213,7 @@ namespace BDCDC.service
 
         public bool checkZddm(string zddm)
         {
-            if(zddm == null)
+            if(String.IsNullOrEmpty(zddm))
             {
                 return false;
             }
@@ -219,7 +232,7 @@ namespace BDCDC.service
 
         public bool checkBdcdyh(string bdcdyh)
         {
-            if (bdcdyh == null)
+            if (String.IsNullOrEmpty(bdcdyh))
             {
                 return false;
             }

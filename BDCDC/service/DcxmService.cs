@@ -48,7 +48,7 @@ namespace BDCDC.service
                 zd.SHAPE = ArcgisService.featureToDbGeometry(feature);
                 zd.QJDCXMID = dcxmId;
 
-                zdServ.saveOrUpdate(zd);
+                zdServ.saveWithoutValidate(zd);
             }
         }
 
@@ -56,11 +56,9 @@ namespace BDCDC.service
         {
             foreach (IFeature feature in features)
             {
-                ZRZ zrz = zrzServ.newZrz();
+                ZRZ zrz = zrzServ.newZrz(dcxmId);
                 zrz.SHAPE = ArcgisService.featureToDbGeometry(feature);
-                zrz.QJDCXMID = dcxmId;
-
-                zrzServ.saveOrUpdate(zrz);
+                zrzServ.saveWithoutValidate(zrz);
             }
         }
 

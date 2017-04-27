@@ -89,5 +89,17 @@ namespace BDCDC.utils
         {
             MessageBox.Show(owner, ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static string cbSelectedValueToString(ComboBox cb)
+        {
+            if(cb.SelectedValue == null)
+            {
+                return null;
+            }
+            else
+            {
+                return cb.SelectedValue.ToString();
+            }
+        }
     }
 }

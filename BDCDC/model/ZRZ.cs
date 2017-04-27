@@ -19,7 +19,7 @@ namespace BDCDC.model
 
         public int? DXCS { get; set; }
 
-        public Decimal? DXSD { get; set; }
+        public decimal? DXSD { get; set; }
 
         [StringLength(50)]
         public string FWJG { get; set; }
@@ -29,7 +29,7 @@ namespace BDCDC.model
 
         public DateTime? JGRQ { get; set; }
 
-        public Decimal? JZWGD { get; set; }
+        public decimal? JZWGD { get; set; }
 
         [StringLength(50)]
         public string JZWJBYT { get; set; }

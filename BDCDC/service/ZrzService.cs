@@ -10,22 +10,29 @@ namespace BDCDC.service
 {
     class ZrzService : Service
     {
-        public ZRZ newZrz()
+        private ZdService zs = new ZdService();
+
+        public ZRZ newZrz(int dcxmId)
         {
             ZRZ z = new ZRZ();
             z.ZT = 0;
+            z.QJDCXMID = dcxmId;
             return z;
         }
 
         //自动获取自然幢顺序号
-        public string getZrzsxh(string zddm, BdcContext ctx)
+        public string getZrzsxh(string zddm)
         {
             //自然幢不动产单元号规则：
             //宗地代码 + F + 4位幢顺序号（0001-9999） + 0000
 
             //查询宗地下当前最大的顺序号
             string sql = "SELECT max(right(BDCDYH,8))  from ZRZ where ZT in(0,1) and BDCDYH like {0}+'F%'";
-            string sxh = ctx.Database.SqlQuery<string>(sql, zddm).Single();
+            string sxh = useDbContext(ctx =>
+            {
+                return ctx.Database.SqlQuery<string>(sql, zddm).SingleOrDefault();
+            });
+           
             if(sxh == null)
             {
                 sxh = "00000000";
@@ -38,15 +45,86 @@ namespace BDCDC.service
             return sxh;
         }
 
+
         //保存或更新 ZRZ
         public void saveOrUpdate(ZRZ zrz)
         {
-
+            validate(zrz);
             useTransaction(ctx =>
             {
                 insertOrUpdate(zrz,ctx);
                 return zrz;
             });
+        }
+
+
+        //保存或更新 ZRZ
+        public void saveWithoutValidate(ZRZ zrz)
+        {
+            useTransaction(ctx =>
+            {
+                insertOrUpdate(zrz, ctx);
+                return zrz;
+            });
+        }
+
+        public void validate(ZRZ zrz)
+        {
+            if (!zs.checkZddm(zrz.ZDDM))
+            {
+                throw new Exception("宗地代码无效");
+            }
+
+            if (String.IsNullOrEmpty(zrz.BDCDYH))
+            {
+                throw new Exception("不动产单元号不能为空");
+            }
+
+            if (zrz.SHAPE == null)
+            {
+                throw new Exception("自然幢图形不能为空");
+            }
+
+            if (String.IsNullOrEmpty(zrz.XMMC))
+            {
+                throw new Exception("项目名称不能为空");
+            }
+
+            if (String.IsNullOrEmpty(zrz.JZWMC))
+            {
+                throw new Exception("建筑物名称不能为空");
+            }
+
+            if (String.IsNullOrEmpty(zrz.GHYT))
+            {
+                throw new Exception("规划用途称不能为空");
+            }
+
+            if (String.IsNullOrEmpty(zrz.FWJG))
+            {
+                throw new Exception("建筑物结构不能为空");
+            }
+
+            if (zrz.ZTS == null)
+            {
+                throw new Exception("总套数不能为空");
+            }
+
+            if (zrz.ZCS == null)
+            {
+                throw new Exception("总层数不能为空");
+            }
+
+            if (zrz.ZCS == null)
+            {
+                throw new Exception("幢占地面积不能为空");
+            }
+
+            if (zrz.ZYDMJ == null)
+            {
+                throw new Exception("幢用地面积不能为空");
+            }
+
         }
 
         public List<ZRZ> findByDcxmIdAndZddm(int dcxmId, string zddm)
