@@ -82,6 +82,7 @@
             this.dp_jgrq = new System.Windows.Forms.DateTimePicker();
             this.b_zydmj_get = new System.Windows.Forms.Button();
             this.b_zzdmj_calc = new System.Windows.Forms.Button();
+            this.b_selectedXm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zydmj)).BeginInit();
@@ -352,7 +353,8 @@
             this.tb_xmmc.Location = new System.Drawing.Point(106, 263);
             this.tb_xmmc.MaxLength = 19;
             this.tb_xmmc.Name = "tb_xmmc";
-            this.tb_xmmc.Size = new System.Drawing.Size(177, 21);
+            this.tb_xmmc.ReadOnly = true;
+            this.tb_xmmc.Size = new System.Drawing.Size(133, 21);
             this.tb_xmmc.TabIndex = 29;
             // 
             // label18
@@ -637,11 +639,22 @@
             this.b_zzdmj_calc.UseVisualStyleBackColor = true;
             this.b_zzdmj_calc.Click += new System.EventHandler(this.b_zzdmj_calc_Click);
             // 
+            // b_selectedXm
+            // 
+            this.b_selectedXm.Location = new System.Drawing.Point(245, 263);
+            this.b_selectedXm.Name = "b_selectedXm";
+            this.b_selectedXm.Size = new System.Drawing.Size(38, 23);
+            this.b_selectedXm.TabIndex = 70;
+            this.b_selectedXm.Text = "查找";
+            this.b_selectedXm.UseVisualStyleBackColor = true;
+            this.b_selectedXm.Click += new System.EventHandler(this.b_selectedXm_Click);
+            // 
             // FormZrz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 496);
+            this.Controls.Add(this.b_selectedXm);
             this.Controls.Add(this.b_zzdmj_calc);
             this.Controls.Add(this.b_zydmj_get);
             this.Controls.Add(this.dp_jgrq);
@@ -759,5 +772,6 @@
         private System.Windows.Forms.Button b_zydmj_get;
         private System.Windows.Forms.Button b_zzdmj_calc;
         private System.Windows.Forms.Button b_get_zddm;
+        private System.Windows.Forms.Button b_selectedXm;
     }
 }

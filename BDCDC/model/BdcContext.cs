@@ -15,6 +15,7 @@ namespace BDCDC.model
         public DbSet<SysUser> SysUser { get; set; }
         public DbSet<LJZ> LJZ { get; set; }
         public DbSet<H> H { get; set; }
+        public DbSet<XM> XM { get; set; }
 
         public BdcContext():base("bdcContext")
         {

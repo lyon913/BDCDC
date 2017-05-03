@@ -80,6 +80,11 @@ namespace BDCDC.service
                 throw new Exception("不动产单元号不能为空");
             }
 
+            if (String.IsNullOrEmpty(zrz.ZRZH))
+            {
+                throw new Exception("自然幢号不能为空");
+            }
+
             if (zrz.SHAPE == null)
             {
                 throw new Exception("自然幢图形不能为空");
@@ -123,6 +128,10 @@ namespace BDCDC.service
             if (zrz.ZYDMJ == null)
             {
                 throw new Exception("幢用地面积不能为空");
+            }
+            if (zrz.SCJZMJ == null)
+            {
+                throw new Exception("实测建筑面积不能为空");
             }
 
         }

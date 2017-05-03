@@ -192,4 +192,11 @@ alter table LJZ add ZTS int;
 alter table LJZ alter column fCreatorId int;
 alter table LJZ alter column fLastUpdaterId int;
 
+--XM
+alter table XM drop constraint PK__XM__D9F8227C2685A772;
+alter table XM alter column FID int;
+alter table XM add constraint PK_XM_FID primary key clustered(FID) ;
+
+alter table XM alter column fCreatorId int;
+alter table XM alter column fLastUpdaterId int;
 

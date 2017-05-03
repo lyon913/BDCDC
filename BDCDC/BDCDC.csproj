@@ -243,6 +243,18 @@
     <Compile Include="form\FormProjectZd.Designer.cs">
       <DependentUpon>FormProjectZd.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\FormXm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormXm.Designer.cs">
+      <DependentUpon>FormXm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\FormXmList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormXmList.Designer.cs">
+      <DependentUpon>FormXmList.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormZdjbxx.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +273,7 @@
     <Compile Include="form\FormH.Designer.cs">
       <DependentUpon>FormH.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\Xm.cs" />
     <Compile Include="model\BaseAuditEntity.cs" />
     <Compile Include="model\BaseEntity.cs" />
     <Compile Include="model\BdcContext.cs" />
@@ -274,6 +287,7 @@
     <Compile Include="model\LJZ.cs" />
     <Compile Include="model\QJDCXM.cs" />
     <Compile Include="model\SysUser.cs" />
+    <Compile Include="model\XM.cs" />
     <Compile Include="model\ZDJBXX.cs" />
     <Compile Include="model\ZRZ.cs" />
     <Compile Include="Program.cs" />
@@ -290,6 +304,7 @@
     <Compile Include="service\LjzService.cs" />
     <Compile Include="service\Service.cs" />
     <Compile Include="service\UserService.cs" />
+    <Compile Include="service\XmService.cs" />
     <Compile Include="service\ZdService.cs" />
     <Compile Include="service\ZrzService.cs" />
     <Compile Include="utils\HashUtils.cs" />
@@ -335,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormProjectZd.resx">
       <DependentUpon>FormProjectZd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormXm.resx">
+      <DependentUpon>FormXm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormXmList.resx">
+      <DependentUpon>FormXmList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormZdjbxx.resx">
       <DependentUpon>FormZdjbxx.cs</DependentUpon>

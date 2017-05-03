@@ -10,7 +10,6 @@ namespace BDCDC.form
     public partial class FormZrz : Form
     {
         private ZRZ zrz;
-
         private ZrzService zrzService = new ZrzService();
         private ZdService zdService = new ZdService();
         private DataItemsService itemService = new DataItemsService();
@@ -74,6 +73,11 @@ namespace BDCDC.form
             tb_bz.DataBindings.Add("Text", zrz, "BZ", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        private void FormZrz_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void initSxh()
         {
             if (!String.IsNullOrEmpty(zrz.ZRZH))
@@ -83,10 +87,7 @@ namespace BDCDC.form
             }
         }
 
-        private void FormZrz_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void bt_getZrzsxh_Click(object sender, EventArgs e)
         {
@@ -165,6 +166,7 @@ namespace BDCDC.form
 
         private void tb_zddm_TextChanged(object sender, EventArgs e)
         {
+            tb_zddm.DataBindings[0].WriteValue();
             upateBdcdyh();
         }
 
@@ -224,5 +226,21 @@ namespace BDCDC.form
             }
         }
 
+        private void b_selectedXm_Click(object sender, EventArgs e)
+        {
+            findXm();
+        }
+
+        private void findXm()
+        {
+            FormXmList f = new FormXmList();
+            DialogResult r = f.ShowDialog(this);
+            if(r == DialogResult.OK)
+            {
+                XM xm = f.selectedXm;
+                zrz.XMMC = xm.XMMC;
+                zrz.XMID = xm.fId;
+            }
+        }
     }
 }
