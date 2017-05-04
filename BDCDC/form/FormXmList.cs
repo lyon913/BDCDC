@@ -21,6 +21,12 @@ namespace BDCDC.form
         public FormXmList()
         {
             InitializeComponent();
+            init();
+        }
+
+        public void init()
+        {
+            dgv.AutoGenerateColumns = false;
         }
 
         private void b_createXm_Click(object sender, EventArgs e)

@@ -240,6 +240,8 @@ namespace BDCDC.form
                 XM xm = f.selectedXm;
                 zrz.XMMC = xm.XMMC;
                 zrz.XMID = xm.fId;
+
+                tb_xmmc.Text = xm.XMMC;
             }
         }
     }

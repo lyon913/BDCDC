@@ -177,6 +177,12 @@
     <Compile Include="form\DialogStringSelect.Designer.cs">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\FormHList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\FormHList.Designer.cs">
+      <DependentUpon>FormHList.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\FormLjz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,7 +279,6 @@
     <Compile Include="form\FormH.Designer.cs">
       <DependentUpon>FormH.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\Xm.cs" />
     <Compile Include="model\BaseAuditEntity.cs" />
     <Compile Include="model\BaseEntity.cs" />
     <Compile Include="model\BdcContext.cs" />
@@ -317,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\DialogStringSelect.resx">
       <DependentUpon>DialogStringSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\FormHList.resx">
+      <DependentUpon>FormHList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\FormLjz.resx">
       <DependentUpon>FormLjz.cs</DependentUpon>

@@ -69,6 +69,8 @@ alter table zrz alter column fLastUpdaterId int;
 go
 alter table zrz add QJDCXM_ID int;
 go
+alter table zrz alter column XMID int;
+go
 alter table zrz alter column fCreatorId int;
 go
 alter table ZRZ alter column DXSD numeric(15,2);

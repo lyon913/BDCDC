@@ -46,17 +46,17 @@ namespace BDCDC.service
                 IQueryable<XM> query = ctx.XM.AsQueryable<XM>();
                 if (!String.IsNullOrEmpty(xmmc))
                 {
-                    query.Where(xm => xm.XMMC.Contains(xmmc));
+                    query = query.Where(xm => xm.XMMC.Contains(xmmc));
                 }
 
                 if (!String.IsNullOrEmpty(kfqymc))
                 {
-                    query.Where(xm => xm.KFSMC.Contains(kfqymc));
+                    query = query.Where(xm => xm.KFSMC.Contains(kfqymc));
                 }
 
                 if (!String.IsNullOrEmpty(xmzl))
                 {
-                    query.Where(xm => xm.XMZL.Contains(xmzl));
+                    query = query.Where(xm => xm.XMZL.Contains(xmzl));
                 }
 
                 return query.OrderByDescending(xm => xm.fId).ToList();

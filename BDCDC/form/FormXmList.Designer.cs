@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.b_ok = new System.Windows.Forms.Button();
             this.b_createXm = new System.Windows.Forms.Button();
             this.b_search = new System.Windows.Forms.Button();
             this.tb_kfqymc = new System.Windows.Forms.TextBox();
@@ -37,7 +38,6 @@
             this.tb_xmzl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_xmmc = new System.Windows.Forms.TextBox();
-            this.b_ok = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.c_xmmc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_kfqymc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +73,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询条件";
+            // 
+            // b_ok
+            // 
+            this.b_ok.Location = new System.Drawing.Point(708, 20);
+            this.b_ok.Name = "b_ok";
+            this.b_ok.Size = new System.Drawing.Size(75, 51);
+            this.b_ok.TabIndex = 8;
+            this.b_ok.Text = "确定";
+            this.b_ok.UseVisualStyleBackColor = true;
+            this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
             // 
             // b_createXm
             // 
@@ -133,16 +143,6 @@
             this.tb_xmmc.Size = new System.Drawing.Size(183, 21);
             this.tb_xmmc.TabIndex = 1;
             // 
-            // b_ok
-            // 
-            this.b_ok.Location = new System.Drawing.Point(708, 20);
-            this.b_ok.Name = "b_ok";
-            this.b_ok.Size = new System.Drawing.Size(75, 51);
-            this.b_ok.TabIndex = 8;
-            this.b_ok.Text = "确定";
-            this.b_ok.UseVisualStyleBackColor = true;
-            this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
-            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
@@ -157,6 +157,7 @@
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.Height = 23;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(789, 367);
             this.dgv.TabIndex = 2;
             // 
