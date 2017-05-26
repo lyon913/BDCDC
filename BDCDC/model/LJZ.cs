@@ -57,5 +57,7 @@ namespace BDCDC.model
 
         public int ZT { get; set; }
 
+        public int? XMID { get; set; }
+
     }
 }

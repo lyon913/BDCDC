@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.group1 = new System.Windows.Forms.GroupBox();
+            this.b_ok = new System.Windows.Forms.Button();
             this.b_search = new System.Windows.Forms.Button();
             this.tb_xmzl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,10 +38,9 @@
             this.list_xm = new System.Windows.Forms.ListBox();
             this.list_ljz = new System.Windows.Forms.ListBox();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.b_ok = new System.Windows.Forms.Button();
             this.b_checkAll = new System.Windows.Forms.Button();
             this.b_checkInvert = new System.Windows.Forms.Button();
-            this.b_uncheck = new System.Windows.Forms.Button();
+            this.b_uncheckAll = new System.Windows.Forms.Button();
             this.group1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
@@ -59,6 +59,15 @@
             this.group1.TabIndex = 0;
             this.group1.TabStop = false;
             this.group1.Text = "楼盘查询";
+            // 
+            // b_ok
+            // 
+            this.b_ok.Location = new System.Drawing.Point(879, 23);
+            this.b_ok.Name = "b_ok";
+            this.b_ok.Size = new System.Drawing.Size(75, 21);
+            this.b_ok.TabIndex = 11;
+            this.b_ok.Text = "确定";
+            this.b_ok.UseVisualStyleBackColor = true;
             // 
             // b_search
             // 
@@ -122,6 +131,7 @@
             this.list_ljz.Name = "list_ljz";
             this.list_ljz.Size = new System.Drawing.Size(187, 436);
             this.list_ljz.TabIndex = 2;
+            this.list_ljz.SelectedValueChanged += new System.EventHandler(this.list_ljz_SelectedValueChanged);
             // 
             // dgv
             // 
@@ -131,15 +141,6 @@
             this.dgv.RowTemplate.Height = 23;
             this.dgv.Size = new System.Drawing.Size(574, 436);
             this.dgv.TabIndex = 3;
-            // 
-            // b_ok
-            // 
-            this.b_ok.Location = new System.Drawing.Point(879, 23);
-            this.b_ok.Name = "b_ok";
-            this.b_ok.Size = new System.Drawing.Size(75, 21);
-            this.b_ok.TabIndex = 11;
-            this.b_ok.Text = "确定";
-            this.b_ok.UseVisualStyleBackColor = true;
             // 
             // b_checkAll
             // 
@@ -159,21 +160,21 @@
             this.b_checkInvert.Text = "反选";
             this.b_checkInvert.UseVisualStyleBackColor = true;
             // 
-            // b_uncheck
+            // b_uncheckAll
             // 
-            this.b_uncheck.Location = new System.Drawing.Point(921, 91);
-            this.b_uncheck.Name = "b_uncheck";
-            this.b_uncheck.Size = new System.Drawing.Size(51, 21);
-            this.b_uncheck.TabIndex = 14;
-            this.b_uncheck.Text = "不选";
-            this.b_uncheck.UseVisualStyleBackColor = true;
+            this.b_uncheckAll.Location = new System.Drawing.Point(921, 91);
+            this.b_uncheckAll.Name = "b_uncheckAll";
+            this.b_uncheckAll.Size = new System.Drawing.Size(51, 21);
+            this.b_uncheckAll.TabIndex = 14;
+            this.b_uncheckAll.Text = "不选";
+            this.b_uncheckAll.UseVisualStyleBackColor = true;
             // 
             // FormHList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 563);
-            this.Controls.Add(this.b_uncheck);
+            this.Controls.Add(this.b_uncheckAll);
             this.Controls.Add(this.b_checkInvert);
             this.Controls.Add(this.b_checkAll);
             this.Controls.Add(this.dgv);
@@ -206,6 +207,6 @@
         private System.Windows.Forms.Button b_ok;
         private System.Windows.Forms.Button b_checkAll;
         private System.Windows.Forms.Button b_checkInvert;
-        private System.Windows.Forms.Button b_uncheck;
+        private System.Windows.Forms.Button b_uncheckAll;
     }
 }

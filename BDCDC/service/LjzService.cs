@@ -34,6 +34,11 @@ namespace BDCDC.service
             });
         }
 
+        /// <summary>
+        /// 根据调查项目ID查找逻辑幢
+        /// </summary>
+        /// <param name="dcxmId"></param>
+        /// <returns></returns>
         public List<LJZ> findByDcxmId(int dcxmId)
         {
             return useDbContext(ctx =>
@@ -43,6 +48,19 @@ namespace BDCDC.service
                     H = h,
                     LJZ = ljz
                 }).Where(a => a.H.QJDCXMID == dcxmId).Select(a => a.LJZ).Distinct().OrderBy(a => a.LJZH).ToList();
+            });
+        }
+
+        /// <summary>
+        /// 根据房地产项目id查找逻辑幢
+        /// </summary>
+        /// <param name="xmid"></param>
+        /// <returns></returns>
+        public List<LJZ> findByXmId(int xmid)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.LJZ.Where(ljz => ljz.XMID == xmid).OrderBy(a => a.LJZH).ToList();
             });
         }
 

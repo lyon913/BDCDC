@@ -15,7 +15,12 @@ namespace BDCDC.form
     public partial class FormHList : Form
     {
         private XmService xs = new XmService();
-        private List<H> selected = null;
+        private LjzService ls = new LjzService();
+        private HService hs = new HService();
+
+        private XM selectedXm = null;
+        private LJZ selectedLjz = null;
+        private List<H> selectedH = null;
         
 
         public FormHList()
@@ -32,6 +37,7 @@ namespace BDCDC.form
         private void initUI()
         {
             list_xm.DisplayMember = "XMMC";
+            list_ljz.DisplayMember = "LJZH";
         }
 
         private void b_search_Click(object sender, EventArgs e)
@@ -46,6 +52,7 @@ namespace BDCDC.form
             }
 
             List<XM> xmList = xs.search(key_xmmc, null, key_xmlz);
+            loadXmList(xmList);
 
         }
 
@@ -54,9 +61,29 @@ namespace BDCDC.form
             list_xm.DataSource = list;
         }
 
+        private void loadLjzList(List<LJZ> list)
+        {
+            list_ljz.DataSource = list;
+        }
+
+        private void loadHList(List<H> list)
+        {
+            dgv.DataSource = list;
+        }
+
         private void list_xm_SelectedValueChanged(object sender, EventArgs e)
         {
+            selectedXm = (XM)list_xm.SelectedItem;
+            List<LJZ> ljzList = ls.findByXmId(selectedXm.fId);
+            loadLjzList(ljzList);
+        }
 
+        private void list_ljz_SelectedValueChanged(object sender, EventArgs e)
+        {
+            selectedLjz = (LJZ)list_ljz.SelectedItem;
+            List<H> hList = hs.findByLjzId(selectedLjz.fId);
+            loadHList(hList);
         }
     }
 }
+ 
