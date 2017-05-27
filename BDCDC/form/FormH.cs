@@ -97,13 +97,15 @@ namespace BDCDC.form
             if (!String.IsNullOrEmpty(bdycyh))
             {
                 DialogResult r = MessageBox.Show(this, "不动产单元号已存在，是否确定要重新获取?", "警告", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-                if(r == DialogResult.Yes)
+                if(r == DialogResult.No)
                 {
-                    string sxh = hs.getMaxSxh(h);
-                    tb_sxh.Text = sxh;
-                    updateBdcdyh();
+                    return;
                 }
             }
+
+            string sxh = hs.getMaxSxh(h);
+            tb_sxh.Text = sxh;
+            updateBdcdyh();
         }
 
         private void updateBdcdyh()

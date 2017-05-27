@@ -59,7 +59,7 @@ namespace BDCDC.service
                     query = query.Where(xm => xm.XMZL.Contains(xmzl));
                 }
 
-                return query.OrderByDescending(xm => xm.fId).ToList();
+                return query.OrderByDescending(xm => xm.XMMC).ToList();
             });
         }
     }

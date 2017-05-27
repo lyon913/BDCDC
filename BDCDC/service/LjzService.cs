@@ -60,7 +60,7 @@ namespace BDCDC.service
         {
             return useDbContext(ctx =>
             {
-                return ctx.LJZ.Where(ljz => ljz.XMID == xmid).OrderBy(a => a.LJZH).ToList();
+                return ctx.LJZ.Where(ljz => ljz.XMID == xmid).OrderBy(a => a.fId).ToList();
             });
         }
 

@@ -4,6 +4,7 @@ using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.SystemUI;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace BDCDC.utils
@@ -100,6 +101,12 @@ namespace BDCDC.utils
             {
                 return cb.SelectedValue.ToString();
             }
+        }
+
+
+        public static void dgvAddHeaderCheckBox(DataGridView dgv)
+        {
+
         }
     }
 }
