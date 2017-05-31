@@ -33,6 +33,11 @@ namespace BDCDC.form
             UiUtils.comboboxDataItems(cb_fwyt1, "房屋用途", false);
             UiUtils.comboboxDataItems(cb_fwyt2, "房屋用途", false);
             UiUtils.comboboxDataItems(cb_fwyt3, "房屋用途", false);
+
+            if(ljz.JGRQ == null)
+            {
+                dp_jgrq.Checked = false;
+            }
         }
 
         private void databinding()
@@ -80,6 +85,15 @@ namespace BDCDC.form
             }catch(Exception ex)
             {
                 UiUtils.alertException(this, ex);
+            }
+        }
+
+        private void dp_jgrq_ValueChanged(object sender, EventArgs e)
+        {
+            if (!dp_jgrq.Checked)
+            {
+                dp_jgrq.Value = new DateTime(1900, 1, 1);
+                dp_jgrq.DataBindings[0].WriteValue();
             }
         }
     }

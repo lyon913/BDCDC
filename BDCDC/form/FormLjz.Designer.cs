@@ -266,6 +266,7 @@
             // 
             // dp_jgrq
             // 
+            this.dp_jgrq.Checked = false;
             this.dp_jgrq.Location = new System.Drawing.Point(107, 190);
             this.dp_jgrq.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
             this.dp_jgrq.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
@@ -274,6 +275,7 @@
             this.dp_jgrq.Size = new System.Drawing.Size(177, 21);
             this.dp_jgrq.TabIndex = 106;
             this.dp_jgrq.Value = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
+            this.dp_jgrq.ValueChanged += new System.EventHandler(this.dp_jgrq_ValueChanged);
             // 
             // label12
             // 
@@ -453,6 +455,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_zrzh);
             this.Name = "FormLjz";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "逻辑幢";
             this.Load += new System.EventHandler(this.FormLjz_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nb_dxcs)).EndInit();

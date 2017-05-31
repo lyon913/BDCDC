@@ -30,12 +30,6 @@
         {
             this.tv = new System.Windows.Forms.TreeView();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.m_jttd = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.BDCDYH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZRZH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LJZH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +45,12 @@
             this.GYTDMY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FTTDMJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.m_jttd = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dcxmInfo = new BDCDC.form.ctrl.DcxmInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -68,6 +68,7 @@
             this.tv.Size = new System.Drawing.Size(250, 472);
             this.tv.TabIndex = 1;
             this.tv.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_AfterSelect);
+            this.tv.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tv_NodeMouseDoubleClick);
             // 
             // dgv
             // 
@@ -100,66 +101,6 @@
             this.dgv.Size = new System.Drawing.Size(679, 472);
             this.dgv.TabIndex = 0;
             this.dgv.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellDoubleClick);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_jttd,
-            this.m_gytd});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(934, 25);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // m_jttd
-            // 
-            this.m_jttd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_create_h});
-            this.m_jttd.Name = "m_jttd";
-            this.m_jttd.Size = new System.Drawing.Size(92, 21);
-            this.m_jttd.Text = "集体土地房屋";
-            // 
-            // m_create_h
-            // 
-            this.m_create_h.Name = "m_create_h";
-            this.m_create_h.Size = new System.Drawing.Size(112, 22);
-            this.m_create_h.Text = "新建户";
-            this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
-            // 
-            // m_gytd
-            // 
-            this.m_gytd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_fwlz});
-            this.m_gytd.Name = "m_gytd";
-            this.m_gytd.Size = new System.Drawing.Size(116, 21);
-            this.m_gytd.Text = "国有建设用地房屋";
-            // 
-            // m_fwlz
-            // 
-            this.m_fwlz.Name = "m_fwlz";
-            this.m_fwlz.Size = new System.Drawing.Size(124, 22);
-            this.m_fwlz.Text = "房屋落宗";
-            this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 89);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tv);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgv);
-            this.splitContainer1.Size = new System.Drawing.Size(934, 472);
-            this.splitContainer1.SplitterDistance = 250;
-            this.splitContainer1.SplitterWidth = 5;
-            this.splitContainer1.TabIndex = 4;
-            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
             // 
             // BDCDYH
             // 
@@ -284,6 +225,66 @@
             this.ZL.Name = "ZL";
             this.ZL.ReadOnly = true;
             this.ZL.Width = 300;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_jttd,
+            this.m_gytd});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(934, 25);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // m_jttd
+            // 
+            this.m_jttd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_create_h});
+            this.m_jttd.Name = "m_jttd";
+            this.m_jttd.Size = new System.Drawing.Size(92, 21);
+            this.m_jttd.Text = "集体土地房屋";
+            // 
+            // m_create_h
+            // 
+            this.m_create_h.Name = "m_create_h";
+            this.m_create_h.Size = new System.Drawing.Size(112, 22);
+            this.m_create_h.Text = "新建户";
+            this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
+            // 
+            // m_gytd
+            // 
+            this.m_gytd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.m_fwlz});
+            this.m_gytd.Name = "m_gytd";
+            this.m_gytd.Size = new System.Drawing.Size(116, 21);
+            this.m_gytd.Text = "国有建设用地房屋";
+            // 
+            // m_fwlz
+            // 
+            this.m_fwlz.Name = "m_fwlz";
+            this.m_fwlz.Size = new System.Drawing.Size(124, 22);
+            this.m_fwlz.Text = "房屋落宗";
+            this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 89);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tv);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgv);
+            this.splitContainer1.Size = new System.Drawing.Size(934, 472);
+            this.splitContainer1.SplitterDistance = 250;
+            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.TabIndex = 4;
+            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
             // 
             // dcxmInfo
             // 

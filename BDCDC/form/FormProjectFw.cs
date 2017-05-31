@@ -99,6 +99,17 @@ namespace BDCDC.form
             loadHList();
         }
 
+        private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeNode n = tv.SelectedNode;
+            if (n != null && n.Tag is LJZ)
+            {
+                LJZ ljz = (LJZ)n.Tag;
+                FormLjz f = new FormLjz(ljz);
+                f.ShowDialog(this);
+            }
+        }
+
         private void loadHList()
         {
             TreeNode n = tv.SelectedNode;
@@ -106,7 +117,7 @@ namespace BDCDC.form
             {
                 LJZ ljz = (LJZ)n.Tag;
                 int id = ljz.fId;
-                List<H> hList = hs.findByLjzId(id);
+                List<H> hList = hs.findByLjzIdAndDcxmId(id,dcxm.fId);
                 dgv.DataSource = hList;
             }
         }
@@ -131,5 +142,7 @@ namespace BDCDC.form
             DialogResult r = f.ShowDialog(this);
             loadHList();
         }
+
+
     }
 }

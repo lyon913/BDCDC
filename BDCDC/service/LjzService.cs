@@ -89,21 +89,21 @@ namespace BDCDC.service
                 throw new Exception("逻辑幢对象为空");
             }
 
-            if (String.IsNullOrEmpty(ljz.ZRZH))
-            {
-                throw new Exception("自然幢号不能为空");
-            }
+            //住建导入的逻辑幢存在暂时无自然幢号的情况
+            //if (String.IsNullOrEmpty(ljz.ZRZH))
+            //{
+                //throw new Exception("自然幢号不能为空");
+            //}
 
-            if (String.IsNullOrEmpty(ljz.ZRZBDCDYH))
-            {
-                throw new Exception("自然幢不动产单元号不能为空");
-            }
+            //if (String.IsNullOrEmpty(ljz.ZRZBDCDYH))
+            //{
+            //    throw new Exception("自然幢不动产单元号不能为空");
+            //}
 
             if (String.IsNullOrEmpty(ljz.LJZH))
             {
                 throw new Exception("逻辑幢号不能为空");
             }
-
         }
     }
 }

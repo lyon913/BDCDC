@@ -55,6 +55,17 @@ namespace BDCDC.service
             });
         }
 
+        public List<H> findByLjzIdAndDcxmId(int ljzId, int dcxmId)
+        {
+            return useDbContext(ctx =>
+            {
+                return ctx.H.Where(h => h.LJZID == ljzId && h.QJDCXMID == dcxmId && (h.ZT == 0 || h.ZT == 1))
+                        .OrderBy(h => h.DYH)
+                        .OrderBy(h => h.QSC)
+                        .ToList();
+            });
+        }
+
         public H saveOrUpdate(H h)
         {
             validate(h);
