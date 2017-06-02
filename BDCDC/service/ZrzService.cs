@@ -10,8 +10,6 @@ namespace BDCDC.service
 {
     class ZrzService : Service
     {
-        private ZdService zs = new ZdService();
-
         public ZRZ newZrz(int dcxmId)
         {
             ZRZ z = new ZRZ();
@@ -70,7 +68,7 @@ namespace BDCDC.service
 
         public void validate(ZRZ zrz)
         {
-            if (!zs.checkZddm(zrz.ZDDM))
+            if (!StringUtils.checkZddm(zrz.ZDDM))
             {
                 throw new Exception("宗地代码无效");
             }

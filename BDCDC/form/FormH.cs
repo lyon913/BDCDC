@@ -153,7 +153,7 @@ namespace BDCDC.form
         private void extractSxh()
         {
             string bdcdyh = h.BDCDYH;
-            if (!String.IsNullOrEmpty(bdcdyh))
+            if (StringUtils.checkBdcdyh(bdcdyh))
             {
                 tb_sxh.Text = bdcdyh.Substring(24, 4);
             }

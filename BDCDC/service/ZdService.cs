@@ -12,8 +12,7 @@ namespace BDCDC.service
      * */
     class ZdService:Service
     {
-        private static string REGEX_ZDDM = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}";
-        private static string REGEX_BDCDYH = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}(W|F|L|Q)\d{8}";
+
 
         public ZDJBXX newZdjbxx()
         {
@@ -211,14 +210,7 @@ namespace BDCDC.service
 
 
 
-        public bool checkZddm(string zddm)
-        {
-            if(String.IsNullOrEmpty(zddm))
-            {
-                return false;
-            }
-            return Regex.Match(zddm, REGEX_ZDDM).Success;
-        }
+
 
         public bool checkZddmDuplicate(string zddm)
         {
@@ -230,16 +222,6 @@ namespace BDCDC.service
             return true;
         }
 
-        public bool checkBdcdyh(string bdcdyh)
-        {
-            if (String.IsNullOrEmpty(bdcdyh))
-            {
-                return false;
-            }
-            return Regex.Match(bdcdyh, REGEX_BDCDYH).Success;
-        }
-        
-        
 
     }
 }

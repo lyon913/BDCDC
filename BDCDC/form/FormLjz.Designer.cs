@@ -275,7 +275,6 @@
             this.dp_jgrq.Size = new System.Drawing.Size(177, 21);
             this.dp_jgrq.TabIndex = 106;
             this.dp_jgrq.Value = new System.DateTime(2010, 1, 1, 0, 0, 0, 0);
-            this.dp_jgrq.ValueChanged += new System.EventHandler(this.dp_jgrq_ValueChanged);
             // 
             // label12
             // 

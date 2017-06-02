@@ -34,10 +34,6 @@ namespace BDCDC.form
             UiUtils.comboboxDataItems(cb_fwyt2, "房屋用途", false);
             UiUtils.comboboxDataItems(cb_fwyt3, "房屋用途", false);
 
-            if(ljz.JGRQ == null)
-            {
-                dp_jgrq.Checked = false;
-            }
         }
 
         private void databinding()
@@ -62,7 +58,8 @@ namespace BDCDC.form
             cb_fwjg2.DataBindings.Add("SelectedValue", ljz, "FWJG2", false, DataSourceUpdateMode.OnPropertyChanged, null);
             cb_fwjg3.DataBindings.Add("SelectedValue", ljz, "FWJG3", false, DataSourceUpdateMode.OnPropertyChanged, null);
 
-            dp_jgrq.DataBindings.Add("Value", ljz, "JGRQ", true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(2010, 1, 1));
+            DateTime now = DateTime.Now;
+            dp_jgrq.DataBindings.Add("Value", ljz, "JGRQ", true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(now.Year, 1, 1));
         }
 
         private void FormLjz_Load(object sender, EventArgs e)
@@ -85,15 +82,6 @@ namespace BDCDC.form
             }catch(Exception ex)
             {
                 UiUtils.alertException(this, ex);
-            }
-        }
-
-        private void dp_jgrq_ValueChanged(object sender, EventArgs e)
-        {
-            if (!dp_jgrq.Checked)
-            {
-                dp_jgrq.Value = new DateTime(1900, 1, 1);
-                dp_jgrq.DataBindings[0].WriteValue();
             }
         }
     }

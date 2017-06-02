@@ -229,7 +229,7 @@ namespace BDCDC.form
             string zdsxh = tb_zdsxh.Text;
 
             string zddm = djzq + syqlx + zdtzm + zdsxh;
-            if (zdService.checkZddm(zddm))
+            if (StringUtils.checkZddm(zddm))
             {
                 tb_zddm.Text = zddm;
             }
@@ -244,7 +244,7 @@ namespace BDCDC.form
 
             string bdcdyh = zddm + dzwtzm + dzwsxh;
 
-            if (zdService.checkBdcdyh(bdcdyh))
+            if (StringUtils.checkBdcdyh(bdcdyh))
             {
                 tb_bdcdyh.Text = bdcdyh;
             }

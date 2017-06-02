@@ -130,7 +130,7 @@ namespace BDCDC.form
 
             //不动产单元号
             string bdcdyh = zrzh + "0000";
-            if (zdService.checkBdcdyh(bdcdyh))
+            if (StringUtils.checkBdcdyh(bdcdyh))
             {
                 tb_bdcdyh.Text = bdcdyh;
                 tb_zrzh.Text = zrzh;
