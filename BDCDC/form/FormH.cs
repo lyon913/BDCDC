@@ -158,5 +158,10 @@ namespace BDCDC.form
                 tb_sxh.Text = bdcdyh.Substring(24, 4);
             }
         }
+
+        private void b_associate_zrz_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

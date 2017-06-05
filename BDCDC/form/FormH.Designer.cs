@@ -47,6 +47,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.tb_sxh = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cb_fwyt3 = new System.Windows.Forms.ComboBox();
@@ -106,8 +108,7 @@
             this.b_remove_hxt = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
+            this.b_associate_zrz = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_hh)).BeginInit();
@@ -294,6 +295,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.b_associate_zrz);
             this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.tb_sxh);
@@ -309,6 +311,24 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "不动产单元号";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(635, 26);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(11, 12);
+            this.label34.TabIndex = 10;
+            this.label34.Text = "=";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(316, 26);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(11, 12);
+            this.label33.TabIndex = 9;
+            this.label33.Text = "+";
             // 
             // tb_sxh
             // 
@@ -973,23 +993,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "宗地面积";
             // 
-            // label33
+            // b_associate_zrz
             // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(316, 26);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(11, 12);
-            this.label33.TabIndex = 9;
-            this.label33.Text = "+";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(635, 26);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(11, 12);
-            this.label34.TabIndex = 10;
-            this.label34.Text = "=";
+            this.b_associate_zrz.Location = new System.Drawing.Point(211, 42);
+            this.b_associate_zrz.Name = "b_associate_zrz";
+            this.b_associate_zrz.Size = new System.Drawing.Size(75, 22);
+            this.b_associate_zrz.TabIndex = 11;
+            this.b_associate_zrz.Text = "关联自然幢";
+            this.b_associate_zrz.UseVisualStyleBackColor = true;
+            this.b_associate_zrz.Click += new System.EventHandler(this.b_associate_zrz_Click);
             // 
             // FormH
             // 
@@ -1120,5 +1132,6 @@
         private System.Windows.Forms.TextBox tb_sxh;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Button b_associate_zrz;
     }
 }

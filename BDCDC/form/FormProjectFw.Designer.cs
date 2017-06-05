@@ -248,7 +248,7 @@
             // m_create_h
             // 
             this.m_create_h.Name = "m_create_h";
-            this.m_create_h.Size = new System.Drawing.Size(112, 22);
+            this.m_create_h.Size = new System.Drawing.Size(152, 22);
             this.m_create_h.Text = "新建户";
             this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
             // 
@@ -263,8 +263,8 @@
             // m_fwlz
             // 
             this.m_fwlz.Name = "m_fwlz";
-            this.m_fwlz.Size = new System.Drawing.Size(124, 22);
-            this.m_fwlz.Text = "房屋落宗";
+            this.m_fwlz.Size = new System.Drawing.Size(152, 22);
+            this.m_fwlz.Text = "查找房屋";
             this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
             // 
             // splitContainer1
