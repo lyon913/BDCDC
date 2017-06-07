@@ -34,6 +34,11 @@ namespace BDCDC.form
             UiUtils.comboboxDataItems(cb_fwyt2, "房屋用途", false);
             UiUtils.comboboxDataItems(cb_fwyt3, "房屋用途", false);
 
+            if(!String.IsNullOrEmpty(ljz.ZRZH))
+            {
+                b_associate_zrz.Hide();
+            }
+
         }
 
         private void databinding()
@@ -83,6 +88,11 @@ namespace BDCDC.form
             {
                 UiUtils.alertException(this, ex);
             }
+        }
+
+        private void b_associate_zrz_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

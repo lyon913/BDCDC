@@ -159,9 +159,5 @@ namespace BDCDC.form
             }
         }
 
-        private void b_associate_zrz_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

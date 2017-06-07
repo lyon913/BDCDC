@@ -64,6 +64,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cb_fwjg3 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.b_associate_zrz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nb_dxcs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_dscs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_zcs)).BeginInit();
@@ -412,11 +413,22 @@
             this.label7.TabIndex = 120;
             this.label7.Text = "房屋结构3：";
             // 
+            // b_associate_zrz
+            // 
+            this.b_associate_zrz.Location = new System.Drawing.Point(107, 12);
+            this.b_associate_zrz.Name = "b_associate_zrz";
+            this.b_associate_zrz.Size = new System.Drawing.Size(75, 23);
+            this.b_associate_zrz.TabIndex = 122;
+            this.b_associate_zrz.Text = "关联自然幢";
+            this.b_associate_zrz.UseVisualStyleBackColor = true;
+            this.b_associate_zrz.Click += new System.EventHandler(this.b_associate_zrz_Click);
+            // 
             // FormLjz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 368);
+            this.Controls.Add(this.b_associate_zrz);
             this.Controls.Add(this.cb_fwjg3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cb_fwjg2);
@@ -505,5 +517,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cb_fwjg3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button b_associate_zrz;
     }
 }

@@ -34,7 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tb_zrzh = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tb_zl = new System.Windows.Forms.TextBox();
+            this.tb_jzwmc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_xmmc = new System.Windows.Forms.TextBox();
             this.b_search = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             // 
             // tb_zddm
             // 
-            this.tb_zddm.Location = new System.Drawing.Point(80, 20);
+            this.tb_zddm.Location = new System.Drawing.Point(90, 20);
             this.tb_zddm.Name = "tb_zddm";
             this.tb_zddm.Size = new System.Drawing.Size(259, 21);
             this.tb_zddm.TabIndex = 0;
@@ -69,7 +69,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tb_xmmc);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.tb_zl);
+            this.groupBox1.Controls.Add(this.tb_jzwmc);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_zrzh);
             this.groupBox1.Controls.Add(this.label1);
@@ -111,16 +111,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 54);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 5;
-            this.label3.Text = "坐落：";
+            this.label3.Text = "建筑物名称：";
             // 
-            // tb_zl
+            // tb_jzwmc
             // 
-            this.tb_zl.Location = new System.Drawing.Point(80, 50);
-            this.tb_zl.Name = "tb_zl";
-            this.tb_zl.Size = new System.Drawing.Size(259, 21);
-            this.tb_zl.TabIndex = 4;
+            this.tb_jzwmc.Location = new System.Drawing.Point(90, 50);
+            this.tb_jzwmc.Name = "tb_jzwmc";
+            this.tb_jzwmc.Size = new System.Drawing.Size(259, 21);
+            this.tb_jzwmc.TabIndex = 4;
             // 
             // label4
             // 
@@ -146,6 +146,7 @@
             this.b_search.TabIndex = 8;
             this.b_search.Text = "查询";
             this.b_search.UseVisualStyleBackColor = true;
+            this.b_search.Click += new System.EventHandler(this.b_search_Click);
             // 
             // b_ok
             // 
@@ -285,7 +286,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_xmmc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_zl;
+        private System.Windows.Forms.TextBox tb_jzwmc;
         private System.Windows.Forms.Button b_search;
         private System.Windows.Forms.Button b_ok;
         private System.Windows.Forms.DataGridView dataGridView1;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BDCDC.model;
+using BDCDC.service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,18 @@ namespace BDCDC.form
 {
     public partial class FormZrzSelect : Form
     {
+
+        private ZRZ queryKey = new ZRZ();
+        private ZrzService zs = new ZrzService();
+
         public FormZrzSelect()
         {
             InitializeComponent();
+        }
+
+        private void b_search_Click(object sender, EventArgs e)
+        {
+            zs.find
         }
     }
 }

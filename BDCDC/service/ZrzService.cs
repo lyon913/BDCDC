@@ -186,5 +186,37 @@ namespace BDCDC.service
             }
             return result;
         }
+
+        public List<ZRZ> findByExample(ZRZ key)
+        {
+            if(key == null)
+            {
+                return null;
+            }
+            return useDbContext(ctx => {
+                IQueryable<ZRZ> query = ctx.ZRZ.Where(zrz => (zrz.ZT == 0 || zrz.ZT == 1));
+                if (!String.IsNullOrEmpty(key.XMMC))
+                {
+                    query = query.Where(zrz => zrz.XMMC.Contains(key.XMMC));
+                }
+
+                if (!String.IsNullOrEmpty(key.ZDDM))
+                {
+                    query = query.Where(zrz => zrz.ZDDM == key.ZDDM);
+                }
+
+                if (!String.IsNullOrEmpty(key.ZRZH))
+                {
+                    query = query.Where(zrz => zrz.ZRZH == key.ZRZH);
+                }
+
+                if (!String.IsNullOrEmpty(key.JZWMC))
+                {
+                    query = query.Where(zrz => zrz.JZWMC == key.JZWMC);
+                }
+
+                return query.OrderBy(zrz => zrz.XMMC).ThenBy(zrz => zrz.JZWMC).ToList();
+            });
+        }
     }
 }

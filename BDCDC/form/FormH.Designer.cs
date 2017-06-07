@@ -103,12 +103,11 @@
             this.b_save = new System.Windows.Forms.Button();
             this.b_quit = new System.Windows.Forms.Button();
             this.b_upload_hxt = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.b_preview_hxt = new System.Windows.Forms.Button();
             this.b_remove_hxt = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.b_associate_zrz = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nb_hh)).BeginInit();
@@ -130,9 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nb_dytdmj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_fttdmj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_gytdmj)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_zrzh
@@ -295,7 +294,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.b_associate_zrz);
             this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.tb_sxh);
@@ -938,14 +936,6 @@
             this.b_upload_hxt.Text = "上传户型图";
             this.b_upload_hxt.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(48, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            // 
             // b_preview_hxt
             // 
             this.b_preview_hxt.Location = new System.Drawing.Point(99, 231);
@@ -993,15 +983,13 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "宗地面积";
             // 
-            // b_associate_zrz
+            // pictureBox1
             // 
-            this.b_associate_zrz.Location = new System.Drawing.Point(211, 42);
-            this.b_associate_zrz.Name = "b_associate_zrz";
-            this.b_associate_zrz.Size = new System.Drawing.Size(75, 22);
-            this.b_associate_zrz.TabIndex = 11;
-            this.b_associate_zrz.Text = "关联自然幢";
-            this.b_associate_zrz.UseVisualStyleBackColor = true;
-            this.b_associate_zrz.Click += new System.EventHandler(this.b_associate_zrz_Click);
+            this.pictureBox1.Location = new System.Drawing.Point(48, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
             // 
             // FormH
             // 
@@ -1042,10 +1030,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nb_dytdmj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_fttdmj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nb_gytdmj)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1132,6 +1120,5 @@
         private System.Windows.Forms.TextBox tb_sxh;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Button b_associate_zrz;
     }
 }
