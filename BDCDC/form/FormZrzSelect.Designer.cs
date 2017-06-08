@@ -39,7 +39,7 @@
             this.tb_xmmc = new System.Windows.Forms.TextBox();
             this.b_search = new System.Windows.Forms.Button();
             this.b_ok = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.c_zddm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_zrzh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_xmmc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +52,7 @@
             this.c_zcs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_zts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_zddm
@@ -156,13 +156,14 @@
             this.b_ok.TabIndex = 9;
             this.b_ok.Text = "确定";
             this.b_ok.UseVisualStyleBackColor = true;
+            this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
             // 
-            // dataGridView1
+            // dgv
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.c_zddm,
             this.c_zrzh,
             this.c_xmmc,
@@ -174,12 +175,12 @@
             this.c_scjzmj,
             this.c_zcs,
             this.c_zts});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 109);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(960, 447);
-            this.dataGridView1.TabIndex = 2;
+            this.dgv.Location = new System.Drawing.Point(12, 109);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowTemplate.Height = 23;
+            this.dgv.Size = new System.Drawing.Size(960, 447);
+            this.dgv.TabIndex = 2;
             // 
             // c_zddm
             // 
@@ -263,7 +264,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -271,7 +272,7 @@
             this.Text = "选择自然幢";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -289,7 +290,7 @@
         private System.Windows.Forms.TextBox tb_jzwmc;
         private System.Windows.Forms.Button b_search;
         private System.Windows.Forms.Button b_ok;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.DataGridViewTextBoxColumn c_zddm;
         private System.Windows.Forms.DataGridViewTextBoxColumn c_zrzh;
         private System.Windows.Forms.DataGridViewTextBoxColumn c_xmmc;

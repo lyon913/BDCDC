@@ -92,7 +92,21 @@ namespace BDCDC.form
 
         private void b_associate_zrz_Click(object sender, EventArgs e)
         {
-            
+            if (!String.IsNullOrEmpty(ljz.ZRZH))
+            {
+                DialogResult confirm = UiUtils.confirm(this, "警告", "该操作将重新关联逻辑幢与自然幢的关联关系，逻辑幢和逻辑幢下所有房屋的不动产单元号将会受到影响,是否继续操作？");
+                if(confirm != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            FormZrzSelect f = new FormZrzSelect();
+            DialogResult r = f.ShowDialog(this);
+            if (r == DialogResult.OK)
+            {
+                ZRZ zrz = f.getSelectedData();
+                ls.associateZrz(ljz, zrz);
+            }
         }
     }
 }

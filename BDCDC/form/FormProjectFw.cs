@@ -91,7 +91,12 @@ namespace BDCDC.form
         private void m_fwlz_Click(object sender, EventArgs e)
         {
             FormHList form = new FormHList();
-            form.ShowDialog(this);
+            DialogResult r = form.ShowDialog(this);
+            if(r == DialogResult.OK)
+            {
+                List<H> = form.getData();
+
+            }
         }
 
         private void tv_AfterSelect(object sender, TreeViewEventArgs e)

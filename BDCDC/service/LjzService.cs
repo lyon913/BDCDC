@@ -105,5 +105,31 @@ namespace BDCDC.service
                 throw new Exception("逻辑幢号不能为空");
             }
         }
+
+        /// <summary>
+        /// 关联逻辑幢和自然幢，包括逻辑幢下的所有房屋
+        /// </summary>
+        /// <param name="ljz"></param>
+        /// <param name="zrz"></param>
+        public void associateZrz(LJZ ljz, ZRZ zrz)
+        {
+            string zrzh = zrz.ZRZH;
+            HService hs = new HService();
+            List<H> hList = hs.findByLjzId(ljz.fId);
+
+            useTransaction(ctx =>
+            {
+                ljz.ZRZH = zrzh;
+                insertOrUpdate(ljz, ctx);
+
+                foreach(var h in hList)
+                {
+                    h.ZRZH = zrzh;
+                    insertOrUpdate(h, ctx);
+                }
+
+                return ljz;
+            });
+        }
     }
 }

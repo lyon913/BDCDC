@@ -86,11 +86,6 @@ namespace BDCDC.utils
             toolbar.AddItem("esriControls.ControlsEditingToolbar", -1, -1, false, 0, esriCommandStyles.esriCommandStyleIconOnly);
         }
 
-        public static void alertException(IWin32Window owner, Exception ex)
-        {
-            MessageBox.Show(owner, ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
         public static string cbSelectedValueToString(ComboBox cb)
         {
             if(cb.SelectedValue == null)
@@ -103,10 +98,21 @@ namespace BDCDC.utils
             }
         }
 
-
-        public static void dgvAddHeaderCheckBox(DataGridView dgv)
+        public static void alertException(IWin32Window owner, Exception ex)
         {
-
+            MessageBox.Show(owner, ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static void alertInfo(IWin32Window owner, string caption, string msg)
+        {
+            MessageBox.Show(owner, msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static DialogResult confirm(IWin32Window owner, string caption, string msg)
+        {
+            return MessageBox.Show(owner, msg, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+
     }
 }

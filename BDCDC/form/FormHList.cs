@@ -21,6 +21,7 @@ namespace BDCDC.form
 
         private XM selectedXm = null;
         private LJZ selectedLjz = null;
+        private List<H> selectedH = null;
         
 
         public FormHList()
@@ -181,14 +182,20 @@ namespace BDCDC.form
 
         private void b_ok_Click(object sender, EventArgs e)
         {
-            List<H> selected = getSelectedHList();
-            if(selected == null || selected.Count < 1)
+            selectedH = getSelectedHList();
+            if(selectedH == null || selectedH.Count < 1)
             {
                 MessageBox.Show(this, "请选择要操作的户信息。");
                 return;
             }
 
-            MessageBox.Show(this, selected.Count.ToString());
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        public List<H> getData()
+        {
+            return this.selectedH;
         }
     }
 }
