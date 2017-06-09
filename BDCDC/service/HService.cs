@@ -125,5 +125,24 @@ namespace BDCDC.service
             string zl = zdzl + jzwmc + dyh + shbw;
             return zl;
         }
+
+        public void associateDcxm(List<H> list, int dcxmId)
+        {
+            if(list == null || list.Count == 0)
+            {
+                return;
+            }
+            useTransaction(ctx =>
+            {
+                foreach (var h in list)
+                {
+                    h.QJDCXMID = dcxmId;
+                    insertOrUpdate(h, ctx);
+                }
+
+                return list;
+            });
+            
+        } 
     }
 }

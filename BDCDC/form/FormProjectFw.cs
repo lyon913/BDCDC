@@ -45,6 +45,7 @@ namespace BDCDC.form
 
         private void initTreeView()
         {
+            tv.Nodes.Clear();
             TreeNode root = new TreeNode("逻辑幢");
             tv.Nodes.Add(root);
 
@@ -94,8 +95,9 @@ namespace BDCDC.form
             DialogResult r = form.ShowDialog(this);
             if(r == DialogResult.OK)
             {
-                List<H> = form.getData();
-
+                List<H> hList = form.getData();
+                hs.associateDcxm(hList, dcxm.fId);
+                init();
             }
         }
 
@@ -146,6 +148,12 @@ namespace BDCDC.form
             FormH f = new FormH(h);
             DialogResult r = f.ShowDialog(this);
             loadHList();
+        }
+
+        private void refreshTreeView()
+        {
+            tv.Nodes.Clear();
+            initTreeView();
         }
 
 
