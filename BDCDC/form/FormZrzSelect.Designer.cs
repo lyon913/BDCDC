@@ -30,15 +30,15 @@
         {
             this.tb_zddm = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tb_zrzh = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tb_jzwmc = new System.Windows.Forms.TextBox();
+            this.b_ok = new System.Windows.Forms.Button();
+            this.b_search = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_xmmc = new System.Windows.Forms.TextBox();
-            this.b_search = new System.Windows.Forms.Button();
-            this.b_ok = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tb_jzwmc = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tb_zrzh = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.c_zddm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_zrzh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,46 +81,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询条件";
             // 
-            // label1
+            // b_ok
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "宗地代码：";
+            this.b_ok.Location = new System.Drawing.Point(860, 18);
+            this.b_ok.Name = "b_ok";
+            this.b_ok.Size = new System.Drawing.Size(75, 48);
+            this.b_ok.TabIndex = 9;
+            this.b_ok.Text = "确定";
+            this.b_ok.UseVisualStyleBackColor = true;
+            this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
             // 
-            // label2
+            // b_search
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(416, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "自然幢号：";
-            // 
-            // tb_zrzh
-            // 
-            this.tb_zrzh.Location = new System.Drawing.Point(489, 20);
-            this.tb_zrzh.Name = "tb_zrzh";
-            this.tb_zrzh.Size = new System.Drawing.Size(233, 21);
-            this.tb_zrzh.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "建筑物名称：";
-            // 
-            // tb_jzwmc
-            // 
-            this.tb_jzwmc.Location = new System.Drawing.Point(90, 50);
-            this.tb_jzwmc.Name = "tb_jzwmc";
-            this.tb_jzwmc.Size = new System.Drawing.Size(259, 21);
-            this.tb_jzwmc.TabIndex = 4;
+            this.b_search.Location = new System.Drawing.Point(764, 18);
+            this.b_search.Name = "b_search";
+            this.b_search.Size = new System.Drawing.Size(75, 48);
+            this.b_search.TabIndex = 8;
+            this.b_search.Text = "查询";
+            this.b_search.UseVisualStyleBackColor = true;
+            this.b_search.Click += new System.EventHandler(this.b_search_Click);
             // 
             // label4
             // 
@@ -138,25 +117,46 @@
             this.tb_xmmc.Size = new System.Drawing.Size(233, 21);
             this.tb_xmmc.TabIndex = 6;
             // 
-            // b_search
+            // label3
             // 
-            this.b_search.Location = new System.Drawing.Point(764, 18);
-            this.b_search.Name = "b_search";
-            this.b_search.Size = new System.Drawing.Size(75, 48);
-            this.b_search.TabIndex = 8;
-            this.b_search.Text = "查询";
-            this.b_search.UseVisualStyleBackColor = true;
-            this.b_search.Click += new System.EventHandler(this.b_search_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "建筑物名称：";
             // 
-            // b_ok
+            // tb_jzwmc
             // 
-            this.b_ok.Location = new System.Drawing.Point(860, 18);
-            this.b_ok.Name = "b_ok";
-            this.b_ok.Size = new System.Drawing.Size(75, 48);
-            this.b_ok.TabIndex = 9;
-            this.b_ok.Text = "确定";
-            this.b_ok.UseVisualStyleBackColor = true;
-            this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
+            this.tb_jzwmc.Location = new System.Drawing.Point(90, 50);
+            this.tb_jzwmc.Name = "tb_jzwmc";
+            this.tb_jzwmc.Size = new System.Drawing.Size(259, 21);
+            this.tb_jzwmc.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(416, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "自然幢号：";
+            // 
+            // tb_zrzh
+            // 
+            this.tb_zrzh.Location = new System.Drawing.Point(489, 20);
+            this.tb_zrzh.Name = "tb_zrzh";
+            this.tb_zrzh.Size = new System.Drawing.Size(233, 21);
+            this.tb_zrzh.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "宗地代码：";
             // 
             // dgv
             // 
@@ -176,9 +176,11 @@
             this.c_zcs,
             this.c_zts});
             this.dgv.Location = new System.Drawing.Point(12, 109);
+            this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.Height = 23;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(960, 447);
             this.dgv.TabIndex = 2;
             // 

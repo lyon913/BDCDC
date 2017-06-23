@@ -38,11 +38,6 @@
             this.list_xm = new System.Windows.Forms.ListBox();
             this.list_ljz = new System.Windows.Forms.ListBox();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.b_checkAll = new System.Windows.Forms.Button();
-            this.b_checkInvert = new System.Windows.Forms.Button();
-            this.b_uncheckAll = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.c_select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.c_ljzh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_dyh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +49,11 @@
             this.c_scjzmj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_ycjzmj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.c_zl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.b_checkAll = new System.Windows.Forms.Button();
+            this.b_checkInvert = new System.Windows.Forms.Button();
+            this.b_uncheckAll = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.group1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
@@ -168,57 +168,10 @@
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.Height = 23;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(574, 436);
             this.dgv.TabIndex = 3;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
-            // 
-            // b_checkAll
-            // 
-            this.b_checkAll.Location = new System.Drawing.Point(807, 91);
-            this.b_checkAll.Name = "b_checkAll";
-            this.b_checkAll.Size = new System.Drawing.Size(51, 21);
-            this.b_checkAll.TabIndex = 12;
-            this.b_checkAll.Text = "全选";
-            this.b_checkAll.UseVisualStyleBackColor = true;
-            this.b_checkAll.Click += new System.EventHandler(this.b_checkAll_Click);
-            // 
-            // b_checkInvert
-            // 
-            this.b_checkInvert.Location = new System.Drawing.Point(864, 91);
-            this.b_checkInvert.Name = "b_checkInvert";
-            this.b_checkInvert.Size = new System.Drawing.Size(51, 21);
-            this.b_checkInvert.TabIndex = 13;
-            this.b_checkInvert.Text = "反选";
-            this.b_checkInvert.UseVisualStyleBackColor = true;
-            this.b_checkInvert.Click += new System.EventHandler(this.b_checkInvert_Click);
-            // 
-            // b_uncheckAll
-            // 
-            this.b_uncheckAll.Location = new System.Drawing.Point(921, 91);
-            this.b_uncheckAll.Name = "b_uncheckAll";
-            this.b_uncheckAll.Size = new System.Drawing.Size(51, 21);
-            this.b_uncheckAll.TabIndex = 14;
-            this.b_uncheckAll.Text = "不选";
-            this.b_uncheckAll.UseVisualStyleBackColor = true;
-            this.b_uncheckAll.Click += new System.EventHandler(this.b_uncheckAll_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "项目：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(205, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "逻辑幢：";
             // 
             // c_select
             // 
@@ -303,6 +256,54 @@
             this.c_zl.Name = "c_zl";
             this.c_zl.ReadOnly = true;
             this.c_zl.Width = 300;
+            // 
+            // b_checkAll
+            // 
+            this.b_checkAll.Location = new System.Drawing.Point(807, 91);
+            this.b_checkAll.Name = "b_checkAll";
+            this.b_checkAll.Size = new System.Drawing.Size(51, 21);
+            this.b_checkAll.TabIndex = 12;
+            this.b_checkAll.Text = "全选";
+            this.b_checkAll.UseVisualStyleBackColor = true;
+            this.b_checkAll.Click += new System.EventHandler(this.b_checkAll_Click);
+            // 
+            // b_checkInvert
+            // 
+            this.b_checkInvert.Location = new System.Drawing.Point(864, 91);
+            this.b_checkInvert.Name = "b_checkInvert";
+            this.b_checkInvert.Size = new System.Drawing.Size(51, 21);
+            this.b_checkInvert.TabIndex = 13;
+            this.b_checkInvert.Text = "反选";
+            this.b_checkInvert.UseVisualStyleBackColor = true;
+            this.b_checkInvert.Click += new System.EventHandler(this.b_checkInvert_Click);
+            // 
+            // b_uncheckAll
+            // 
+            this.b_uncheckAll.Location = new System.Drawing.Point(921, 91);
+            this.b_uncheckAll.Name = "b_uncheckAll";
+            this.b_uncheckAll.Size = new System.Drawing.Size(51, 21);
+            this.b_uncheckAll.TabIndex = 14;
+            this.b_uncheckAll.Text = "不选";
+            this.b_uncheckAll.UseVisualStyleBackColor = true;
+            this.b_uncheckAll.Click += new System.EventHandler(this.b_uncheckAll_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "项目：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(205, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "逻辑幢：";
             // 
             // FormHList
             // 

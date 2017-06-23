@@ -50,9 +50,9 @@
             this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
             this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
             this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
+            this.历史登记数据落宗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dcxmInfo = new BDCDC.form.ctrl.DcxmInfo();
-            this.历史登记数据落宗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -249,7 +249,7 @@
             // m_create_h
             // 
             this.m_create_h.Name = "m_create_h";
-            this.m_create_h.Size = new System.Drawing.Size(152, 22);
+            this.m_create_h.Size = new System.Drawing.Size(148, 22);
             this.m_create_h.Text = "新房屋（户）";
             this.m_create_h.Click += new System.EventHandler(this.create_h_Click);
             // 
@@ -266,8 +266,14 @@
             // 
             this.m_fwlz.Name = "m_fwlz";
             this.m_fwlz.Size = new System.Drawing.Size(152, 22);
-            this.m_fwlz.Text = "新建房产落宗";
+            this.m_fwlz.Text = "选择房屋落宗";
             this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
+            // 
+            // 历史登记数据落宗ToolStripMenuItem
+            // 
+            this.历史登记数据落宗ToolStripMenuItem.Name = "历史登记数据落宗ToolStripMenuItem";
+            this.历史登记数据落宗ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.历史登记数据落宗ToolStripMenuItem.Text = "历史数据落宗";
             // 
             // splitContainer1
             // 
@@ -295,12 +301,6 @@
             this.dcxmInfo.Name = "dcxmInfo";
             this.dcxmInfo.Size = new System.Drawing.Size(934, 64);
             this.dcxmInfo.TabIndex = 5;
-            // 
-            // 历史登记数据落宗ToolStripMenuItem
-            // 
-            this.历史登记数据落宗ToolStripMenuItem.Name = "历史登记数据落宗ToolStripMenuItem";
-            this.历史登记数据落宗ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.历史登记数据落宗ToolStripMenuItem.Text = "历史数据落宗";
             // 
             // FormProjectFw
             // 
