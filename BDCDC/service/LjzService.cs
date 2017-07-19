@@ -1,4 +1,5 @@
 ﻿using BDCDC.model;
+using BDCDC.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,13 +108,18 @@ namespace BDCDC.service
         }
 
         /// <summary>
-        /// 关联逻辑幢和自然幢，包括逻辑幢下的所有房屋
+        /// 使用自然幢号关联逻辑幢和自然幢，包括逻辑幢下的所有房屋
         /// </summary>
         /// <param name="ljz"></param>
         /// <param name="zrz"></param>
         public void associateZrz(LJZ ljz, ZRZ zrz)
         {
             string zrzh = zrz.ZRZH;
+
+            if (!StringUtils.checkZrzh(zrzh))
+            {
+                throw new Exception("不是有效的自然幢自然幢号");
+            }
             HService hs = new HService();
             List<H> hList = hs.findByLjzId(ljz.fId);
 

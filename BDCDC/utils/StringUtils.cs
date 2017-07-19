@@ -6,7 +6,8 @@ namespace BDCDC.utils
     class StringUtils
     {
         private static string REGEX_ZDDM = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}";
-        private static string REGEX_BDCDYH = @"\d{12}(G|J)(A|B|C|D|E|F|G|H|S|X|W|Y)\d{5}(W|F|L|Q)\d{8}";
+        private static string REGEX_ZRZH = REGEX_ZDDM  + @"(W|F|L|Q)\d{4}";
+        private static string REGEX_BDCDYH = REGEX_ZDDM + @"(W|F|L|Q)\d{8}";
 
         /// <summary>
         /// 字符型顺序号加1
@@ -70,6 +71,20 @@ namespace BDCDC.utils
                 return false;
             }
             return Regex.Match(zddm, REGEX_ZDDM).Success;
+        }
+
+        /// <summary>
+        /// 检查自然幢号是否符合规范
+        /// </summary>
+        /// <param name="zrzh"></param>
+        /// <returns></returns>
+        public static bool checkZrzh(string zrzh)
+        {
+            if (String.IsNullOrEmpty(zrzh))
+            {
+                return false;
+            }
+            return Regex.Match(zrzh, REGEX_ZRZH).Success;
         }
     }
 }

@@ -100,13 +100,23 @@ namespace BDCDC.form
                     return;
                 }
             }
-            FormZrzSelect f = new FormZrzSelect();
-            DialogResult r = f.ShowDialog(this);
-            if (r == DialogResult.OK)
+            try
             {
-                ZRZ zrz = f.getSelectedData();
-                ls.associateZrz(ljz, zrz);
+                FormZrzSelect f = new FormZrzSelect();
+                DialogResult r = f.ShowDialog(this);
+                if (r == DialogResult.OK)
+                {
+
+                    ZRZ zrz = f.getSelectedData();
+                    ls.associateZrz(ljz, zrz);
+
+                    tb_zrzh.Text = zrz.ZRZH;
+                }
+            }catch(Exception ex)
+            {
+                UiUtils.alertException(this, ex);
             }
+
         }
     }
 }

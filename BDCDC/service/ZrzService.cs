@@ -212,7 +212,7 @@ namespace BDCDC.service
 
                 if (!String.IsNullOrEmpty(key.JZWMC))
                 {
-                    query = query.Where(zrz => zrz.JZWMC == key.JZWMC);
+                    query = query.Where(zrz => zrz.JZWMC.Contains(key.JZWMC));
                 }
 
                 return query.OrderBy(zrz => zrz.XMMC).ThenBy(zrz => zrz.JZWMC).ToList();

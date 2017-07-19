@@ -48,6 +48,11 @@ namespace BDCDC.form
 
         private void b_search_Click(object sender, EventArgs e)
         {
+            if(String.IsNullOrEmpty(queryKey.ZDDM) && String.IsNullOrEmpty(queryKey.ZRZH) && String.IsNullOrEmpty(queryKey.JZWMC) && String.IsNullOrEmpty(queryKey.XMMC))
+            {
+                UiUtils.alertInfo(this, "错误", "请至少填写一项查询条件");
+                return;
+            }
             search(queryKey);
         }
 
