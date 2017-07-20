@@ -1,3 +1,79 @@
+-- 获取系统编号的存储过程
+Create PROCEDURE [dbo].[getSysNo2]
+	-- Add the parameters for the stored procedure here
+	@bhlb varchar(50),
+	@qxdm varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	declare
+	 @bhid numeric(19,0), -- 编号配置表ID
+	 @bhrq varchar(50),-- 流水日期
+	 @bhcd int,-- 编号长度
+	 @bhls varchar(50), -- 编号值
+	 @rqcd int, --流水日期的长度，用于判定按年、月、日流水
+	 @err_msg varchar(200)
+
+
+	BEGIN TRANSACTION;
+	BEGIN TRY
+		SELECT @bhid=fId,@bhrq=BHRQ,@bhcd=BHCD,@bhls=BHLS from XTBH tbh where BHLB = @bhlb and QXDM=@qxdm;
+
+		-- 未找到编号配置则直接返回null
+		if @bhid is null
+		begin
+		
+			set @err_msg = '未找到编号类别：'+@bhlb
+			RAISERROR (@err_msg, 16, 1);
+		end
+
+		--编号日期不为null，则需要按日期重置流水
+		if (@bhrq is not null)
+		begin
+			declare @str_date varchar(50),@len_rq int
+
+			set @len_rq = len(@bhrq)
+			if @len_rq<>4 and @len_rq <> 6 and @len_rq <> 8
+			begin
+				set @err_msg = '编号日期配置错误，无法识别：'+ @bhrq
+				RAISERROR (@err_msg, 16, 1);
+			end
+
+			set @str_date = convert(varchar(20),getdate(),112)
+			set @str_date = left(@str_date,@len_rq)
+			--比较日期大小
+			if(@bhrq < @str_date)
+			begin
+				set @bhrq = @str_date
+				set @bhls = 0
+				update XTBH set BHRQ=@bhrq where fId=@bhid
+			end
+		end
+
+		if(@bhls is null)
+		begin
+			set @bhls='1'
+		end
+		--编号+1
+		set @bhls = convert(varchar,(CONVERT(int,@bhls)+1))
+
+		--编号补位
+		set @bhls = '00000000000000000000000' + @bhls
+		set @bhls = right(@bhls,@bhcd);
+
+		update XTBH set BHLS=@bhls where fId=@bhid
+		COMMIT TRANSACTION;
+		select @bhrq+@bhls --输出结果
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION;
+	END CATCH;
+END
+GO
+
 --权籍调查项目表
 create table QJDCXM(
 	[fId] int IDENTITY(1,1) NOT NULL primary key,
@@ -49,6 +125,12 @@ CREATE NONCLUSTERED INDEX [IX_Config_cfgKey] ON Config
 GO
 --插入配置项(富民xian80 34度带)
 insert into config values('SRID','2358','');
+
+--区县标志
+insert into config values('QXBZ','FM','');
+
+--区县代码
+insert into config values('QXDM','530124000000','');
 go
 
 --ZDJBXX

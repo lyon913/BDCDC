@@ -46,12 +46,13 @@ namespace BDCDC.form
         private void initTreeView()
         {
             tv.Nodes.Clear();
-            TreeNode root = new TreeNode("逻辑幢");
+            TreeNode root = new TreeNode("自然幢-逻辑幢");
             tv.Nodes.Add(root);
 
             foreach (LJZ ljz in ljzList)
             {
-                TreeNode n = new TreeNode(ljz.ZRZH + " - " + ljz.LJZH);
+                String zrzh = String.IsNullOrEmpty(ljz.ZRZH)?"未落宗":ljz.ZRZH;
+                TreeNode n = new TreeNode(zrzh + " - " + ljz.LJZH);
                 n.Tag = ljz;
                 root.Nodes.Add(n);
             }
@@ -114,6 +115,8 @@ namespace BDCDC.form
                 LJZ ljz = (LJZ)n.Tag;
                 FormLjz f = new FormLjz(ljz);
                 f.ShowDialog(this);
+                init();
+
             }
         }
 
@@ -156,6 +159,9 @@ namespace BDCDC.form
             initTreeView();
         }
 
-
+        private void m_ydjfwlz_Click(object sender, EventArgs e)
+        {
+            UiUtils.alertInfo(this, "提示", "该功能尚未开通，请使用不动产登记系统相关功能。");
+        }
     }
 }

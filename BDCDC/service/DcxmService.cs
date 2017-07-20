@@ -117,9 +117,14 @@ namespace BDCDC.service
 
         }
 
-        private string getXmbh()
+        public String getXmbh()
         {
-            return QJDCXM_PREFIX + DateTime.Now.ToShortTimeString();
+            return useDbContext(ctx =>
+            {
+                String number= ctx.Database.SqlQuery<String>("execute dbo.getSysNo2 'BHLB_QJDC','530124000000'").Single();
+
+                return "QD" + ConfigManager.QXBZ + number;
+            });
         }
 
 
@@ -174,6 +179,8 @@ namespace BDCDC.service
                 return ctx.ZRZ.Where(z => z.QJDCXMID == dcxmId).Count();
             });
         }
+
+
 
 
     }

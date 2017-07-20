@@ -50,7 +50,7 @@
             this.m_create_h = new System.Windows.Forms.ToolStripMenuItem();
             this.m_gytd = new System.Windows.Forms.ToolStripMenuItem();
             this.m_fwlz = new System.Windows.Forms.ToolStripMenuItem();
-            this.历史登记数据落宗ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_ydjfwlz = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dcxmInfo = new BDCDC.form.ctrl.DcxmInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -257,7 +257,7 @@
             // 
             this.m_gytd.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_fwlz,
-            this.历史登记数据落宗ToolStripMenuItem});
+            this.m_ydjfwlz});
             this.m_gytd.Name = "m_gytd";
             this.m_gytd.Size = new System.Drawing.Size(116, 21);
             this.m_gytd.Text = "国有建设用地房屋";
@@ -265,15 +265,16 @@
             // m_fwlz
             // 
             this.m_fwlz.Name = "m_fwlz";
-            this.m_fwlz.Size = new System.Drawing.Size(152, 22);
-            this.m_fwlz.Text = "选择房屋落宗";
+            this.m_fwlz.Size = new System.Drawing.Size(160, 22);
+            this.m_fwlz.Text = "新建房屋落宗";
             this.m_fwlz.Click += new System.EventHandler(this.m_fwlz_Click);
             // 
-            // 历史登记数据落宗ToolStripMenuItem
+            // m_ydjfwlz
             // 
-            this.历史登记数据落宗ToolStripMenuItem.Name = "历史登记数据落宗ToolStripMenuItem";
-            this.历史登记数据落宗ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.历史登记数据落宗ToolStripMenuItem.Text = "历史数据落宗";
+            this.m_ydjfwlz.Name = "m_ydjfwlz";
+            this.m_ydjfwlz.Size = new System.Drawing.Size(160, 22);
+            this.m_ydjfwlz.Text = "已登记房屋落宗";
+            this.m_ydjfwlz.Click += new System.EventHandler(this.m_ydjfwlz_Click);
             // 
             // splitContainer1
             // 
@@ -353,6 +354,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GYTDMY;
         private System.Windows.Forms.DataGridViewTextBoxColumn FTTDMJ;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZL;
-        private System.Windows.Forms.ToolStripMenuItem 历史登记数据落宗ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem m_ydjfwlz;
     }
 }

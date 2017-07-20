@@ -7,11 +7,27 @@ namespace BDCDC.service
 {
     abstract class ConfigManager
     {
+        /// <summary>
+        /// 空间参考系id
+        /// </summary>
         public static int SRID { get; }
+
+        /// <summary>
+        /// 区县标志，用于业务号
+        /// </summary>
+        public static string QXBZ { get; }
+
+        /// <summary>
+        /// 区县代码用于获取业务号等
+        /// </summary>
+        public static string QXDM { get; }
 
         static ConfigManager()
         {
+            
             SRID = getServerConfigValue<int>("SRID");
+            QXBZ = getServerConfigValue<string>("QXBZ");
+            QXDM = getServerConfigValue<string>("QXDM");
         }
 
         /// <summary>
