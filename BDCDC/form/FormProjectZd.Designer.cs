@@ -37,16 +37,23 @@
             this.b_importJzd = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.mapControl = new ESRI.ArcGIS.Controls.AxMapControl();
+            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.tocControl = new ESRI.ArcGIS.Controls.AxTOCControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_tx = new System.Windows.Forms.TabPage();
             this.tab_xm = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lb_coords = new System.Windows.Forms.ToolStripStatusLabel();
             this.lb_spring = new System.Windows.Forms.ToolStripStatusLabel();
             this.lb_scale = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mapToolbar1 = new BDCDC.form.ctrl.MapToolbar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lb_coords = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tab_tx.SuspendLayout();
+            this.tab_xm.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,6 +175,15 @@
             this.mapControl.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.mapControl_OnMouseMove);
             this.mapControl.OnViewRefreshed += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnViewRefreshedEventHandler(this.mapControl_OnViewRefreshed);
             // 
+            // mapToolbar1
+            // 
+            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
+            this.mapToolbar1.Name = "mapToolbar1";
+            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
+            this.mapToolbar1.TabIndex = 1;
+            this.mapToolbar1.Text = "mapToolbar1";
+            // 
             // tocControl
             // 
             this.tocControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -199,10 +216,17 @@
             // 
             // tab_xm
             // 
+            this.tab_xm.Controls.Add(this.label7);
+            this.tab_xm.Controls.Add(this.label6);
+            this.tab_xm.Controls.Add(this.label5);
+            this.tab_xm.Controls.Add(this.label4);
+            this.tab_xm.Controls.Add(this.label3);
+            this.tab_xm.Controls.Add(this.label2);
+            this.tab_xm.Controls.Add(this.label1);
             this.tab_xm.Location = new System.Drawing.Point(4, 22);
             this.tab_xm.Name = "tab_xm";
             this.tab_xm.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_xm.Size = new System.Drawing.Size(1000, 609);
+            this.tab_xm.Size = new System.Drawing.Size(1000, 613);
             this.tab_xm.TabIndex = 1;
             this.tab_xm.Text = "业务信息";
             this.tab_xm.UseVisualStyleBackColor = true;
@@ -220,13 +244,6 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // lb_coords
-            // 
-            this.lb_coords.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.lb_coords.Name = "lb_coords";
-            this.lb_coords.Size = new System.Drawing.Size(44, 17);
-            this.lb_coords.Text = "坐标值";
-            // 
             // lb_spring
             // 
             this.lb_spring.Name = "lb_spring";
@@ -240,29 +257,90 @@
             this.lb_scale.Size = new System.Drawing.Size(44, 17);
             this.lb_scale.Text = "比例尺";
             // 
-            // mapToolbar1
-            // 
-            this.mapToolbar1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.mapToolbar1.Location = new System.Drawing.Point(0, 0);
-            this.mapToolbar1.Name = "mapToolbar1";
-            this.mapToolbar1.Size = new System.Drawing.Size(598, 56);
-            this.mapToolbar1.TabIndex = 1;
-            this.mapToolbar1.Text = "mapToolbar1";
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(16, 17);
             this.toolStripStatusLabel1.Text = "  ";
             // 
-            // FormProjectMain
+            // lb_coords
+            // 
+            this.lb_coords.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.lb_coords.Name = "lb_coords";
+            this.lb_coords.Size = new System.Drawing.Size(44, 17);
+            this.lb_coords.Text = "坐标值";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "项目编号：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(212, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "项目名称：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(828, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "业务状态：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(550, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "项目类型：";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "调查单位：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(212, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "调查人：";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(550, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "调查时间：";
+            // 
+            // FormProjectZd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
-            this.Name = "FormProjectMain";
+            this.Name = "FormProjectZd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "权籍调查项目管理";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -283,6 +361,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tocControl)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tab_tx.ResumeLayout(false);
+            this.tab_xm.ResumeLayout(false);
+            this.tab_xm.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -309,5 +389,12 @@
         private System.Windows.Forms.ToolStripStatusLabel lb_spring;
         private System.Windows.Forms.ToolStripStatusLabel lb_scale;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }
